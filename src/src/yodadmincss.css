@@ -1,0 +1,2224 @@
+@font-face {
+    font-family: 'D-DIN';
+src: url(./fonts/D-DIN_0.otf) format("opentype");
+}
+
+
+@font-face {
+    font-family: 'D-DINExp-Bold_0';
+src: url(./fonts/D-DINExp-Bold_0.otf) format("opentype");
+}
+
+body {
+font-family: 'D-DIN';
+}
+
+.loginbgayod {
+background: url(./img/loginbga.jpg);
+height: 100%;
+display: flex;
+min-height: 100vh;
+align-items: center;
+justify-content: center;
+}
+
+.formbgayod {
+margin: auto;
+width: 34%;
+background: #fff;
+padding: 30px;
+}
+
+.holdlgo {
+text-align: center;
+margin-bottom: 30px;
+}
+
+.holdlgo .logoflyod {
+width: 40%;
+}
+
+.yodformdesigns input.uk-input {
+background: #f0f0f0;
+border-radius: 25px;
+padding: 14px 25px;
+height: auto;
+color: #303030;
+font-size: 15px;
+}
+
+.yodformdesigns input::placeholder {
+color: #303030;
+}
+
+.msgforms {
+margin-bottom: 30px;
+text-align:center;
+}
+
+label.yodinplabel {
+color: #7f258c;
+margin-bottom: 20px;
+display: block;
+text-align: left;
+font-size: 17px;
+}
+
+.yodformdesigns {
+text-align: center;
+}
+
+button.uk-button.uk-button-primary.yodprimary {
+background: #d8078b;
+border-radius: 23px;
+width: 77%;
+padding: 4px 0;
+box-shadow: #9a8888 2px 1px 4px 0px;
+}
+
+a.uk-button.uk-button-primary.yodprimary {
+    background: #d8078b;
+    border-radius: 23px;
+    width: 34%;
+    padding: 4px 0;
+    box-shadow: #9a8888 2px 1px 4px 0px;
+    }
+
+a.uk-button.uk-button-primary.yodprimary1 {
+        background: #d8078b;
+        border-radius: 23px;
+        width: 100%;
+        padding: 4px 0;
+        box-shadow: #9a8888 2px 1px 4px 0px;
+    }  
+a.uk-button.uk-button-primary.yodprimary12 {
+        background: #d8078b;
+        border-radius: 23px;
+        width: 77%;
+        padding: 4px 0;
+        box-shadow: #9a8888 2px 1px 4px 0px;
+    } 
+    
+    .loaderintlos {
+        position: fixed;
+        top: 0;
+        z-index: 999;
+        width:  100%;
+        text-align: center;
+        height: 100%;
+        left: 0;
+        background: rgba(255,255,255,0.5);
+        
+    }
+    
+    .loaderintlos img {
+        margin: auto;
+    }    
+
+.msgforms p {
+font-size: 17px;
+}
+
+.yod-container {
+max-width: 1268px;
+margin: 0 auto;
+width: 100%;
+background: #fff;
+}
+
+.row {
+display: flex;
+}
+
+.rightside-yod {
+float: right;
+order: 2;
+width: 27%;
+padding: 0 15px;
+}
+
+.leftside-yod {
+float: left;
+order: 1;
+width: 70%;
+padding: 0 15px;
+position: relative;
+overflow: hidden;
+}
+
+
+.Inputs{ width:100%}
+
+div {
+box-sizing: border-box;
+}
+
+.rightside-yod .formbgayod {
+width: 100%;
+padding: 0;
+}
+
+.icohda h2 {
+text-transform: uppercase;
+font-size: 20px;
+    font-family: 'D-DINExp-Bold_0';
+    margin: 0 0 20px 0;
+}
+
+.icohda {
+text-align: center;
+}
+
+.col-5-yd {
+float: left;
+width: 50%;
+padding: 0 15px;
+}
+
+.ydosteps {
+min-height: 100px;
+}
+
+/* css for steps parts */
+
+.ydosteps h4 {
+color: #793692;
+font-family: 'D-DIN';
+margin: 0 0 4px 0;
+}
+
+.lstproyd h6 {
+font-size: 20px;
+font-family: 'D-DINExp-Bold_0';
+margin: 0;
+}
+
+.ydosteps p {
+font-family: 'D-DIN';
+margin: 10px 0 0 0;
+font-size: 14px;
+min-height: 71px;
+}
+
+.icovoiletod {
+text-align: center;
+background: #722a8c;
+border-radius: 100%;
+width: 55px;
+height: 55px;
+margin: auto;
+display: flex;
+}
+
+.icovoiletod img {padding: 1px;margin: auto;}
+
+.iconareayod-vd {
+text-align: center;
+width: 100%;
+margin-top: 20px;
+}
+
+.iconsetsydo {
+display: flex;
+}
+
+.loginbgayod.loginonl .yod-container {
+margin: 40px auto;
+padding: 21px;
+}
+
+.loginbgayod.loginonl {
+height: auto;
+}
+
+.rightside-yod button.uk-button.uk-button-primary.yodprimary {
+width: 100%;
+margin-top: 20px;
+}
+
+.leftside-yod:after {
+content: "";
+border-right: 1px solid #ddd;
+height: 100%;
+position: absolute;
+right: 16px;
+top: 0;
+}
+
+.forrems label {
+float: left;
+}
+
+.forrems a {
+float: right;
+color: #7d7474;
+cursor: pointer;
+}
+
+.forrems {
+margin-top: 10px;
+float: left;
+width: 100%;
+}
+
+.forrems label p {
+margin: 0px 0px 0 5px;
+display: inline-block;
+}
+
+.registerinless h6 {
+font-size: 15px;
+font-family: 'D-DINExp-Bold_0';
+margin: 0;
+line-height: 30px;
+}
+
+.registerinless {
+text-align: center;
+float: left;
+width: 100%;
+padding-top: 20px;
+padding-bottom: 20px;
+position: relative;
+}
+
+.registerinless p {
+margin: 10px 0;
+}
+
+.registerinless p.andsgnd {
+font-size: 36px;
+}
+
+.stptxt {
+text-align: center;
+width: 100%;
+float: left;
+}
+
+.stptxt ul {
+list-style-type: none;
+display: flex;
+padding: 0;
+margin: 0 auto;
+float: none;
+width: 70%;
+}
+
+.stptxt ul li {
+padding: 9px;
+border: 2px solid #919191;
+margin: 0 4px;
+color: #722a8c;
+vertical-align: middle;
+text-transform: uppercase;
+width: 100px;
+}
+
+.registerinless:before {
+content: "";
+position: absolute;
+top: 0;
+border-top: 1px solid #ddd;
+height: 1px;
+width: 100%;
+left: -24px;
+}
+
+.formsideod.becomeseller {
+margin-top: 30px;
+float: left;
+width: 100%;
+}
+
+.formsideod.becomeseller h6 {
+font-size: 20px;
+text-align: center;
+text-transform: uppercase;
+font-family: 'D-DINExp-Bold_0';
+color: #722a8c;
+margin: 0px 0 30px 0;
+display: block;
+}
+
+.formsideod.becomeseller button.uk-button.uk-button-primary.yodprimary{
+background: transparent;
+color: #463d43;
+border: 1px solid #d8078b;
+}
+
+button.uk-button.uk-button-primary.yodprimary:hover {
+background: #722a8c;
+}
+
+a .uk-button.uk-button-primary.yodprimary:hover {
+    background: #722a8c;
+}
+
+
+/* Sign Up Part */
+
+.formbgayod.signuppart {
+width: 61%;
+margin: 30px auto;
+}
+
+.formbgayod.signuppart .holdlgo .logoflyod {
+width: 22%;
+}
+
+.signuppart .yodformdesigns .uk-margin {
+width: 50%;
+padding: 0 15px;
+float: left;
+margin: 0 0 20px 0!important;
+}
+
+
+.signuppart .yodformdesigns .forrems button.uk-button {
+padding: 0;
+border: none;
+font-size: 13px;
+text-transform: capitalize;
+color: #722a8c;
+}
+
+
+
+.forrems .uk-form-custom input[type="file"] {
+position: relative;
+opacity: 1;
+visibility: visible;
+    font-size: 11px;
+}
+
+.forrems .uk-form-custom {
+float: left;
+position: relative;
+width: 100%;
+overflow: hidden;
+}
+
+.signuppart .forrems .uk-form-custom input[type="file"]:before {
+content: "Upload Document";
+position: absolute;
+background: #fff;
+right: 0px;
+font-size: 13px;
+color: #722a8c;
+cursor: pointer;
+height: 27px;
+text-align: right;
+}
+
+.signuppart .forrems .uk-form-custom input[type="file"]:after {
+content: "";
+position: absolute;
+left: 0;
+width: 22%;
+height: 20px;
+background: #fff;
+}
+
+.signuppart .forrems label  p {
+font-size: 13px;
+color: #722a8c;
+}
+
+.signuppart .forrems .uk-checkbox {
+border-radius: 4px;
+width: 14px;
+height: 14px;
+border: 1px solid #722a8c;
+}
+
+.signuppart button.uk-button.uk-button-primary.yodprimary{
+width: 34%;
+text-transform: uppercase;
+color: #fff;
+}
+
+.signuppart .yodformdesigns .uk-margin.full {
+width: 100%;
+float: left;
+}
+
+
+.yodformdesigns select {
+float: left;
+width: 100%;
+background: #f0f0f0;
+border-radius: 25px;
+padding: 14px 25px;
+outline: none;
+}
+
+.forrems.temsrbfr a {
+float: none;
+color: #3599ff;
+}
+
+.forrems.temsrbfr {
+text-align: center;
+margin: 0 auto;
+float: left;
+width: 100%;
+margin: 20px auto;
+}
+
+.forrems.temsrbfr label {
+float: none;
+}
+
+.forrems.temsrbfr label p {
+font-size: 15px;
+}
+
+
+/* Dasboard Css Starts here */
+
+header.yodamin-hd {
+width: 100%;
+float: left;
+padding: 10px 0;
+box-shadow: #776c6c 0px 0px 2px 0px;
+background: #fff;
+position: fixed;
+z-index: 9;
+}
+
+.logomenumanage img {
+width: 100%;
+}
+
+.logomenumanage {
+width: 8%;
+float: left;
+}
+
+.yodcontainer-dash {
+margin: 0 auto;
+max-width: 1312px;
+width: 100%;
+padding: 0 10px;
+}
+
+.dash-layout {
+background: #eef0f2;
+float: left;
+width: 100%;
+}
+
+
+.sidebarleft {
+float: left;
+width: 94%;
+background: #722a8c;
+/* padding: 10px 0px; */
+height: 100%;
+position: fixed;
+/* top: 67px; */
+}
+
+.pagecontentright {
+float: right;
+width: 80%;
+padding: 69px 30px;
+}
+
+.bodylayouts-yod {
+float: left;
+width: 100%;
+padding: 10px;
+}
+
+.sidebarleft ul {
+list-style-type: none;
+padding: 0;
+}
+
+.sidebarleft ul li a{
+color: #fff;
+padding: 21px 10px;
+display: block;
+text-decoration: none;
+font-family: 'D-DIN';
+font-size: 16px;
+}
+
+.sidebarleft ul li a:hover, .sidebarleft ul li a:focus {
+background: #65257d;
+color: #fff;
+}
+
+.sidebarleft ul li a img {
+margin-right: 10px;
+width: 23px;
+}
+
+.grapscols {
+display: flex;
+width: 100%;
+margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.graph-grid {
+width: 100%;
+margin: 0 24px;
+}
+
+.graph-voilet {
+background: linear-gradient(to right, rgb(233, 8, 141), rgb(114, 42, 140));
+border-radius: 31px;
+padding: 19px;
+display: flex;
+height: 170px;
+}
+
+.ordersdtsa {
+width: 100%;
+margin: auto;
+}
+
+.ordersdtsa h5, .ordersdtsa p {
+color: #fff;
+font-family: 'D-DIN';
+margin: auto;
+}
+
+.dataanalys {
+margin: auto;
+}
+
+
+.ordersdtsa p.resul-dta {
+margin-top: 15px;
+}
+
+.background-wht.map-wrap {
+float: left;
+width: 100%;
+background: #fff;
+padding: 10px;
+}
+
+
+.halfdv-5 {
+float: left;
+width: 50%;
+padding: 0 32px;
+}
+
+.world-mpa {
+margin-top: 33px;
+}
+
+.mapgraph-analysis {
+margin-top: 30px;
+}
+
+.mapset-count {
+width: 100%;
+display: flex;
+}
+
+.mapset-count p {
+margin: 0;
+width: 100%;
+}
+
+.mapset-count 
+p.percentachive {
+text-align: right;
+}
+
+
+.map-wrap h4 {
+color: #c70c8b;
+font-family: 'D-DINExp-Bold_0';
+}
+
+.uk-progress {
+margin: 7px 0 7px 0;
+}
+
+.promotionsparts {
+margin-top: 50px;
+float: left;
+width: 100%;
+}
+
+
+
+.prms {
+padding: 14px;
+border-bottom: 2px solid #ddd;
+}
+
+.promotionsparts .background-wht.map-wrap {
+padding: 0;
+}
+
+.prms a {
+text-decoration: none;
+}
+
+.prms a:hover {
+color: #722a8c;
+}
+
+
+.sidebarleft ul li.active a {
+background: #65257d;
+}
+
+.logge-usrdata {
+float: right;
+width: 40%;
+position: relative;
+}
+
+.userinf-yd {
+display: flex;
+float: right;
+position: relative;
+padding: 0 4px;
+margin: 0 10px;
+cursor: pointer;
+}
+
+.usr-pic img {
+width: 100%;
+}
+
+.usr-pic {
+width: 47px;
+border: 1px solid #949393;
+border-radius: 100%;
+height: 47px;
+margin-right: 16px;
+}
+
+.usr-nme h6 {
+margin: 0;
+}
+
+.usr-nme p.prt-nm {
+margin: 0;
+}
+
+.drop-opns {
+position: absolute;
+top: 63px;
+right: 0;
+background: #fff;
+padding: 8px 0;
+box-shadow: #4a3b3b 0px 0px 2px 0px;
+opacity: 0;
+visibility: hidden;
+transition: all ease 0.8s;
+}
+
+.drop-opns ul li a {}
+
+.drop-opns ul {
+padding: 0 20px;
+list-style-type: none;
+}
+
+.drop-opns ul li{
+
+border-bottom: 1px dotted;
+}
+
+.drop-opns ul li, .drop-opns ul a {
+padding: 7px 0px;
+}
+
+.drop-opns.opensidemenu {
+opacity: 1;
+visibility: visible;
+}
+
+
+.userinf-yd:after {
+content: "";
+position: absolute;
+right: -23px;
+background: url(./img/arrowdwn.png);
+width: 16px;
+height: 9px;
+background-size: cover;
+top: 6px;
+}
+
+.userinf-yd.opensidemenu:after {
+content: "";
+position: absolute;
+right: -23px;
+background: url(./img/arrowup.png);
+width: 16px;
+height: 9px;
+background-size: cover;
+top: 6px;
+}
+
+.yodadm-tablesthm {
+background: #fff;
+    margin-top: 40px;
+}
+
+.yodadm-tablesthm .uk-table th {
+text-align: left;
+background: #722a8c;
+color: #fff;
+}
+
+.productexp {
+display: flex;
+margin-top: 30px;
+}
+
+.prdelements {
+margin: auto;
+}
+
+.dashbtns {
+background: #722a8c;
+border: none;
+color: #fff;
+padding: 11px 20px;
+margin: auto;
+box-shadow: #bdacac 0px 5px 5px 0px;
+cursor: pointer;
+font-family: 'D-DIN';
+font-size: 16px;
+}
+
+.sidebarleft li>.active {
+    font-weight: bold;
+    background: #65257d;
+  }
+
+.dashbtns img {
+width: 20px;
+margin-right: 6px;
+}
+
+.dashbtns:hover {
+background: #eb008b;
+}
+
+.myproinfo {
+color: #722a8c;
+}
+
+.yodadm-tablesthm .uk-table th .uk-margin {
+margin: 0;
+}
+
+.allfltr {
+display: flex;
+}
+
+.yodadm-tablesthm .uk-table th .allfltr .uk-margin {
+margin-top: 3px;
+}
+
+.prdelements .uk-search-default .uk-search-input {
+background: #fff;
+}
+
+/* css for toggelclss */
+
+
+.switch {
+position: relative;
+display: inline-block;
+width: 40px;
+height: 17px;
+}
+
+.switch input { 
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+-webkit-transition: .4s;
+transition: .4s;
+box-shadow: #303a32 -1px 1px 3px 0px;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 15px;
+width: 15px;
+left: 1px;
+bottom: 1px;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
+box-shadow: #000 0px 0px 4px 0px;
+}
+
+input:checked + .slider {
+background-color: #4cd664;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(22px);
+-ms-transform: translateX(22px);
+transform: translateX(22px);
+}
+
+/* Rounded sliders */
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}
+
+.icosts i {
+color: #aeadad;
+}
+
+
+
+.icosts a.roundico.red i {
+color: red;
+}
+
+.icosts {
+display: flex;
+}
+
+.icosts a {
+margin: 0 5px;
+}
+
+.wblink {
+font-size: 11px;
+text-align: center;
+color: #000;
+}
+
+.yodadm-tablesthm .uk-table th, .yodadm-tablesthm .uk-table td {
+text-align: center;
+}
+
+.prcwthcal {
+display: inline-flex;
+text-align: center;
+}
+
+.prcwthcal p {
+margin: 0 8px 0 0;
+}
+
+.prcwthcal img.calcul {
+width: 18px;
+}
+
+.sidebarleft .uk-open > .uk-accordion-title::before, .sidebarleft .uk-accordion-title::before {
+content:"";
+background-image: none;
+display: none;
+}
+
+.sidebarleft ul li .uk-accordion-content {
+margin: 0;
+background: #eb008b;
+border-top: 1px dotted #fff;
+}
+
+.sidebarleft ul li .uk-accordion-content a {
+padding: 10px 41px;
+border-bottom: 1px dotted;
+}
+
+
+/* Product Add Page Forms */
+
+.productsgrid {
+background: #fff;
+float: left;
+width: 100%;
+margin: 30px 0;
+}
+
+.main-grid {
+padding: 20px;
+}
+
+.head-main h6 {
+padding: 10px;
+background: #722a8c;
+color: #fff;
+text-transform: capitalize;
+font-size: 17px;
+font-family: 'D-DIN';
+}
+
+.grpset {
+display: flex;
+margin-bottom: 20px;
+}
+
+.form-grd label {
+width: 189px;
+}
+
+.main-grid.form-grd {
+float: left;
+width: 100%;
+}
+
+label.mandtry {
+position: relative;
+}
+
+label.mandtry:after {
+content: "*";
+color: red;
+font-size: 16px;
+position: absolute;
+top: 0;
+}
+
+.fullfrm {
+width: 100%;
+float: left;
+}
+
+.halffrms {
+width: 100%;
+float: left;
+padding: 0 0px;
+display: flex;
+}
+
+.twoways {
+padding-right: 20px;
+width: 100%;
+}
+
+.twoways input {
+margin: 0 0;
+}
+
+
+.measrtype {
+display: flex;
+width: 100%;
+height: 37px;
+}
+
+.measrtype select {
+width: 100%;
+padding: 0 10px;
+border: 1px solid #ddd;
+}
+
+.typshw {
+padding: 10px 12px;
+border: 1px solid #ddd;
+border-left: 0px;
+}
+
+.typshw p {
+margin: 0;
+padding: 0;
+color: #b1b1b1;
+line-height: 15px;
+}
+
+.imgsthumbs {
+width: 69%;
+text-align: center;
+height: 157px;
+display: flex;
+border: 1px solid #ddd;
+}
+
+.imgsthumbs p{  
+margin: 10px 0;
+color: #1529c2;
+}
+
+.imgsthumbs span{
+color:red;
+}
+
+.imgsthumbs .uk-form-custom {
+margin: auto;
+}
+
+.updatebtns {
+margin: 30px 0;
+text-align: center;
+}
+
+.updatebtns button {
+border: 1px solid #722a8c;
+color: #722a8c;
+}
+
+
+
+
+/* Product Details Page */
+
+.productimages {
+float: left;
+width: 28%;
+}
+
+.product-infors {
+float: left;
+width: 70%;
+}
+
+.half-5 {
+float: left;
+width: 50%;
+margin-bottom: 50px;
+}
+
+.full-10 {
+float: left;
+width: 100%;
+margin-bottom: 50px;
+}
+
+.half-5 h5 {
+font-size: 19px;
+color: #000;
+font-weight: 500;
+margin: 0 0 20px 0;
+}
+
+.prcs {
+display: flex;
+margin-bottom: 30px;
+}
+
+.slprc {
+margin-right: 23px;
+}
+
+.prdinf-grd {
+display: flex;
+margin-bottom: 10px;
+}
+
+.prdinf-grd p {
+margin: 0;
+}
+
+.prdinf-grd label {
+font-weight: 600;
+width: 134px;
+color: #000;
+}
+
+.productimages img {
+width: 240px;
+}
+
+.full-10 h5 {
+font-size: 19px;
+color: #000;
+font-weight: 500;
+margin: 0 0 20px 0;
+}
+
+.full-10 h5, .half-5 h5 {
+font-family: 'D-DIN';
+font-weight: 700;
+}
+
+.slprc h6 {
+margin: 0;
+}
+
+.slprc p {
+margin: 9px 0;
+}
+
+.slprc.rightbtns {
+margin: 0;
+text-align: right;
+width: 72%;
+}
+
+.slprc.rightbtns button.uk-button.uk-button-default {
+background: #fff;
+margin: 0 11px;
+}
+
+
+/* css for table product images views */
+
+.prodts-tbs {
+display: flex;
+}
+
+.drs img {
+width: 47px;
+height: 51px;
+}
+
+.drs {
+text-align: left;
+margin-left: 9px;
+}
+
+.drs p {
+margin: 0;
+font-size: 12px;
+}
+
+span.prne {
+font-weight: 600;
+color: #000;
+font-size: 14px;
+margin-bottom: 3px;
+display: block;
+}
+
+
+
+.rowprods {
+display: flex;
+}
+
+.idr-shw {
+width: 100%;
+padding: 22px 22px;
+border-right: 1px solid #908f90;
+}
+
+.idr-shw p {
+margin: 0;
+}
+
+.idr-shw:last-child {
+border-right: 0px;
+}
+
+.dltime {
+margin-bottom: 10px;
+padding-bottom: 10px;
+border-bottom: 1px solid #908f90;
+}
+
+.dltime:last-child {
+border-bottom: 0px;
+}
+
+.py p {
+font-weight: 600;
+color: #000;
+}
+
+p.bld {
+font-weight: 600;
+color: #000;
+margin-bottom: 10px;
+}
+
+.idr-shw:first-child {
+width: auto;
+}
+
+.dispatch-yod {
+text-align: center;
+border-bottom: 1px solid #908f90;
+margin-bottom: 10px;
+padding-bottom: 10px;
+padding-left: 40px;
+padding-right: 40px;
+}
+
+.dispatch-yod strong {
+color: #000;
+}
+
+.dispatch-yod:last-child {
+border-bottom: 0px;
+padding:0;
+}
+
+.dispatch-yod button.uk-button.uk-button-default {
+background: #722a8c;
+color: #fff;
+border-radius: 5px;
+margin-bottom: 9px;
+display: inline-block;
+font-size: 12px;
+}
+
+
+.ordeinfos-yds {
+float: right;
+width: 80%;
+margin-top: 30px;
+}
+
+.ordeinfos-yds .uk-table-small th, .ordeinfos-yds .uk-table-small td {
+text-align: left;
+}
+
+.ordeinfos-yds .uk-table-small th {
+font-weight: 700;
+color: #000;
+text-transform: capitalize;
+}
+
+.mnde h6 {
+font-weight: 600;
+font-size: 15px;
+margin: 0;
+}
+
+.mrp-dr p {
+margin: 0;
+font-size: 13px;
+color: #000;
+text-decoration: underline;
+}
+
+.mrp-dr {
+margin: 20px 0;
+}
+
+p.bgr-info {
+margin: 0;
+background: #ddd;
+padding: 5px;
+color: #000;
+font-weight: 600;
+font-size: 14px;
+}
+
+.promogrids {
+margin: 30px 0 40px 0;
+background: #fff;
+float: left;
+width: 100%;
+box-shadow: #949494 0px 0px 1px 0px;
+}
+
+.offr-infos {
+padding: 20px;
+float: left;
+width: 100%;
+}
+
+.promo-valids {
+float: left;
+width: 100%;
+background: #722a8c;
+padding: 16px;
+}
+
+.promo-valids p {
+margin: 0;
+color: #fff;
+}
+
+.ongoinddays {
+float: right;
+}
+
+.ongoinddays span {
+color: #722a8c;
+}
+
+.offr-infos h3 {
+margin: 0;
+display: block;
+width: 100%;
+color: #722a8c;
+margin-bottom: 13px;
+}
+
+.offdescript {
+float: left;
+width: 100%;
+display: flex;
+}
+
+.ofr-type p {
+margin: 0;
+}
+
+.ofr-type {width: 46%;}
+
+
+
+.offdescript span {
+color: #867f7f;
+}
+
+.offdescript img {
+margin: 0 9px 0 0;
+}
+.offdescript p{
+color:#000;
+}
+
+.officonsdts {
+display: flex;
+width: 100%;
+float: left;
+margin: 40px 0 0 0;
+}
+
+.grd-ic {
+display: flex;
+padding: 0 15px;
+border-right: 1px solid #b5afaf;
+}
+
+.grd-ic img {
+margin: auto;
+margin-right: 20px;
+}
+
+
+.suportgrds {
+float: left;
+width: 100%;
+padding: 10px;
+margin: 40px 0;
+}
+
+.grdsup {
+float: left;
+width: 33%;
+text-align: center;
+padding: 0 11px;
+}
+
+.yelos {
+background: #f2e3af;
+}
+
+.bluskr {
+background: #b1ddf3;
+}
+
+.pinksdo {
+background: #fdc2e2;
+}
+
+.grdsup h6 {
+margin: 8px 0;
+font-family: 'D-DIN';
+font-size: 16px;
+}
+
+
+.icos-sups {
+display: flex;
+height: 193px;
+}
+
+.icos-sups img {
+margin: auto;
+width: 98px;
+}
+
+.dispatch-yod button.uk-button.uk-button-default.grayd {
+background: #5e5e5e;
+border: none;
+}
+
+.subtns button.uk-button.uk-button-default {
+border: none;
+border-radius: 0px;
+width: 55%;
+box-shadow: #c7c7c7 2px 1px 2px 0px;
+}
+
+.prof-pds {
+padding: 12px;
+}
+
+.prof-pds .prdinf-grd label {
+width: 50%;
+}
+
+.prof-pds .prdinf-grd {
+margin-bottom: 31px;
+}
+
+
+.frmtods {
+display: flex;
+}
+
+.frmtods span {
+font-weight: 600;
+margin: 0 10px;
+color: #000;
+font-size: 12px;
+}
+
+
+.frmtods button.uk-button.uk-button-default {
+background: #722a8c;
+color: #fff;
+border-radius: 5px;
+margin-bottom: 9px;
+display: inline-block;
+font-size: 13px;
+padding: 13px 16px;
+height: auto;
+line-height: 0px;
+margin: 0 20px;
+}
+
+.prof-pds .full-10 h5 {
+color: #722a8c;
+margin-bottom: 40px;
+display: block;
+}
+
+
+/* css for notifications */
+
+.usrpc {
+width: 90px;
+border: 1px solid #ddd;
+padding: 5px;
+border-radius: 100%;
+overflow: hidden;
+height: 80px;
+display: flex;
+}
+
+.usrpc img {
+margin: auto;
+}
+
+.msgareas {
+display: flex;
+}
+
+.usrntse {
+width: 100%;
+margin-left: 19px;
+display: flex;
+}
+
+.usrntse p {
+margin: auto;
+}
+
+p.pubdates {
+float: right;
+margin: 0;
+font-size: 15px;
+}
+
+.notifytabsd {
+float: left;
+width: 100%;
+border-bottom: 1px solid #ddd;
+   padding-bottom: 20px;
+margin-bottom: 20px;
+}
+
+.edihdrs {
+    display: flex;
+}
+
+.edihdrs i {
+    float: right;
+}
+
+.prof-pds .full-10  .edihdrs h5.prod-nmes {
+    width: 100%;
+}
+
+.changepswds .formsideod {
+    margin: 21px auto;
+    border: 1px solid #a2a2a2;
+    padding: 14px;
+    border-radius: 10px;
+}
+
+.changepswds .formsideod button.uk-button.uk-button-primary.yodprimary {
+    width: 31%;
+}
+
+/*Responsive css */
+
+
+@media screen and (max-width: 767px) and (min-width: 320px){
+
+.halffrms{
+        display: inline-block;
+}
+
+.main-grid{
+    padding: 13px;
+}
+
+.measrtype button.uk-button.uk-button-default{
+        font-size: 13px;
+line-height: 16px;
+padding: 10px 10px;
+}
+
+.form-grd label{
+    font-size: 13px;
+}
+
+.imgsthumbs{
+    width: 100%;
+}
+
+.rightside-yod{
+    width:100%;
+}
+
+.leftside-yod{
+    width:100%;
+}
+
+.halffrms.updatebtns {
+display: flex;
+text-align: center;
+}
+
+.halffrms.updatebtns button.uk-button.uk-button-default {
+padding: 0 11px;
+}
+
+.ydosteps p{    font-size: 11px;}
+.icovoiletod{    width: 40px; height: 40px; padding:10px;}
+.icovoiletod img{    width: 100%;}
+.col-5-yd, .stptxt ul{width: 100%;}
+.loginbgayod.loginonl .yod-container{padding: 30px 0;}
+.stptxt ul li{font-size: 12px;}
+.leftside-yod:after{border-right:none;}
+
+.sidebarleft{	
+width: 85%;	
+opacity: 0;	
+visibility: hidden;
+}
+
+.pagecontentright {
+width: 100%;
+padding: 69px 14px;
+}
+
+.halfdv-5{
+    width: 100%;
+padding: 0 10px;
+}
+
+.grapscols{    display: inline-block;}
+.graph-grid {
+width: 100%;
+margin: 12px 0px;
+}
+
+.logomenumanage {
+width: 22%;
+float: left;
+}
+
+
+}
+
+@media screen and (max-width: 1023px) and (min-width: 768px){
+.ydosteps {
+min-height: 323px;
+}
+.ydosteps p{    font-size: 11px;}
+.icovoiletod{    width: 40px; height: 40px; padding:10px;}
+.icovoiletod img{    width: 100%;}
+.stptxt ul{width: 100%;}
+}
+
+
+@media screen and (max-width: 1200px) and (min-width: 1024px){
+.ydosteps {
+min-height: 323px;
+}
+}
+
+
+
+
+
+
+.Add_images{} 
+
+.Add_images article{
+    padding: 0 20px 30px;
+}
+
+.Add_images article figure{
+    border: 1px solid #ddd;
+    padding: 71px 0;
+    position: relative;
+    width: 27%;
+    margin: 0;
+    text-align: center;
+    float: left;
+}
+
+.Add_images article figure input[type="file"]{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.Add_images article figure span{
+    background-color: #eef0f2;
+    color: #722a8c;
+    padding: 10px 28px;
+    font-size: 17px;
+    display: inline-block;
+}
+
+.Add_images article figure span .fa{
+    margin: 0 7px 0 0px;
+}
+
+.Add_images article figure p{
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #464646;
+}
+
+.Add_images article figcaption{
+    float: left;
+    width: 71%;
+    padding: 0 0px 0 10px;
+}
+
+.Add_images article figcaption ul{
+    padding: 0;
+}
+
+.Add_images article figcaption ul li{
+    list-style: none;
+    float: left;
+    width: 151px;
+    border: 3px solid #722a8c;
+    position: relative;
+    margin: 0 10px 0 0;
+}
+
+.Add_images article figcaption ul li:last-child{
+    margin: 0;
+}
+
+.Add_images article figcaption ul span{
+    position: absolute;
+    background-color: #722a8c;
+    top: 0;
+    right: 0;
+    width: 25px;
+    text-align: center;
+    height: 25px;
+    font-size: 25px;
+    line-height: 20px;
+    opacity: 1;
+    z-index: 1;
+    color: #fff;
+    cursor: pointer;
+}
+
+.Add_images article figcaption ul img{
+    width: 100%;
+}
+
+
+.iconareayod-vd { text-align: left;}
+.icovoiletod { margin: initial; }
+.stptxt ul{ text-align: center; display: flex;}
+.stptxt ul li{width: 140px;  }
+.mapset-count{width:100%;display:block;margin:0 0 0px}
+.mapset-count p{color:#eb008b;margin:0;width:50%;float:left;font-size:17px}
+.mapset-count p.percentachive{text-align:right;color:#4e4c4c}
+.mapset-count+.uk-progress{border-radius:0;height:20px;margin:0 0 20px;width:100%}
+.mapset-count+.uk-progress::-webkit-progress-bar{background-color:#eb008b;border-radius:0;overflow:hidden}
+.mapset-count+.uk-progress::-webkit-progress-value{background-color:#722a8c;transition:width 0.6s ease}
+.mapset-count+.uk-progress::-moz-progress-bar{background-color:#722a8c}
+.mapset-count+.uk-progress::-ms-fill{background-color:#722a8c;transition:width 0.6s ease;border:0}
+
+.productexp .prdelements .dashbtns{position: relative; padding: 10px 30px; cursor: pointer;}
+.productexp .prdelements .dashbtns label{margin: 0;}
+.productexp .prdelements .dashbtns label:before{ content: ''; }
+.productexp .prdelements .dashbtns input[type='file']{position: absolute; top: 0; left: 0; width: 100%; opacity: 0; cursor: pointer; height: 100%;}
+
+.productexp .prdelements a.dashbtns:hover{ color: #fff; text-decoration: none;}
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-root { background: #722a8c; color: #fff; vertical-align: middle; padding: 9px 5px; font-size: 12px; text-align: center;  width: 200px; z-index: 222; }
+
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head span.MuiIconButton-label{ color: #000 }
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head span.MuiIconButton-label svg{ filter: brightness(0) invert(1); }
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head span.MuiIconButton-root.jss147{ padding: 0 }
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head div.jss159,
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head span.jss159{ display: block; }
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head div.jss155,
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head div.jss156,
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head div.jss399,
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head div.jss400{ display: inline-block; }
+
+.yodadm-tablesthm table.MuiTable-root td.MuiTableCell-body{text-align:center;vertical-align:middle;padding:13px 10px;font-size:13px;font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:500}
+.yodadm-tablesthm table.MuiTable-root td.MuiTableCell-body span.MuiIconButton-label{color:#000}
+.yodadm-tablesthm table.MuiTable-root td.MuiTableCell-body:nth-child(1) span.MuiIconButton-root.jss147{padding:0}
+.yodadm-tablesthm table.MuiTable-root td.MuiTableCell-body .MuiFormControlLabel-root{margin:0}
+.yodadm-tablesthm table.MuiTable-root td.MuiTableCell-body .MuiFormControlLabel-root .MuiSwitch-root+.MuiFormControlLabel-label{font-size:14px;font-weight:500;color:#000}
+
+.grpset .measrtype input{height:auto}
+
+
+.signuppart .yodformdesigns .uk-margin span{ display: block; text-align: left;}
+
+.forrems.temsrbfr label{position: relative; padding: 0 0 0 10px;}
+.forrems.temsrbfr label .uk-checkbox{ position: absolute; top: 10px; left: -6px;}
+.forrems.temsrbfr label span{position: absolute; bottom: -20px; left: 0; width: 100%; text-align: center !important;}
+
+.pagecontentright .undefined.row{ margin: 0px; }
+.pagecontentright .undefined.row button{ cursor: pointer; }
+.changepswds .formsideod { background-color: #fff; padding: 30px 30px }
+
+.grpset .css-2b097c-container{ border: 1px solid #e5e5e5; width: 100%;}
+.grpset .css-2b097c-container .css-1domaf0,
+.grpset .css-2b097c-container .css-otc9nv-Control { width: 100%; position: relative; cursor: pointer;}
+.grpset .css-2b097c-container .css-1domaf0 .css-1hwfws3{}
+.grpset .css-2b097c-container .css-1domaf0 .css-1hwfws3 .css-1g6gooi{}
+
+.grpset .css-2b097c-container .css-1domaf0 .css-1wy0on6,
+.grpset .css-2b097c-container .css-otc9nv-Control .css-1g48xl4-IndicatorsContainer{ position: absolute; right: 0; top: 0;}
+.grpset .css-2b097c-container .css-1domaf0 .css-1wy0on6 .css-1okebmr-indicatorSeparator{}
+.grpset .css-2b097c-container .css-1domaf0 .css-1wy0on6 .css-tlfecz-indicatorContainer{}
+
+.main-grid.form-grd .halffrms .twoways .grpset label { width: 245px; }
+
+.updatebtns button.uk-button, 
+.updatebtns a.uk-button { border: 1px solid #722a8c; padding: 8px 0px; border-radius: 5px; color: #722a8c; text-transform: capitalize; width: 120px; font-size: 16px; display: inline-block; text-align: center; line-height: normal; font-weight: 500; }
+
+.updatebtns button.uk-button:hover, 
+.updatebtns a.uk-button:hover { background-color: #722a8c; color: #fff; text-decoration: none; }
+
+.prdinf-grd p { margin: 0; width: 80%; }
+
+
+
+.Add_images article {
+    padding: 0;
+  }
+  
+  .Add_images article figcaption {
+    float: left;
+    width: 100%;
+    padding: 0 0px 0 10px;
+  }
+  
+  .Add_images article figcaption ul li {
+    list-style: none;
+    float: left;
+    width: 95px;
+    border: 3px solid #722a8c;
+    position: relative;
+    margin: 0 10px 10px 0;
+  }
+  .Add_images article figcaption ul span {
+    position: absolute;
+    background-color: #722a8c;
+    top: 0;
+    right: 0;
+    width: 20px;
+    text-align: center;
+    height: 20px;
+    font-size: 15px;
+    line-height: 20px;
+    opacity: 1;
+    z-index: 1;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .sidebarleft ul li a {
+    color: #fff;
+    padding: 10px 10px;
+    display: block;
+    text-decoration: none;
+    font-family: 'D-DIN';
+    font-size: 15px;
+}
+  
+.loginbgayod { 
+    height: 100vh; 
+}
+
+.usr-pic{
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+}
+
+.usr-pic img{
+    height: 100%;
+}
+
+.logge-usrdata .userinf-yd:after{
+    display: none
+}
+
+
+
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head span.MuiIconButton-label{ color: #000 }
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head span.MuiIconButton-label svg{ filter: brightness(0) invert(1); }
+
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head{
+    padding: 9px 10px
+}
+
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head span.MuiIconButton-root,
+.yodadm-tablesthm table.MuiTable-root td.MuiTableCell-body.MUIDataTableSelectCell-root-121 span.MuiIconButton-root{ padding: 0 }
+
+.MUIDataTableHeadCell-toolButton-159,
+.MUIDataTableHeadCell-toolButton-611,
+.MUIDataTableHeadCell-toolButton-386 {
+    cursor: pointer;
+    display: block !important;
+    outline: none;
+}
+
+.MUIDataTableHeadCell-sortAction-156,
+.MUIDataTableHeadCell-sortAction-608,
+.MUIDataTableHeadCell-sortAction-383 { 
+    display: inline-block !important; 
+}
+
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head .MUIDataTableHeadCell-toolButton-403{
+    cursor: pointer;
+    display: block !important;
+    outline: none;
+}
+
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head .MUIDataTableHeadCell-toolButton-403 .MUIDataTableHeadCell-sortAction-400{
+    display: inline-block !important; 
+}
+
+.yodadm-tablesthm table.MuiTable-root td .prodts-tbs{
+    display: block;
+    text-align: center;
+}
+
+.yodadm-tablesthm table.MuiTable-root td .prodts-tbs .drs{
+    margin: 0;
+    text-align: center;
+}
+
+.yodadm-tablesthm table.MuiTable-root td .prodts-tbs .drs img{}
+
+
+.PrivateSwitchBase-root-465{
+    padding: 0px !important; 
+}
+
+
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head:first-child{
+    width:60px ;
+}
+
+
+.CustomTollsabout{
+    margin: 40px 0 0 0;
+}
+
+.CustomTollsabout h2{
+    margin: 0 0 20px;
+    font-size: 1.25rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.0075em;
+}
+
+
+.logomenumanage {
+    width: auto;
+}
+
+.logomenumanage ul.left {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.logomenumanage ul.left li {
+    color: #b9188d;
+}
+
+.logomenumanage img {
+    display: inline-block;
+    width: 90px;
+}
+
+header.yodamin-hd { 
+    top: 0;
+}
+
+.dash-layout {
+    background: #eef0f2;
+    float: left;
+    width: 100%;
+    padding: 65px 0 0 0;
+}
+
+
+.MUIDataTableSelectCell-fixedHeader-122{
+    z-index: 1 !important;
+}
+
+.MUIDataTableHeadCell-fixedHeader-152{
+    z-index: 1 !important;
+}
+
+.MUIDataTableHeadCell-fixedHeader-416{
+    z-index: 1 !important;
+}
+
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-root{
+    z-index: 0;
+}
+
+.MUIDataTableSelectCell-headerCell-390{
+    z-index: 1 !important;
+}
+
+.MUIDataTableSelectCell-fixedHeader-948 {
+    z-index: 1 !important;
+}
+
+.MUIDataTableSelectCell-fixedHeader-574{
+    z-index: 1 !important;
+}
+
+.MUIDataTableSelectCell-fixedHeader-366{
+    z-index: 1 !important;
+}
+
+.sidebarleft img.logoheader{
+    width: 100px;
+    margin: 10px auto 10px;
+    display: block;
+}
+
+.yodadm-tablesthm table.MuiTable-root td.MuiTableCell-body {
+    z-index: 1 !important;
+}
+
+.logomenumanage ul.left {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    list-style: none;
+}
+
+ul.block-list {
+    text-align: center;
+    list-style: none;
+}
+
+.LayoutHead{
+    max-width: 500px;
+    margin: 0 auto 15px;
+}
+
+.LayoutHead h3{
+    font-size: 22px;
+    font-weight: 600;
+    color: #000;
+}
+
+.LayoutHead a{
+    float: right;
+    font-size: 15px;
+    background-color: transparent;
+    border: none;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #3e3e3e;
+    padding: 0;
+    text-decoration: underline;
+    z-index: 1;
+    position: relative;
+    cursor: pointer;
+    outline: 0;
+    box-shadow: none    
+}
+
+.LayoutHead a:hover{
+    color:#e3018a !important
+}
+
+
+.Time_view{
+    margin: 30px 0 30px 0;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.Time_view ul{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.Time_view ul li{
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    margin: 0 20px;
+    color: #000;
+    font-size: 17px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.Time_view ul li .fa{
+    margin: 0 10px 0 0
+}
+
+.Time_view ul li span{}
+ 
+.Time_view ul li ol{
+    position: absolute;
+    min-width: 100%;
+    padding: 0;
+    background: #fff;
+    box-shadow: 0 3px 11px 0 rgba(0, 0, 0, 0.1);
+    -webkit-transform: perspective(600px) rotateX(-90deg);
+    transform: perspective(600px) rotateX(-90deg);
+    -webkit-transform-origin: 0 0 0;
+    transform-origin: 0 0 0;
+    left: 0;
+    right: auto;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    z-index: 99;
+    top: 100%;
+    text-align: left;
+    width: 100%;
+    min-width: 200px;
+    display: block;
+    width: auto;
+}
+
+.Time_view ul li ol li{
+    display: block;
+    margin: 0;
+    line-height: normal;
+}
+
+.Time_view ul li ol li a{
+    line-height: 20px;
+    position: relative;
+    color: #000;
+    display: block;
+    padding: 8px 16px;
+    font-size: 15px;
+}
+
+.Time_view ul li ol li a:hover{
+    text-decoration: none;
+    color: #722a8c
+}
+
+.Time_view ul li:hover ol{
+    opacity: 1;
+    visibility: visible;
+    transform: perspective(600px) rotateX(0deg);
+}
+
+
+.signuppart .yodformdesigns .uk-margin .Password{
+    position: relative;
+}
+
+.signuppart .yodformdesigns .uk-margin .Password .Info{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #702b8c;
+    width: 50px;
+    height: 100%;
+    border-radius: 0 25px 25px 0;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+}
+
+
+
+.productexp .prdelements .dashbtns {
+    position: relative;
+    padding: 7px 30px;
+    cursor: pointer;
+}
+
+.productexp .prdelements a.dashbtns {
+    padding: 10px 30px;
+}
+
+.leftside-yod:after{
+    right:0;
+    }
+    
+    .rightside-yod{
+    width: 30%;
+    }
+
+
+
+    .sidenav---sidenav---_2tBP {
+        background: #722a8c !important;
+            padding: 10px 0px !important;
+        height: 100% !important;
+        position: fixed !important;
+        top: 67px !important;
+    }
+
+    .leftside-yod:after {
+        right: 4px;
+    }
+
+
