@@ -78,7 +78,7 @@ class Addbrand extends Component {
         body: JSON.stringify({
           gstnumfile: e.target.result,
         }),
-        
+
       }).then((response) => response.json())
         .then((res) => {
           //alert(res);
