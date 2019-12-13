@@ -28,7 +28,7 @@ class Ordersdetails extends Component {
 		if (localStorage.getItem('logindata') === null) {
 			window.location.assign("./");
 		}
-		this.state = { data: [], selectedOption: "New Order",data:'' };
+		this.state = { data: [], selectedOption: "New Order", data: '', details: [] };
 
 		const { match: { params } } = this.props;
 		fetch(`${config.Url}api/orderdetails/` + params.userId).then((response) => response.json())
@@ -40,6 +40,7 @@ class Ordersdetails extends Component {
 					toast.success(res.message);
 					//alert(res);
 					this.setState(res.response);
+					this.setState({ details: res.response.details[0] });
 					// 1.this.setState({ selectedOption: res.response[0].status })
 					//localStorage.setItem('logindata', res.sellerlogin);
 					//this.props.history.push('/');
@@ -52,7 +53,7 @@ class Ordersdetails extends Component {
 
 
 	}
-	
+
 	handleChange = selectedOption => {
 		this.setState({ status: selectedOption.value });
 		const { match: { params } } = this.props;
@@ -77,7 +78,8 @@ class Ordersdetails extends Component {
 		console.log(`Option selected:`, selectedOption);
 	}
 	render() {
-		console.log(this.state)
+		const details = (this.state.details)
+		console.log(details)
 		return <div class="dash-layout">
 			<Header />
 			<div class="bodylayouts-yod">
@@ -151,37 +153,35 @@ class Ordersdetails extends Component {
 										<tr>
 											<td>
 												<div class="mnde">
-													<h6 class="prdname">{this.state.name}</h6>
+													<h6 class="prdname">{details.product_name}</h6>
 													<div class="mrp-dr">
 														<p><strong>Product SKU:</strong> {this.state.sku}</p>
-														<p><strong>Product ID:</strong> {this.state.product_id}</p>
+														<p><strong>Product ID:</strong> {details.product_id}</p>
 													</div>
 													<p class="bgr-info">Kurta : Size 38</p>
 												</div>
 											</td>
 											<td>
-												<img style={{ width: 100, height: 100 }} src={"http://mobuloustech.com/yodapi/public" + this.state.images} />
+												<img style={{ width: 100, height: 100 }} src={`${config.UrlImage}` + details.product_image} />
 											</td>
 											<td>
-												<p>{this.state.quantity}</p>
+												<p>{details.quantity}</p>
+											</td>
+											<td>
+												<p>{details.color}</p>
+											</td>
+
+											<td>
+												<p>{10}</p>
 											</td>
 											<td>
 												<p>X</p>
 											</td>
 
 											<td>
-												<p>{this.state.amount}</p>
+												<p>{details.total_price}</p>
 											</td>
-											<td>
-												<p>X</p>
-											</td>
-
-											<td>
-												<p>{this.state.amount}</p>
-											</td>
-
 										</tr>
-
 									</tbody>
 								</table>
 							</div>
