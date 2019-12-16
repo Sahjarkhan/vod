@@ -39,7 +39,7 @@ class Home extends Component {
       })
       .catch((error) => {
         console.log(error);
-      
+
       });
   }
 
@@ -139,7 +139,6 @@ class Home extends Component {
           console.log(error);
           alert('Oops, something went wrong. Please try again!');
         });
-
     }
   }
 
@@ -147,9 +146,7 @@ class Home extends Component {
     return <div class="loginbgayod">
       <div class="formbgayod">
         <div class="holdlgo"><img src={require('./img/yodfull.png')} class="logoflyod" /></div>
-
         <p><ToastContainer /></p>
-
         <div class="formsideod">
           <form onSubmit={this.handleSubmit}>
             <fieldset class="uk-fieldset">
@@ -158,9 +155,7 @@ class Home extends Component {
                   <label class="yodinplabel">User Name</label>
                   <input name="username" class="uk-input" type="text" placeholder="Enter Your Email Address" value={this.state.username} onChange={this.handleChange} />
                   <span style={{ color: "red" }}>{this.state.errors["username"]}</span>
-
                 </div>
-
                 <div class="uk-margin">
                   <label class="yodinplabel">Password</label>
                   <input name="password" class="uk-input" type="password" placeholder="Enter Your Email Address" value={this.state.password} onChange={this.handleChange} />
@@ -185,6 +180,4 @@ class Home extends Component {
     </div>
   }
 }
-
-
 export default Home;
