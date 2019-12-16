@@ -53,7 +53,6 @@ class Dashboard extends Component {
 		this.handleMultiChange = this.handleMultiChange.bind(this);
 		this.handleMultiChange1 = this.handleMultiChange1.bind(this);
 		this.handleChange3 = this.handleChange3.bind(this)
-		// alert(localStorage.getItem('logindata'));
 
 
 	}
@@ -64,7 +63,6 @@ class Dashboard extends Component {
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
-					console.log("+++++++++++++++++++++++++++++++++++++++", res.getsize)
 					this.setState({ filterOptions1: res.getcolor });
 				}
 			})
