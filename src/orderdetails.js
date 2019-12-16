@@ -28,19 +28,15 @@ class Ordersdetails extends Component {
 		if (localStorage.getItem('logindata') === null) {
 			window.location.assign("./");
 		}
-		this.state = { data: [], selectedOption: "New Order", data: '', details: [] };
-
 		const { match: { params } } = this.props;
 		fetch(`${config.Url}api/orderdetails/` + params.userId).then((response) => response.json())
 			.then((res) => {
-				//alert(res);
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
 					toast.success(res.message);
-					//alert(res);
 					this.setState(res.response);
-					this.setState({ details: res.response.details[0] });
+					this.setState({ detailss: res.response.details });
 					// 1.this.setState({ selectedOption: res.response[0].status })
 					//localStorage.setItem('logindata', res.sellerlogin);
 					//this.props.history.push('/');
@@ -48,10 +44,11 @@ class Ordersdetails extends Component {
 			})
 			.catch((error) => {
 				console.log(error);
-				alert('Oops, something went wrong. Please try again!');
 			});
-
-
+		this.state = {
+			data: [], selectedOption: "New Order", data: '', details: [],
+			detailss: []
+		};
 	}
 
 	handleChange = selectedOption => {
@@ -59,28 +56,24 @@ class Ordersdetails extends Component {
 		const { match: { params } } = this.props;
 		fetch(`${config.Url}api/changethestatusoforder/` + params.userId + "/" + selectedOption.value).then((response) => response.json())
 			.then((res) => {
-				//alert(res);
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
 					toast.success(res.message);
-					//alert(res);
-
-					//localStorage.setItem('logindata', res.sellerlogin);
+					//localStorage.setItem('logindata',res.sellerlogin);
 					//this.props.history.push('/');
 				}
 
 			})
 			.catch((error) => {
 				console.log(error);
-				alert('Oops, something went wrong. Please try again!');
 			});
 		console.log(`Option selected:`, selectedOption);
 	}
 	render() {
-		const details = (this.state.details)
-		console.log(details)
-		return <div class="dash-layout">
+		console.log("this.state.selectedOption",this.state.selectedOption);
+		const details = (this.state.details);
+		return (<div class="dash-layout">
 			<Header />
 			<div class="bodylayouts-yod">
 				<div >
@@ -115,16 +108,13 @@ class Ordersdetails extends Component {
 								<div class="dispatch-yod">
 									<strong>Payout Rs. {this.state.amount}</strong>
 								</div>
-
 							</div>
-
 							<div class="idr-shw">
 								<div class="dispatch-yod">
 									<strong>Payout <span class="exptag">Export</span></strong>
 									<p>Days Passed : 0 Days</p>
 								</div>
-
-								<div class="dispatch-yod">
+								{/* <div class="dispatch-yod">
 									<button class="uk-button uk-button-default">{this.state.status}</button>
 									<Select
 										value={this.state.selectedOption}
@@ -132,10 +122,10 @@ class Ordersdetails extends Component {
 										options={options}
 									/>
 									<button class="uk-button uk-button-default">Contact Seller Support</button>
-								</div>
+								</div> */}
 							</div>
 						</div>
-						<div class="ordeinfos-yds">
+						<div class="ordeinfos-yds OrderTable">
 							<div class="uk-overflow-auto">
 								<table class="uk-table uk-table-small uk-table-divider">
 									<thead>
@@ -150,52 +140,57 @@ class Ordersdetails extends Component {
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>
-												<div class="mnde">
-													<h6 class="prdname">{details.product_name}</h6>
-													<div class="mrp-dr">
-														<p><strong>Product SKU:</strong> {this.state.sku}</p>
-														<p><strong>Product ID:</strong> {details.product_id}</p>
+										{this.state.detailss.map((item, i) => {
+											return (<tr key={i}>
+												<td>
+													<div class="mnde">
+														<h6 class="prdname">{item.product_name}</h6>
+														<div class="mrp-dr">
+															<p><strong>Product SKU:</strong> {item.product_sku}</p>
+															<p><strong>Product ID:</strong> {item.product_id}</p>
+														</div>
+														<p class="bgr-info">Kurta : Size 38</p>
 													</div>
-													<p class="bgr-info">Kurta : Size 38</p>
-												</div>
-											</td>
-											<td>
-												<img style={{ width: 100, height: 100 }} src={`${config.UrlImage}` + details.product_image} />
-											</td>
-											<td>
-												<p>{details.quantity}</p>
-											</td>
-											<td>
-												<p>{details.color}</p>
-											</td>
+												</td>
+												<td>
+													<img style={{ width: 100, height: 100 }} src={`${config.UrlImage}` + item.product_image} />
+												</td>
+												<td>
+													<p>{item.quantity}</p>
+												</td>
+												<td>
+													<p>{item.color}</p>
+												</td>
 
-											<td>
-												<p>{10}</p>
-											</td>
-											<td>
-												<p>X</p>
-											</td>
-
-											<td>
-												<p>{details.total_price}</p>
-											</td>
-										</tr>
+												<td>
+													<p>{10}</p>
+												</td>
+												<td>
+													<p>X</p>
+												</td>
+												<td>
+													<p>{item.total_price}</p>
+												</td>
+												<td>
+													<Select
+														value={this.state.selectedOption}
+														onChange={this.handleChange}
+														options={options}
+													/>
+												</td>
+											</tr>
+											)
+										})}
 									</tbody>
 								</table>
 							</div>
-
 						</div>
-
-
 					</div>
-
 				</div>
 
 			</div>
 
-		</div>
+		</div>)
 
 	}
 }

@@ -2168,3 +2168,13 @@ ul.block-list {
 .MUIDataTableHeadCell-fixedHeader-379{
     z-index: 1 !important;
 }
+
+.OrderTable{
+    width: 100%;
+}
+
+
+.OrderTable .css-2b097c-container {
+    min-width: 100px;
+}
+
