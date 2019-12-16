@@ -38,6 +38,8 @@ import colorList from "./colorList";
 import sizeList from "./sizeList";
 import Subsubcategory from "./SubsubcategoryList";
 import addSubsubCate from "./addSubsubCate";
+import addCupen from "./addCupen";
+import cupenList from "./cupenList";
 import * as serviceWorker from './serviceWorker';
 
 
@@ -45,11 +47,13 @@ const routing = (
   <Router baseame="/build">
     <Route exact path={"/"} component={Home} />
     <Route path={"/dashboard"} component={Dashboard} />
+    <Route path={"/cupenList"} component={cupenList} />
     <Route path={"/forgot"} component={Forgot} />
     <Route path={"/product"} component={Product} />
     <Route path={"/addproduct"} component={Addproduct} />
     <Route path={"/editproduct/:userId"} component={editproduct} />
     <Route path={"/setting"} component={setting} />
+    <Route path={"/addCupen"} component={addCupen} />
     <Route path={"/header"} component={header} />
     <Route path={"/orders"} component={orders} />
     <Route path={"/addsize"} component={AddSize} />

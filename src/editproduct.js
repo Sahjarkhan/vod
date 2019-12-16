@@ -867,8 +867,6 @@ class Dashboard extends Component {
 													onChange={this.handleMultiChange}
 													isMulti={true}
 												/>
-
-
 											</div>
 										</div>
 									</div>

@@ -37,6 +37,7 @@ class Ordersdetails extends Component {
 					toast.success(res.message);
 					this.setState(res.response);
 					this.setState({ detailss: res.response.details });
+					console.log(res.response.details)
 					// 1.this.setState({ selectedOption: res.response[0].status })
 					//localStorage.setItem('logindata', res.sellerlogin);
 					//this.props.history.push('/');
@@ -58,12 +59,11 @@ class Ordersdetails extends Component {
 			.then((res) => {
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
-				} else {
+				}else {
 					toast.success(res.message);
 					//localStorage.setItem('logindata',res.sellerlogin);
 					//this.props.history.push('/');
 				}
-
 			})
 			.catch((error) => {
 				console.log(error);
@@ -71,7 +71,7 @@ class Ordersdetails extends Component {
 		console.log(`Option selected:`, selectedOption);
 	}
 	render() {
-		console.log("this.state.selectedOption",this.state.selectedOption);
+		console.log("this.state.selectedOption", this.state.selectedOption);
 		const details = (this.state.details);
 		return (<div class="dash-layout">
 			<Header />
@@ -173,6 +173,7 @@ class Ordersdetails extends Component {
 												</td>
 												<td>
 													<Select
+														placeholder={item.payment_status}
 														value={this.state.selectedOption}
 														onChange={this.handleChange}
 														options={options}

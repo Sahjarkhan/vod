@@ -113,6 +113,7 @@ class Sidebar extends Component {
                   <li><NavLink to="/about" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faInfo} />Content Management</NavLink></li>
                   <li><NavLink to="/layout" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faInfo} />Layout Management</NavLink></li>
                   <li><NavLink to="/sizeList" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faQuestion} />Manage Size</NavLink></li>
+                  <li><NavLink to="/cupenList" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faQuestion} />Manage Offer</NavLink></li>
                   <li><NavLink to="/colorList" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faQuestion} />Manage Color</NavLink></li>
                   <li><NavLink to="/faqlist" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faQuestion} />FAQ Management</NavLink></li>
                   <li><NavLink to="/setting" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faUserCog} /> Account</NavLink></li>
@@ -120,7 +121,6 @@ class Sidebar extends Component {
                 </ul>
               </div>
             </div>
-
           </Drawer>}
         {!openLeft &&
           <Drawer
@@ -145,15 +145,7 @@ class Sidebar extends Component {
               );
             }}
           </Drawer>}
-        {/* <div className="navbar-fixed">
-          <nav>
-            <div className="nav-wrapper cyan accent-4">
-              
-              
-             
-            </div>
-          </nav>
-        </div> */}
+    
         <div class="logomenumanage">
           <ul className="left">
             <li style={{ cursor: "pointer", height: "100%" }}>
