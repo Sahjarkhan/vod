@@ -2178,3 +2178,12 @@ ul.block-list {
     min-width: 100px;
 }
 
+
+.OrderTable table select{
+    border: 1px solid #ddd;
+    background-color: transparent;
+    height: 38px;
+    border-radius: 5px;
+    min-width: 200px;
+    padding: 0 10px;
+}

@@ -10,14 +10,8 @@ import config from './config/config';
 import Header from "./header";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
-import ImageUploader from 'react-images-upload';
 import 'react-toastify/dist/ReactToastify.css';
-import Select from 'react-select';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBoxOpen, faTachometerAlt, faUserCog, faShoppingBasket, faPowerOff } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 const Main = styled.main`
@@ -211,8 +205,6 @@ class AddSize extends Component {
             [name]: value
         });
 
-
-
         if (name === 'sp') {
             if (parseInt(value) > parseInt(this.state.mrp)) {
 
@@ -234,7 +226,7 @@ class AddSize extends Component {
         this.setState({
             category_id: value
         });
-
+        
         fetch(`${config.Url}api/sublistbycat/` + value).then((response) => response.json())
             .then((res) => {
                 if (res.status === 'FAILURE') {
