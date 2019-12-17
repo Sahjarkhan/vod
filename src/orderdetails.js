@@ -12,46 +12,29 @@ import { faEdit, faEye } from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
 import config from './config/config';
 
-const options = [
-	{ value: 'NewOrder', label: 'NewOrder' },
-	{ value: 'Dispatched', label: 'Dispatched' },
-	{ value: 'InHandoverd', label: 'InHandoverd' },
-	{ value: 'Delivered', label: 'Delivered' },
-	{ value: 'InTransit', label: 'InTransit' },
-	{ value: 'Cancelled', label: 'Cancelled' },
-];
 
+const options = [
+	{ value: 'dispatched', label: 'dispatched' },
+	{ value: 'delivered', label: 'delivered' },
+	{ value: 'transit', label: 'transit' },
+	{ value: 'cancelled', label: 'cancelled' },
+	{ value: 'accepted', label: 'accepted' },
+	{ value: 'shipped', label: 'shipped' },
+	{ value: 'packed', label: 'packed' },
+
+];
 
 
 class Ordersdetails extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			options: [
-				{
-					name: 'Select…',
-					value: null,
-				},
-				{
-					name: 'A',
-					value: 'a',
-				},
-				{
-					name: 'B',
-					value: 'b',
-				},
-				{
-					name: 'C',
-					value: 'c',
-				},
-			],
 			value: '?',
 		}
 		if (localStorage.getItem('logindata') === null) {
 			window.location.assign("./");
 		}
 		const { match: { params } } = this.props;
-
 		fetch(`${config.Url}api/orderdetails/` + params.userId).then((response) => response.json())
 			.then((res) => {
 				if (res.status === 'FAILURE') {
@@ -172,8 +155,9 @@ class Ordersdetails extends Component {
 											<th>HSN Code</th>
 											<th>Price</th>
 											<th>Shipping</th>
-											<th>Shipping</th>
+											<th>Amount</th>
 											<th>Dispatch By</th>
+											<th>Status</th>
 										</tr>
 									</thead>
 									<tbody>

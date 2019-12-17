@@ -9,9 +9,7 @@ import './bootstrap.css';
 import Header from "./header";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
-import ImageUploader from 'react-images-upload';
 import 'react-toastify/dist/ReactToastify.css';
-import Select from 'react-select';
 import config from './config/config';
 
 
