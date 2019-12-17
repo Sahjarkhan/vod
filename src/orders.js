@@ -10,8 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-import { faBoxOpen, faUserCog, faShoppingBasket, faPowerOff, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
 import config from './config/config';
 
 

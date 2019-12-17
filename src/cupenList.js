@@ -8,17 +8,9 @@ import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
-import styled from 'styled-components';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 
-const Main = styled.main`
-    position: relative;
-    overflow: hidden;
-    transition: all .15s;
-    padding: 0 20px;  
-    margin-left: ${props => (props.expanded ? 240 : 64)}px;
-`;
 
 const columns = [
     "OFFER TYPE",
@@ -32,8 +24,8 @@ const columns = [
             filter: false,
             customBodyRender: (value, status, updateValue) => {
                 return (
-                    <div class="prodts-tbs">
-                        <div class="drs">
+                    <div className="prodts-tbs">
+                        <div className="drs">
                             <img src={`${config.UrlImage}` + value} />
                         </div>
                     </div>
@@ -134,17 +126,17 @@ class SizeCollor extends Component {
                 },
             }
         };
-        return <div class="dash-layout">
+        return <div className="dash-layout">
             <Header />
-            <div class="bodylayouts-yod">
+            <div className="bodylayouts-yod">
                 <div >
                     <p><ToastContainer /></p>
-                    <div class="productexp">
-                        <div class="prdelements">
-                            <Link to="/AddCupen" class="dashbtns"> Add Offer</Link>
+                    <div className="productexp">
+                        <div className="prdelements">
+                            <Link to="/AddCupen" className="dashbtns"> Add Offer</Link>
                         </div>
                     </div>
-                    <div class="yodadm-tablesthm uk-overflow-auto">
+                    <div className="yodadm-tablesthm uk-overflow-auto">
                         <MUIDataTable
                             title={"Offer List"}
                             data={this.state.data}
