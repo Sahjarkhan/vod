@@ -34,7 +34,7 @@ const columns = [
                 return (
                     <div class="prodts-tbs">
                         <div class="drs">
-                            <img src={`${config.UrlImage}`+value} />
+                            <img src={`${config.UrlImage}` + value} />
                         </div>
                     </div>
                 );
@@ -146,7 +146,7 @@ class SizeCollor extends Component {
                     </div>
                     <div class="yodadm-tablesthm uk-overflow-auto">
                         <MUIDataTable
-                            title={"Color List"}
+                            title={"Offer List"}
                             data={this.state.data}
                             columns={columns}
                             options={options}
