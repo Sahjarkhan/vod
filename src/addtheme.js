@@ -7,15 +7,12 @@ import './fontawesome.css';
 import './bootstrap.css';
 import config from './config/config';
 
-import Sidebar from "./sidebar";
 import Header from "./header";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import ImageUploader from 'react-images-upload';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import Loader from 'react-loader-spinner';
 import 'react-toastify/dist/ReactToastify.css';
-const url = "https://mobuloustech.com/yodapi/api/addproductbyseller/1";
 
 
 

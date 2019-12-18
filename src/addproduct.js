@@ -106,7 +106,7 @@ class Dashboard extends Component {
 			})
 			.catch((error) => {
 				console.log(error);
-				alert('Oops, something went wrong. Please try again!');
+				//	alert('Oops, something went wrong. Please try again!');
 			});
 
 		fetch(`${config.Url}api/brandlistforseller`).then((response) => response.json())
@@ -126,7 +126,7 @@ class Dashboard extends Component {
 			})
 			.catch((error) => {
 				console.log(error);
-				alert('Oops, something went wrong. Please try again!');
+				//	alert('Oops, something went wrong. Please try again!');
 			});
 
 		fetch(`${config.Url}api/themelistforseller`).then((response) => response.json())
@@ -225,6 +225,7 @@ class Dashboard extends Component {
 	}
 
 	onDrop(picture) {
+		console.log(picture)
 		this.createImage(picture[picture.length - 1]);
 		this.setState({
 			pictures1: picture,
@@ -288,7 +289,7 @@ class Dashboard extends Component {
 				});
 
 		};
-		reader.readAsDataURL(file);
+		// reader.readAsDataURL(file);
 		//return this.state.pictures;
 	}
 
@@ -326,11 +327,14 @@ class Dashboard extends Component {
 				})
 				.catch((error) => {
 					console.log(error);
-					alert('Oops, something went wrong. Please try again!');
+					//	alert('Oops, something went wrong. Please try again!');
 				});
 
 		};
-		reader.readAsDataURL(file);
+		if (file && file.type.match('image.*')) {
+			reader.readAsDataURL(file);
+		}
+
 		//return this.state.pictures;
 	}
 	handleMultiChange1(option) {
@@ -487,7 +491,7 @@ class Dashboard extends Component {
 			})
 			.catch((error) => {
 				console.log(error);
-				alert('Oops, something went wrong. Please try again!');
+				//	alert('Oops, something went wrong. Please try again!');
 			});
 	}
 
@@ -517,19 +521,17 @@ class Dashboard extends Component {
 			})
 			.catch((error) => {
 				console.log(error);
-				alert('Oops, something went wrong. Please try again!');
+				// alert('Oops, something went wrong. Please try again!');
 			});
 	}
 
 	handleSubmit(event) {
-		console.log("Salmankhan*************")
 		// alert('A name was submitted: ' + this.state.username+' password '+ this.state.password);
 		event.preventDefault();
 		//console.log(this.state.pictures1);
 		if (this.handleValidation()) {
 
 			if (!this.state.sperror) {
-				console.log("Salmankhan*************");
 				var test = {
 					name: this.state.name,
 					images: this.state.pictures,
@@ -556,7 +558,6 @@ class Dashboard extends Component {
 					defaultcolor: this.state.dcolor,
 					fit: this.state.fit
 				}
-				//console.warn()
 				fetch(`${config.Url}api/addproductbyseller/` + JSON.parse(localStorage.getItem('logindata')).id, {
 					method: 'POST',
 					headers: {
@@ -591,7 +592,6 @@ class Dashboard extends Component {
 					}),
 				}).then((response) => response.json())
 					.then((res) => {
-						//alert(res);
 						if (res.status === 'FAILURE') {
 							toast.error(res.message);
 						} else {
@@ -618,7 +618,7 @@ class Dashboard extends Component {
 			<Header />
 
 			<div className="bodylayouts-yod">
-
+				
 				<div >
 					<form onSubmit={this.handleSubmit}>
 						<div className="productsgrid">
