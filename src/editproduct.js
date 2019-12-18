@@ -5,13 +5,11 @@ import './uikit-rtl.css';
 import './all.css';
 import './fontawesome.css';
 import './bootstrap.css';
-import Sidebar from "./sidebar";
 import Header from "./header";
 import config from './config/config';
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import ImageUploader from 'react-images-upload';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'react-toastify/dist/ReactToastify.css';
 import Select from 'react-select';
 

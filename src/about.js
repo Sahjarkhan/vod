@@ -6,14 +6,10 @@ import './all.css';
 import './fontawesome.css';
 import './bootstrap.css';
 import config from './config/config';
-import Sidebar from "./sidebar";
 import Header from "./header";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
-import ImageUploader from 'react-images-upload';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'react-toastify/dist/ReactToastify.css';
-import Select from 'react-select';
 import CKEditor from "react-ckeditor-component";
 
 

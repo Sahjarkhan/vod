@@ -112,9 +112,9 @@ class Sidebar extends Component {
                   <li><NavLink to="/cupon" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faBars} /> Cuponcode Management</NavLink></li>
                   <li><NavLink to="/about" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faInfo} />Content Management</NavLink></li>
                   <li><NavLink to="/layout" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faInfo} />Layout Management</NavLink></li>
-                  <li><NavLink to="/sizeList" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faQuestion} />Manage Size</NavLink></li>
-                  <li><NavLink to="/cupenList" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faQuestion} />Manage Offer</NavLink></li>
-                  <li><NavLink to="/colorList" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faQuestion} />Manage Color</NavLink></li>
+                  <li><NavLink to="/sizeList" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faBars} />Manage Size</NavLink></li>
+                  <li><NavLink to="/cupenList" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faBars} />Offer Management</NavLink></li>
+                  <li><NavLink to="/colorList" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faBars} />Manage Color</NavLink></li>
                   <li><NavLink to="/faqlist" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faQuestion} />FAQ Management</NavLink></li>
                   <li><NavLink to="/setting" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faUserCog} /> Account</NavLink></li>
                   <li><NavLink onClick={this.showAlert}><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faPowerOff} />Logout</NavLink></li>

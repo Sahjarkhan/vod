@@ -9,17 +9,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import Loader from 'react-loader-spinner';
-import styled from 'styled-components';
 import config from './config/config';
 
 
-const Main = styled.main`
-    position: relative;
-    overflow: hidden;
-    transition: all .15s;
-    padding: 0 20px;
-    margin-left: ${props => (props.expanded ? 240 : 64)}px;
-`;
 
 class Orders extends Component {
 
