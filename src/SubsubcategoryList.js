@@ -3,17 +3,11 @@ import './uikit.css';
 import './yodadmincss.css';
 import './uikit-rtl.css';
 import config from './config/config';
-import Sidebar from "./sidebar";
 import Header from "./header";
 import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
 import { ToastContainer, toast } from 'react-toastify';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import CSVReader from "react-csv-reader";
 import Loader from 'react-loader-spinner';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCog, faShoppingBasket, faPowerOff, faRupeeSign } from '@fortawesome/free-solid-svg-icons'
 
 
 const columns = [
