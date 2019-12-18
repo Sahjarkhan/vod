@@ -42,11 +42,11 @@ const columns = [
 
         return (
           <FormControlLabel
-            label={value[0] ? "Active" : "Inactive"}
-            value={value[0] ? "1" : ""}
-            control={
-              <Switch color="primary" checked={value[0]} value={value[0] ? "1" : ""} />
-            }
+          label={value[0] ? "Active" : "Inactive"}
+          value={value[0] ? "" : ""}
+          control={
+            <Switch color="primary" checked={value[0]} value={value[0] ? "" : ""} />
+          }
             onChange={event => {
 
               fetch(`${config.Url}api/productstatuschange1/` + value[1]).then((response) => response.json())
@@ -55,12 +55,8 @@ const columns = [
                   if (res.status === 'FAILURE') {
                     toast.error(res.message);
                   } else {
-                    // toast.success(res.message);
                     updateValue(res.response);
-                    //localStorage.setItem('logindata', res.sellerlogin);
-                    //this.props.history.push('/');
                   }
-                  // console.log(res);
                 })
                 .catch((error) => {
                   console.log(error);
@@ -98,7 +94,7 @@ class Buyer extends Component {
     setTimeout(() => {
       console.log('Our data is fetched');
 
-      fetch("http://mobuloustech.com/yodapi/api/userlistforadmin").then((response) => response.json())
+      fetch(`${config.Url}api/userlistforadmin`).then((response) => response.json())
         .then((res) => {
           //alert(res);
           if (res.status === 'FAILURE') {
@@ -123,7 +119,7 @@ class Buyer extends Component {
 
   handleForce = data => {
     console.log(data.length);
-    fetch("https://mobuloustech.com/yodapi/api/csv_uploade_for_product/" + JSON.parse(localStorage.getItem('logindata')).id, {
+    fetch(`${config.Url}api/csv_uploade_for_product/` + JSON.parse(localStorage.getItem('logindata')).id, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -158,7 +154,7 @@ class Buyer extends Component {
     //alert([0])
     const data123 = this.state.data;
     deletedIndexes.map(function (name, index) {
-      fetch("http://mobuloustech.com/yodapi/api/userdelete/" + data123[name][5]).then((response) => response.json())
+      fetch(`${config.Url}api/userdelete` + data123[name][5]).then((response) => response.json())
         .then((res) => {
           //alert(res);
           if (res.status === 'FAILURE') {

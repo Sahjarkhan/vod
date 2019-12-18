@@ -121,28 +121,8 @@ class Ordersdetails extends Component {
 								<p className="addrs">{this.state.location}
 								</p>
 							</div>
-							<div className="idr-shw">
-								<div className="dispatch-yod">
-									<strong>Dispatch By</strong>
-									<p>{this.state.dispatch_by}</p>
-								</div>
-
-								<div className="dispatch-yod">
-									<strong>Deliver By</strong>
-									<p>{this.state.dispatch_by}</p>
-								</div>
-
-								<div className="dispatch-yod">
-									<strong>Payout Rs. {this.state.amount}</strong>
-								</div>
-							</div>
-							<div className="idr-shw">
-								<div className="dispatch-yod">
-									<strong>Payout <span className="exptag">Export</span></strong>
-									<p>Days Passed : 0 Days</p>
-								</div>
-
-							</div>
+							
+							
 						</div>
 						<div className="ordeinfos-yds OrderTable">
 							<div className="uk-overflow-auto">
