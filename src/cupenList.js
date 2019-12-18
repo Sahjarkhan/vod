@@ -14,26 +14,11 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 const columns = [
     "OFFER TYPE",
-    "NAME",
     "DESCRIPTION",
-    "DISCOUNT   ",
-    "COLOR",
-    {
-        name: "IMAGE",
-        options: {
-            filter: false,
-            customBodyRender: (value, status, updateValue) => {
-                return (
-                    <div className="prodts-tbs">
-                        <div className="drs">
-                            <img src={`${config.UrlImage}` + value} />
-                        </div>
-                    </div>
-                );
-
-            }
-        }
-    },
+    "BUY",
+    "GET",
+    "CATEGORY",
+    
 ];
 
 class SizeCollor extends Component {
