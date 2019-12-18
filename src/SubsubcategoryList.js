@@ -9,7 +9,7 @@ import MUIDataTable from "mui-datatables";
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
 
-
+//1
 const columns = [
     "Name",
     "Category",
