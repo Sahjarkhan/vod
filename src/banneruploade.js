@@ -5,7 +5,6 @@ import './uikit-rtl.css';
 import './all.css';
 import './fontawesome.css';
 import './bootstrap.css';
-import Sidebar from "./sidebar";
 import Header from "./header";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';

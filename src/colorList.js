@@ -8,10 +8,7 @@ import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
-import styled from 'styled-components';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-
-
 
 const columns = [
     "COLOR",
