@@ -10,7 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import CSVReader from "react-csv-reader";
-
+import config from './config/config';
 const columns = [
   "title",
   "description",
@@ -82,7 +82,7 @@ class Themelist extends Component {
     this.state = { data: [] };
 
 
-    fetch("http://mobuloustech.com/yodapi/api/themelistforadmin").then((response) => response.json())
+    fetch(`${config.Url}api/themelistforadmin`).then((response) => response.json())
       .then((res) => {
         //alert(res);
         if (res.status === 'FAILURE') {
@@ -106,7 +106,7 @@ class Themelist extends Component {
 
   handleForce = data => {
     console.log(data.length);
-    fetch("https://mobuloustech.com/yodapi/api/csv_uploade_for_product/" + JSON.parse(localStorage.getItem('logindata')).id, {
+    fetch(`${config.Url}api/csv_uploade_for_product/` + JSON.parse(localStorage.getItem('logindata')).id, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -141,7 +141,7 @@ class Themelist extends Component {
     //alert([0])
     const data123 = this.state.data;
     deletedIndexes.map(function (name, index) {
-      fetch("http://mobuloustech.com/yodapi/api/catdeletet/" + data123[name][5]).then((response) => response.json())
+      fetch(`${config.Url}api/catdeletet/` + data123[name][5]).then((response) => response.json())
         .then((res) => {
           //alert(res);
           if (res.status === 'FAILURE') {
