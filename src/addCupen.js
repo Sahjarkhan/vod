@@ -435,12 +435,6 @@
 
 
 
-
-
-
-
-
-
 import React, { Component, Fragment } from "react";
 import './uikit.css';
 import './yodadmincss.css';
@@ -530,7 +524,7 @@ class AddCupen extends Component {
             errors["description"] = "Please enter description.";
         }
 
-      
+
         this.setState({ errors: errors });
         return formIsValid;
     }
@@ -571,25 +565,25 @@ class AddCupen extends Component {
             [name]: value
         });
         if (name == 'buy') {
-			const re = /^[0-9\b]+$/;
-			if (value === '' || re.test(value)) {
-				this.setState({ ships_in: value })
-			} else {
-				this.setState({
-					buy: '',
-				});
-			}
+            const re = /^[0-9\b]+$/;
+            if (value === '' || re.test(value)) {
+                this.setState({ ships_in: value })
+            } else {
+                this.setState({
+                    buy: '',
+                });
+            }
         }
         if (name == 'get') {
-			const re = /^[0-9\b]+$/;
-			if (value === '' || re.test(value)) {
-				this.setState({ ships_in: value })
-			} else {
-				this.setState({
-					get: '',
-				});
-			}
-		}
+            const re = /^[0-9\b]+$/;
+            if (value === '' || re.test(value)) {
+                this.setState({ ships_in: value })
+            } else {
+                this.setState({
+                    get: '',
+                });
+            }
+        }
     }
 
     handleChange1(event) {
@@ -614,8 +608,6 @@ class AddCupen extends Component {
         });
     }
 
-
-
     handleChange2(event) {
         const target = event.target;
         const value = target.value;
@@ -631,7 +623,6 @@ class AddCupen extends Component {
                 } else {
                     this.setState({ data: res.sublistbycat });
                 }
-                console.log(res.sublistbycat);
             })
             .catch((error) => {
                 console.log(error);
@@ -745,128 +736,128 @@ class AddCupen extends Component {
                             console.log(error);
                         });
                 }
+            }
         }
     }
-}
 
-render() {
-    const { selectedOption } = this.state;
-    return <div className="dash-layout">
-        <Header />
-        <div className="bodylayouts-yod">
-            <div >
-                <form onSubmit={this.handleSubmit}>
-                    <div className="productsgrid">
-                        <p><ToastContainer /></p>
-                        <div className="loaderintlos" id="showloadintlo" style={{ display: this.state.showStore ? 'block' : 'none' }}>
-                            <img src="https://www.justori.com/justori/assets/images/11.gif" />
-                        </div>
-                        <div className="head-main"><h6>Product Info</h6></div>
-                        <div className="main-grid form-grd">
+    render() {
+        const { selectedOption } = this.state;
+        return <div className="dash-layout">
+            <Header />
+            <div className="bodylayouts-yod">
+                <div >
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="productsgrid">
+                            <p><ToastContainer /></p>
+                            <div className="loaderintlos" id="showloadintlo" style={{ display: this.state.showStore ? 'block' : 'none' }}>
+                                <img src="https://www.justori.com/justori/assets/images/11.gif" />
+                            </div>
+                            <div className="head-main"><h6>Product Info</h6></div>
+                            <div className="main-grid form-grd">
 
-                            <div className="fullfrm">
-                                <div className="grpset">
-                                    <label className="mandtry">Offer type</label>
-                                    <div className="Inputs">
-                                        <select className="uk-input" id="form-horizontal-text" name="Offertype" value={this.state.value} onChange={this.handleChange1}>
-                                            <option value="">Offer type</option>
-                                            <option value="1">Back Discount</option>
-                                            <option value="2">By and Get</option>
-                                        </select>
-                                        <span style={{ color: "red" }}>{this.state.errors["Offertype"]}</span>
+                                <div className="fullfrm">
+                                    <div className="grpset">
+                                        <label className="mandtry">Offer type</label>
+                                        <div className="Inputs">
+                                            <select className="uk-input" id="form-horizontal-text" name="Offertype" value={this.state.value} onChange={this.handleChange1}>
+                                                <option value="">Offer type</option>
+                                                <option value="1">Back Discount</option>
+                                                <option value="2">By and Get</option>
+                                            </select>
+                                            <span style={{ color: "red" }}>{this.state.errors["Offertype"]}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <Fragment>
-                                    <div></div>
-                                    {
-                                        this.state.StatusChange === '2' ?
-                                            <Fragment>
-                                                <div className="grpset">
-                                                    <label className="mandtry">Category</label>
-                                                    <div className="Inputs">
-                                                        <select className="uk-input" id="form-horizontal-text" name="category_id" value={this.state.value} onChange={this.handleChange2}>
-                                                            <option >Select a category</option>
-                                                            <option value="MEN">MEN</option>
-                                                            <option value="WOMEN">WOMEN</option>
-                                                            <option value="KIDS">KIDS</option>
-                                                            <option value="ACCESSORIES">ACCESSORIES</option>
-                                                            <option value="SPORTS">SPORTS</option>
-                                                            <option value="OTHERS">OTHERS</option>
+                                    <Fragment>
+                                        <div></div>
+                                        {
+                                            this.state.StatusChange === '2' ?
+                                                <Fragment>
+                                                    <div className="grpset">
+                                                        <label className="mandtry">Category</label>
+                                                        <div className="Inputs">
+                                                            <select className="uk-input" id="form-horizontal-text" name="category_id" value={this.state.value} onChange={this.handleChange2}>
+                                                                <option >Select a category</option>
+                                                                <option value="MEN">MEN</option>
+                                                                <option value="WOMEN">WOMEN</option>
+                                                                <option value="KIDS">KIDS</option>
+                                                                <option value="ACCESSORIES">ACCESSORIES</option>
+                                                                <option value="SPORTS">SPORTS</option>
+                                                                <option value="OTHERS">OTHERS</option>
+                                                            </select>
+                                                            <span style={{ color: "red" }}>{this.state.errors["category_id"]}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="grpset">
+                                                        <label className="mandtry">Subcategory</label>
+                                                        <select className="uk-input" id="form-horizontal-text" name="subcategory_id" value={this.state.value} onChange={this.handleChange3}>
+                                                            <option >Select a subcategory</option>
+                                                            {this.state.data.map((item, key) =>
+                                                                <option value={item[0]}>{item[1]}</option>
+                                                            )}
                                                         </select>
-                                                        <span style={{ color: "red" }}>{this.state.errors["category_id"]}</span>
                                                     </div>
-                                                </div>
-
-                                                <div className="grpset">
-                                                    <label className="mandtry">Subcategory</label>
-                                                    <select className="uk-input" id="form-horizontal-text" name="subcategory_id" value={this.state.value} onChange={this.handleChange3}>
-                                                        <option >Select a subcategory</option>
-                                                        {this.state.data.map((item, key) =>
-                                                            <option value={item[0]}>{item[1]}</option>
-                                                        )}
-                                                    </select>
-                                                </div>
-                                                <div className="grpset">
-                                                    <label className="mandtry">Sub-subcategory</label>
-                                                    <select className="uk-input" id="form-horizontal-text" name="subsubcategory_id" value={this.state.value} onChange={this.handleChange3}>
-                                                        <option >Select a sub-subcategory</option>
-                                                        {this.state.data1.map((item, key) =>
-                                                            <option value={item[0]}>{item[1]}</option>
-                                                        )}
-                                                    </select>
-                                                </div>
-                                                <div>
                                                     <div className="grpset">
-                                                        <label className="mandtry">Buy</label>
-                                                        <div className="Inputs">
-                                                            <textarea maxLength="200" name="buy" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Buy" value={this.state.value} onChange={this.handleChange} ></textarea>
-                                                            <span style={{ color: "red" }}>{this.state.errors["buy"]}</span>
+                                                        <label className="mandtry">Sub-subcategory</label>
+                                                        <select className="uk-input" id="form-horizontal-text" name="subsubcategory_id" value={this.state.value} onChange={this.handleChange3}>
+                                                            <option >Select a sub-subcategory</option>
+                                                            {this.state.data1.map((item, key) =>
+                                                                <option value={item[0]}>{item[1]}</option>
+                                                            )}
+                                                        </select>
+                                                    </div>
+                                                    <div>
+                                                        <div className="grpset">
+                                                            <label className="mandtry">Buy</label>
+                                                            <div className="Inputs">
+                                                                <input maxLength="200" name="buy" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Buy" value={this.state.value} onChange={this.handleChange} ></input>
+                                                                <span style={{ color: "red" }}>{this.state.errors["buy"]}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div>
-                                                    <div className="grpset">
-                                                        <label className="mandtry">Get</label>
-                                                        <div className="Inputs">
-                                                            <textarea maxLength="200" name="get" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Get" value={this.state.value} onChange={this.handleChange} ></textarea>
-                                                            <span style={{ color: "red" }}>{this.state.errors["get"]}</span>
+                                                    <div>
+                                                        <div className="grpset">
+                                                            <label className="mandtry">Get</label>
+                                                            <div className="Inputs">
+                                                                <input maxLength="200" name="get" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Get" value={this.state.value} onChange={this.handleChange} ></input>
+                                                                <span style={{ color: "red" }}>{this.state.errors["get"]}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </Fragment> : ''
-                                    }
-                                </Fragment>
-                                <div className="grpset">
-                                    <label className="mandtry">Description</label>
-                                    <div className="Inputs">
-                                        <textarea maxLength="200" name="description" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Description" value={this.state.value} onChange={this.handleChange} ></textarea>
-                                        <span style={{ color: "red" }}>{this.state.errors["description"]}</span>
+                                                </Fragment> : ''
+                                        }
+                                    </Fragment>
+                                    <div className="grpset">
+                                        <label className="mandtry">Description</label>
+                                        <div className="Inputs">
+                                            <textarea maxLength="200" name="description" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Description" value={this.state.value} onChange={this.handleChange} ></textarea>
+                                            <span style={{ color: "red" }}>{this.state.errors["description"]}</span>
+                                        </div>
                                     </div>
+
                                 </div>
-
-                            </div>
-                            <div className="halffrms">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="productsgrid">
-                        <div className="halffrms updatebtns">
-                            <div className="twoways">
-                                <button type="submit" className="uk-button uk-button-default">Submit</button>
-                            </div>
-                            <div className="twoways">
-                                <Link to="/cupenList" className="uk-button uk-button-default">Back</Link>
+                                <div className="halffrms">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+
+                        <div className="productsgrid">
+                            <div className="halffrms updatebtns">
+                                <div className="twoways">
+                                    <button type="submit" className="uk-button uk-button-default">Submit</button>
+                                </div>
+                                <div className="twoways">
+                                    <Link to="/cupenList" className="uk-button uk-button-default">Back</Link>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
+    }
 }
-        }
 
 
 export default AddCupen;

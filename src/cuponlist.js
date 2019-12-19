@@ -218,6 +218,7 @@ class Cuponlist extends Component {
   }
 
   handleDelete = deletedRows => {
+    console.log(deletedRows);
     const { data, tableColumns } = this.props;
     const deletedIndexes = Object.keys(deletedRows.lookup);
     //alert([0])
