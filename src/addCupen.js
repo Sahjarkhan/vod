@@ -768,7 +768,6 @@ class AddCupen extends Component {
                                         </div>
                                     </div>
                                     <Fragment>
-                                        <div></div>
                                         {
                                             this.state.StatusChange === '2' ?
                                                 <Fragment>

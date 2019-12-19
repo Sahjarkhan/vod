@@ -21,15 +21,15 @@ class Banneruploade extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { showStore: false, name: '', pictures: '', pictures1: [], errors: {}, data: [] };
+    this.state = { showStore: false, name: '', data2: [], data1: [], pictures: '', pictures1: [], errors: {}, data: [] };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this)
+    this.handleChange3 = this.handleChange3.bind(this)
+    this.handleChange4 = this.handleChange4.bind(this)
     this.onDrop = this.onDrop.bind(this);
     // alert(localStorage.getItem('logindata'));
-
-
-
 
     fetch(`${config.Url}api/catlistforadmin1234`).then((response) => response.json())
       .then((res) => {
@@ -63,8 +63,7 @@ class Banneruploade extends Component {
   createImage(file) {
     let reader = new FileReader();
     reader.onload = (e) => {
-      console.log(e.target.result)
-      fetch(`${config.Url}api/fileuploade`, {
+      fetch(`${config.Url}api/fileuploadebanner`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -119,11 +118,6 @@ class Banneruploade extends Component {
       formIsValid = false;
       errors["category_id"] = "Please select subcategory.";
     }
-
-
-
-
-
     this.setState({ errors: errors });
     return formIsValid;
   }
@@ -139,6 +133,15 @@ class Banneruploade extends Component {
   }
 
   handleSubmit(event) {
+
+    var testing = {
+      type: this.state.bannertype,
+      image: this.state.pictures,
+      category_id: this.state.category_id,
+      subcategory_id: this.state.subcategory_id,
+      subsubcategory_id: this.state.subsubcategory_id
+    }
+    console.log(testing)
     // alert('A name was submitted: ' + this.state.username+' password '+ this.state.password);
     event.preventDefault();
     //console.log(this.state.pictures1);
@@ -157,7 +160,9 @@ class Banneruploade extends Component {
         body: JSON.stringify({
           type: this.state.bannertype,
           image: this.state.pictures,
-          subcategory_id: this.state.category_id,
+          category_id: this.state.category_id,
+          subcategory_id: this.state.subcategory_id,
+          subsubcategory_id: this.state.subsubcategory_id
         }),
       }).then((response) => response.json())
         .then((res) => {
@@ -181,12 +186,64 @@ class Banneruploade extends Component {
     }
   }
 
+  handleChange3(event) {
+    const target = event.target;
+    var value = target.value;
+    var name = target.name;
+    this.setState({
+      subcategory_id: value
+    });
+    fetch(`${config.Url}api/sublistbycatremark/` + value).then((response) => response.json())
+      .then((res) => {
+        //alert(res);
+        if (res.status === 'FAILURE') {
+          toast.error(res.message);
+        } else {
+          // toast.success(res.message);
+          //alert(res);
+          this.setState({ data1: res.sublistbycatremark });
+
+          //localStorage.setItem('logindata', res.sellerlogin);
+          //this.props.history.push('/');
+        }
+        console.log(res.sublistbycatremark);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  handleChange4(event) {
+    const target = event.target;
+    const value = target.value;
+    this.setState({
+      subsubcategory_id: value
+    });
+  }
+  handleChange2(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    //alert(value);
+    this.setState({
+      category_id: value
+    });
+    fetch(`${config.Url}api/sublistbycat/` + value).then((response) => response.json())
+      .then((res) => {
+        if (res.status === 'FAILURE') {
+          toast.error(res.message);
+        } else {
+          this.setState({ data2: res.sublistbycat });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
 
   render() {
     return <div class="dash-layout">
       <Header />
-
       <div class="bodylayouts-yod">
 
         <div >
@@ -222,34 +279,45 @@ class Banneruploade extends Component {
                       <span style={{ color: "red" }}>{this.state.errors["bannertype"]}</span>
                     </div>
                   </div>
-
-                  <div class="grpset">
-                    <label class="mandtry">Subcategory</label>
-                    <div class="Inputs">
-                      <select class="uk-input" id="form-horizontal-text" name="category_id" value={this.state.value} onChange={this.handleChange}>
-                        <option>Select subcategory</option>
-                        {this.state.data.map((item, key) =>
-                          <option value={item[1]}>{item[0]}</option>
-                        )}
-                      </select>
-                      <span style={{ color: "red" }}>{this.state.errors["category_id"]}</span>
+                  <div>
+                    <div className="grpset">
+                      <label className="mandtry">Category</label>
+                      <div className="Inputs">
+                        <select className="uk-input" id="form-horizontal-text" name="category_id" value={this.state.value} onChange={this.handleChange2}>
+                          <option >Select a category</option>
+                          <option value="MEN">MEN</option>
+                          <option value="WOMEN">WOMEN</option>
+                          <option value="KIDS">KIDS</option>
+                          <option value="ACCESSORIES">ACCESSORIES</option>
+                          <option value="SPORTS">SPORTS</option>
+                          <option value="OTHERS">OTHERS</option>
+                        </select>
+                        <span style={{ color: "red" }}>{this.state.errors["category_id"]}</span>
+                      </div>
                     </div>
 
-
+                    <div className="grpset">
+                      <label className="mandtry">Subcategory</label>
+                      <select className="uk-input" id="form-horizontal-text" name="subcategory_id" value={this.state.value} onChange={this.handleChange3}>
+                        <option >Select a subcategory</option>
+                        {this.state.data2.map((item, key) =>
+                          <option value={item[0]}>{item[1]}</option>
+                        )}
+                      </select>
+                    </div>
+                    <div className="grpset">
+                      <label className="mandtry">Sub-subcategory</label>
+                      <select className="uk-input" id="form-horizontal-text" name="subsubcategory_id" value={this.state.value} onChange={this.handleChange4}>
+                        <option >Select a sub-subcategory</option>
+                        {this.state.data1.map((item, key) =>
+                          <option value={item[0]}>{item[1]}</option>
+                        )}
+                      </select>
+                    </div>
                   </div>
-
                 </div>
-
-
-
-
-
-
               </div>
-
             </div>
-
-
             <div class="productsgrid">
               <div class="head-main"><h6>Images</h6></div>
               <div class="main-grid form-grd">
@@ -279,17 +347,11 @@ class Banneruploade extends Component {
                     <Link to="/bannerlist" class="uk-button uk-button-default">Back</Link>
                   </div>
                 </div>
-
               </div>
-
             </div>
-
-
           </form>
         </div>
-
       </div>
-
     </div>
 
   }

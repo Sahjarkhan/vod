@@ -20,61 +20,105 @@ class Banneruploade extends Component {
   notify = () => toast("Wow so easy !");
 
   constructor(props) {
+
     super(props);
-    this.state = { showStore: false, name: '', pictures: '', pictures1: [], errors: {}, data: [] };
+    this.state = {
+      showStore: false,
+      name: '',
+      pictures: '',
+      pictures1: [],
+      errors: {},
+      data: [],
+      data1: [],
+      category: '',
+      subcatlist: [],
+      subsubcatlist: []
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange1 = this.handleChange1.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this);
+    this.handleChange3 = this.handleChange3.bind(this)
     this.onDrop = this.onDrop.bind(this);
-    // alert(localStorage.getItem('logindata'));
-
 
 
     fetch(`${config.Url}api/catlistforadmin1234`).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
-          // toast.success(res.message);
-          //alert(res);
           this.setState({ data: res.response });
-
-          //localStorage.setItem('logindata', res.sellerlogin);
-          //this.props.history.push('/');
         }
-        console.log(res);
       })
       .catch((error) => {
         console.log(error);
       });
 
     const { match: { params } } = this.props;
-
-
     fetch(`${config.Url}api/bannerdetailsbyid/` + params.userId).then((response) => response.json())
+      .then((res) => {
+        if (res.status === 'FAILURE') {
+          toast.error(res.message);
+        } else {
+          this.setState({
+            pictures: res.response.bannerdetails.image,
+            bannertype: res.response.bannerdetails.type,
+            category: res.response.bannerdetails.category_id,
+            subcategory_id: res.response.bannerdetails.subcategory_id,
+            subsubcategory_id: res.response.bannerdetails.subsubcategory_id,
+            subcatlist: res.response.subcatlist,
+            subsubcatlist: res.response.subsubcatlist,
+            subcat: res.response.bannerdetails.subcategory_id,
+            subsubcat: res.response.bannerdetails.subsubcategory_id
+          });
+
+            for (let i = 0; i <= this.state.subcatlist.length - 1; i++) {
+            if (this.state.subcatlist[i][0] == this.state.subcategory_id) {
+              this.setState({
+                sub: `${this.state.subcatlist[i][1]}`
+              })
+            }
+          }
+          for (let i = 0; i <= this.state.subsubcatlist.length - 1; i++) {
+            if (this.state.subsubcatlist[i][0] == this.state.subsubcategory_id) {
+              this.setState({
+                subsub: `${this.state.subsubcatlist[i][1]}`
+              })
+            }
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  handleChange1(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      category: value
+    });
+    this.setState({
+      subsubcatlist: []
+    });
+    fetch(`${config.Url}api/sublistbycat/` + value).then((response) => response.json())
       .then((res) => {
         //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
-          // toast.success(res.message);
-          //alert(res);
-          this.setState({ image: res.response.image, bannertype: res.response.type, category_id: res.response.subcategory_id });
-
-          //localStorage.setItem('logindata', res.sellerlogin);
-          //this.props.history.push('/');
+          this.setState({ subcatlist: res.sublistbycat });
         }
-        console.log(res);
       })
       .catch((error) => {
         console.log(error);
-        alert('Oops, something went wrong. Please try again!');
       });
-
-
-
   }
+
+
 
   onDrop(picture) {
     console.log(picture);
@@ -143,11 +187,6 @@ class Banneruploade extends Component {
       formIsValid = false;
       errors["category_id"] = "Please select subcategory.";
     }
-
-
-
-
-
     this.setState({ errors: errors });
     return formIsValid;
   }
@@ -162,16 +201,34 @@ class Banneruploade extends Component {
     });
   }
 
+  handleChange3(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      subsub: value
+    });
+  }
+
+
   handleSubmit(event) {
-    // alert('A name was submitted: ' + this.state.username+' password '+ this.state.password);
     event.preventDefault();
-    //console.log(this.state.pictures1);
     const { match: { params } } = this.props;
+    var test = {
+      type: this.state.bannertype,
+      image: this.state.pictures,
+      subcategory_id: this.state.category_id,
+      idm: params.userId,
+      category_id: this.state.category,
+      subcategory_id: this.state.sub,
+      subsubcategory_id: this.state.subsub
+    }
+    console.log(test)
 
     console.log(this.state.pictures);
     if (this.handleValidation()) {
-      alert('Banner updated successfully')
-      //console.warn()
+      alert('Banner updated successfully');
       fetch(`${config.Url}api/createbanner`, {
         method: 'POST',
         headers: {
@@ -179,10 +236,15 @@ class Banneruploade extends Component {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+
           type: this.state.bannertype,
           image: this.state.pictures,
           subcategory_id: this.state.category_id,
           idm: params.userId,
+          category_id: this.state.category,
+          subcategory_id: this.state.subcategory_id,
+          subsubcategory_id: this.state.subsubcategory_id
+
         }),
       }).then((response) => response.json())
         .then((res) => {
@@ -191,9 +253,7 @@ class Banneruploade extends Component {
             toast.error(res.message);
           } else {
             toast.success(res.message);
-
             console.log(res);
-            //localStorage.setItem('logindata', res.sellerlogin);
             this.props.history.push('/bannerlist');
           }
           console.log(res);
@@ -202,33 +262,49 @@ class Banneruploade extends Component {
           console.log(error);
           alert('Oops, something went wrong. Please try again!');
         });
-
     }
   }
-
-
-
+  handleChange2(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    //alert(value);
+    console.log(value);
+    this.setState({
+      sub: value
+    });
+    fetch(`${config.Url}api/sublistbycatremark/` + value).then((response) => response.json())
+      .then((res) => {
+        //alert(res);
+        if (res.status === 'FAILURE') {
+          toast.error(res.message);
+        } else {
+          console.log(res.sublistbycatremark)
+          this.setState({ subsubcatlist: res.sublistbycatremark });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   render() {
-    return <div class="dash-layout">
+    return <div className="dash-layout">
       <Header />
-
-      <div class="bodylayouts-yod">
-
+      <div className="bodylayouts-yod">
         <div >
           <form onSubmit={this.handleSubmit}>
-            <div class="productsgrid">
+            <div className="productsgrid">
               <p><ToastContainer /></p>
-              <div class="loaderintlos" id="showloadintlo" style={{ display: this.state.showStore ? 'block' : 'none' }}>
+              <div className="loaderintlos" id="showloadintlo" style={{ display: this.state.showStore ? 'block' : 'none' }}>
                 <img src="https://www.justori.com/justori/assets/images/11.gif" />
               </div>
-              <div class="head-main"><h6>Banner Info</h6></div>
-              <div class="main-grid form-grd">
+              <div className="head-main"><h6>Banner Info</h6></div>
+              <div className="main-grid form-grd">
 
-                <div class="fullfrm">
-                  <div class="grpset">
-                    <label class="mandtry">Banner Type</label>
-                    <select class="uk-input" id="form-horizontal-text" name="bannertype" value={this.state.bannertype} onChange={this.handleChange}>
-
+                <div className="fullfrm">
+                  <div className="grpset">
+                    <label className="mandtry">Banner Type</label>
+                    <select className="uk-input" id="form-horizontal-text" name="bannertype" value={this.state.bannertype} onChange={this.handleChange}>
                       <option value="homeslider">Home Slider</option>
                       <option value="stylefeed">Style feed</option>
                       <option value="banner1">Banner 1</option>
@@ -245,34 +321,49 @@ class Banneruploade extends Component {
                     </select>
                     <span style={{ color: "red" }}>{this.state.errors["bannertype"]}</span>
                   </div>
-                  <div class="grpset">
-                    <label class="mandtry">Subcategory</label>
-                    <select class="uk-input" id="form-horizontal-text" name="category_id" value={this.state.category_id} onChange={this.handleChange}>
 
-                      {this.state.data.map((item, key) =>
-                        <option value={item[1]}>{item[0]}</option>
+                  <div className="grpset">
+                    <label className="mandtry">Banner Type</label>
+                    <select className="uk-input" id="form-horizontal-text" name="category" value={this.state.category} onChange={this.handleChange1}>
+                      <option value="MEN">MEN</option>
+                      <option value="WOMEN">WOMEN</option>
+                      <option value="KIDS">KIDS</option>
+                      <option value="ACCESSORIES">ACCESSORIES</option>
+                      <option value="SPORTS">SPORTS</option>
+                      <option value="OTHERS">OTHERS</option>
+                    </select>
+                    <span style={{ color: "red" }}>{this.state.errors["category"]}</span>
+                  </div>
+
+                  <div className="grpset">
+                    <label className="mandtry">Subcategory</label>
+                    <select className="uk-input" id="form-horizontal-text" name="category_id"
+                      value={this.state.sub} onChange={this.handleChange2}>
+                      {this.state.subcatlist.map((item, key) =>
+                        <option value={item[0]}>{item[1]}</option>
                       )}
                     </select>
-                    <span style={{ color: "red" }}>{this.state.errors["category_id"]}</span>
+                    {/* <span style={{ color: "red" }}>{this.state.errors["category_id"]}</span> */}
+                  </div>
+                  <div className="grpset">
+                    <label className="mandtry">Sub-subcategory</label>
+                    <select className="uk-input" id="form-horizontal-text" name="subsubcategory_id" value={this.state.subsub}
+                      onChange={this.handleChange3}>
+                      <option >Select a Subcategory</option>
+                      {this.state.subsubcatlist.map((item, key) =>
+                        <option value={item[1]}>{item[1]}</option>
+                      )}
+                    </select>
                   </div>
                 </div>
-
-
-
-
-
-
               </div>
-
             </div>
-
-
-            <div class="productsgrid">
-              <div class="head-main"><h6>Images</h6></div>
-              <div class="main-grid form-grd">
-                <div class="halffrms">
-                  <div class="twoways">
-                    <div class="grpset">
+            <div className="productsgrid">
+              <div className="head-main"><h6>Images</h6></div>
+              <div className="main-grid form-grd">
+                <div className="halffrms">
+                  <div className="twoways">
+                    <div className="grpset">
                       <ImageUploader
                         withIcon={true}
                         singleImage={true}
@@ -283,29 +374,26 @@ class Banneruploade extends Component {
                       />
                     </div>
                   </div>
-                  <div class="twoways">
-                    <div class="Add_images">
+                  <div className="twoways">
+                    <div className="Add_images">
                       <article>
                         <figcaption>
                           <ul>
-
-                            <li><img style={{ width: 100, height: 50 }} src={this.state.image} /></li>
-
-
+                            <li><img style={{ width: 100, height: 50 }} src={this.state.pictures} /></li>
                           </ul>
                         </figcaption>
-                        <div class="clear"></div>
+                        <div className="clear"></div>
                       </article>
                     </div>
                   </div>
                 </div>
 
-                <div class="halffrms updatebtns">
-                  <div class="twoways">
-                    <button type="submit" class="uk-button uk-button-default">Publish Now</button>
+                <div className="halffrms updatebtns">
+                  <div className="twoways">
+                    <button type="submit" className="uk-button uk-button-default">Publish Now</button>
                   </div>
-                  <div class="twoways">
-                    <Link to="/bannerlist" class="uk-button uk-button-default">Back</Link>
+                  <div className="twoways">
+                    <Link to="/bannerlist" className="uk-button uk-button-default">Back</Link>
                   </div>
                 </div>
 

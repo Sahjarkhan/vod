@@ -32,7 +32,9 @@ const columns = [
     }
   },
   "type",
+  "category",
   "Subcategory",
+  "Subsubcategory",
   {
     name: "ACTION",
     options: {
