@@ -19,6 +19,9 @@ class Addcategory extends Component {
   notify = () => toast("Wow so easy !");
   constructor(props) {
     super(props);
+    if (localStorage.getItem('logindata') === null) {
+      window.location.assign("./");
+    }
     this.state = { showStore: false, name: '', pictures: '', pictures1: [], errors: {}, occasion_status: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

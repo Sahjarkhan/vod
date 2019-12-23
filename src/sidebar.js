@@ -9,6 +9,7 @@ import { faUserCog, faShoppingBasket, faPowerOff, faUserPlus, faBars, faFan, faI
 class Sidebar extends Component {
   constructor(props) {
     super(props);
+    
     if (localStorage.getItem('logindata') === null) {
       window.location.assign("./")
     }

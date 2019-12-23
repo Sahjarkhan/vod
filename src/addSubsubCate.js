@@ -32,9 +32,13 @@ const customStyles = {
     }
 }
 class addSubsubCategory extends Component {
+
     notify = () => toast("Wow so easy !");
     constructor(props) {
         super(props);
+        if (localStorage.getItem('logindata') === null) {
+            window.location.assign("./");
+        }
         this.state = {
             showStore: false, multiValue: [], isDialogOpen: false,
             multiValue1: [], occasion_status: '', pictures: '',

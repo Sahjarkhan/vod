@@ -469,6 +469,7 @@ const customStyles = {
     }
 }
 class AddCupen extends Component {
+    
     notify = () => toast("Wow so easy !");
 
     constructor(props) {

@@ -96,7 +96,7 @@ class SizeList extends Component {
                         <Loader
                             type="Puff"
                             color="#00BFFF"
-                            height="20"
+                            height="80"
                             width="100"
                         /> :
                         'Sorry, no products yet.',
@@ -108,10 +108,8 @@ class SizeList extends Component {
             <div class="bodylayouts-yod">
                 <div >
                     <p><ToastContainer /></p>
-                    <div class="productexp">
-                        <div class="prdelements">
-                            <Link to="/addsize" class="dashbtns"> Add Size</Link>
-                        </div>
+                    <div class="Addsize">
+                        <Link to="/addsize" class="dashbtns"> Add Size</Link>
                     </div>
                     <div class="yodadm-tablesthm uk-overflow-auto">
                         <MUIDataTable

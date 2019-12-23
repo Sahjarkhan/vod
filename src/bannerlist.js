@@ -23,7 +23,7 @@ const columns = [
         return (
           <div class="prodts-tbs">
             <div class="drs">
-              <img src={value} />
+              <img src={`${config.UrlImage}` + value} />
             </div>
           </div>
         );

@@ -47,6 +47,9 @@ class AddSize extends Component {
 
     constructor(props) {
         super(props);
+        if (localStorage.getItem('logindata') === null) {
+            window.location.assign("./");
+        }
         this.state = {
             showStore: false, multiValue: [], isDialogOpen: false,
             filterOptions: [
@@ -226,7 +229,7 @@ class AddSize extends Component {
         this.setState({
             category_id: value
         });
-        
+
         fetch(`${config.Url}api/sublistbycat/` + value).then((response) => response.json())
             .then((res) => {
                 if (res.status === 'FAILURE') {

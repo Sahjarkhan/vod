@@ -37,16 +37,10 @@ class Orders extends Component {
 
     fetch(`${config.Url}api/allrequestlist`).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
-          //toast.success(res.message);
-          //alert(res);
           this.setState({ data: res.response });
-
-          //localStorage.setItem('logindata', res.sellerlogin);
-          //this.props.history.push('/');
         }
         console.log(res);
       })
@@ -76,7 +70,7 @@ class Orders extends Component {
 
   showAlert() {
     localStorage.setItem('logindata', null);
-    window.location.assign("./")
+    window.location.assign("./");
   }
 
   showAlert1(e) {
@@ -102,7 +96,7 @@ class Orders extends Component {
       })
       .catch((error) => {
         console.log(error);
-       
+
       });
   }
 

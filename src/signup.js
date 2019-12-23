@@ -11,6 +11,7 @@ class Signup extends Component {
 
     constructor(props) {
         super(props);
+        
         this.state = { pan_numfile: '', gstnumfile: '', name: '', password: '', email: '', gstnum: '', pan_num: '', phone: '', errors: {} };
 
         this.handleChange = this.handleChange.bind(this);

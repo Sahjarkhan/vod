@@ -25,18 +25,16 @@ class Editsubsubcatg extends Component {
 
     constructor(props) {
         super(props);
-
+        if (localStorage.getItem('logindata') === null) {
+            window.location.assign("./");
+        }
         this.state = { showStore: false, image11: '', occasion_status: '', name1: '', category_id: '', name: '', data: [], pictures: [], pictures1: [], errors: {}, errors1: {} };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmit1 = this.handleSubmit1.bind(this);
         this.onDrop = this.onDrop.bind(this);
         // alert(localStorage.getItem('logindata'));
         const { match: { params } } = this.props;
-
-
-
         fetch(`${config.Url}api/catlistforadmin1/` + params.userId).then((response) => response.json())
             .then((res) => {
                 //alert(res);
@@ -366,7 +364,6 @@ class Editsubsubcatg extends Component {
                                     <div class="grpset">
                                         <label class="mandtry">Occasion Status</label>
                                         <div class="Inputs">
-
                                             <FormControlLabel
                                                 label={this.state.occasion_status ? "Active" : "Inactive"}
                                                 value={this.state.occasion_status ? "1" : ""}
@@ -375,24 +372,16 @@ class Editsubsubcatg extends Component {
                                                 }
                                                 onChange={event => {
                                                     this.setState({ occasion_status: !this.state.occasion_status })
-
                                                 }}
                                             />
                                         </div>
                                     </div>
-
-
-
                                 </div>
-
                                 <div class="halffrms updatebtns">
                                     <div class="twoways">
                                         <button type="submit" class="uk-button uk-button-default">Update</button>
                                     </div>
-
                                 </div>
-
-
                             </div></div>
                     </form>	<form onSubmit={this.handleSubmit}>
                         <div class="productsgrid">
@@ -403,27 +392,13 @@ class Editsubsubcatg extends Component {
                                     <div class="grpset">
                                         <label class="mandtry">Name</label>
                                         <input name="name" class="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Product Name" value={this.state.value} onChange={this.handleChange} />
-
                                     </div>
                                     <span style={{ color: "red" }}>{this.state.errors["name"]}</span>
                                 </div>
-
-
-
-
-
-
-
                             </div>
-
                         </div>
-
-
                         <div class="productsgrid">
-
                             <div class="main-grid form-grd">
-
-
                                 <div class="halffrms updatebtns">
                                     <div class="twoways">
                                         <button type="submit" class="uk-button uk-button-default">Publish Now</button>
@@ -432,12 +407,8 @@ class Editsubsubcatg extends Component {
                                         <Link to="/category" class="uk-button uk-button-default">Back</Link>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
-
-
                     </form>
                     <div class="productsgrid">
                         <MUIDataTable
