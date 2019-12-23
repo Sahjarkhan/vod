@@ -2187,3 +2187,29 @@ ul.block-list {
     min-width: 200px;
     padding: 0 10px;
 }
+
+.Back{
+    float: right;
+    border: none;
+    color: #000;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 17px;
+}
+
+.Addsize{
+    text-align: right;
+    padding: 0 40px 0 0;
+}
+
+.Addsize a{
+    display: inline-block;
+}
+
+
+.Addsize a:hover{
+    color: #fff;
+}
+
+
+

@@ -48,6 +48,9 @@ class Content12 extends Component {
 
   constructor(props) {
     super(props);
+    if (localStorage.getItem('logindata') === null) {
+      window.location.assign("./");
+    }
     this.state = { showStore: false, name: JSON.parse(localStorage.getItem('logindata')).name, email: JSON.parse(localStorage.getItem('logindata')).email, phone: JSON.parse(localStorage.getItem('logindata')).phone, pictures: JSON.parse(localStorage.getItem('logindata')).image, errors: {} };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

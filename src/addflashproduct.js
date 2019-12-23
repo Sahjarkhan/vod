@@ -21,6 +21,9 @@ class Addflashproduct extends Component {
 
   constructor(props) {
     super(props);
+    if (localStorage.getItem('logindata') === null) {
+      window.location.assign("./");
+    }
     this.state = { pictures: '', pictures1: '', pictures2: '', pictures1: [], errors: {} };
 
     this.handleChange = this.handleChange.bind(this);

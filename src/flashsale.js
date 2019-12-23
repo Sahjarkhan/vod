@@ -24,7 +24,9 @@ class Editsubcatg extends Component {
 
   constructor(props) {
     super(props);
-
+    if (localStorage.getItem('logindata') === null) {
+      window.location.assign("./");
+    }
     this.state = { status: '', name: '', data: [], pictures: [], pictures1: [], errors: {}, date: new Date() };
 
     this.handleChange = this.handleChange.bind(this);
@@ -149,7 +151,7 @@ class Editsubcatg extends Component {
       })
       .catch((error) => {
         console.log(error);
-        
+
       });
 
 

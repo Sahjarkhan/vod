@@ -21,6 +21,9 @@ class Banneruploade extends Component {
 
   constructor(props) {
     super(props);
+    if (localStorage.getItem('logindata') === null) {
+      window.location.assign("./");
+    }
     this.state = { showStore: false, name: '', data2: [], data1: [], pictures: '', pictures1: [], errors: {}, data: [] };
 
     this.handleChange = this.handleChange.bind(this);
@@ -116,8 +119,17 @@ class Banneruploade extends Component {
 
     if (!fields.category_id) {
       formIsValid = false;
-      errors["category_id"] = "Please select subcategory.";
+      errors["category_id"] = "Please select Category.";
     }
+    if (!fields.subcategory_id) {
+      formIsValid = false;
+      errors["subcategory_id"] = "Please select Subcategory.";
+    }
+    if (!fields.subsubcategory_id) {
+      formIsValid = false;
+      errors["subsubcategory_id"] = "Please select Sub-subcategory";
+    }
+    // Please select subcategory.
     this.setState({ errors: errors });
     return formIsValid;
   }
@@ -295,24 +307,30 @@ class Banneruploade extends Component {
                         <span style={{ color: "red" }}>{this.state.errors["category_id"]}</span>
                       </div>
                     </div>
-
-                    <div className="grpset">
-                      <label className="mandtry">Subcategory</label>
-                      <select className="uk-input" id="form-horizontal-text" name="subcategory_id" value={this.state.value} onChange={this.handleChange3}>
-                        <option >Select a subcategory</option>
-                        {this.state.data2.map((item, key) =>
-                          <option value={item[0]}>{item[1]}</option>
-                        )}
-                      </select>
+                    <div>
+                      <div className="grpset">
+                        <label className="mandtry">Subcategory</label>
+                        <div className="Inputs">
+                          <select className="uk-input" id="form-horizontal-text" name="subcategory_id" value={this.state.value} onChange={this.handleChange3}>
+                            <option >Select a subcategory</option>
+                            {this.state.data2.map((item, key) =>
+                              <option value={item[0]}>{item[1]}</option>
+                            )}
+                          </select><span style={{ color: "red" }}>{this.state.errors["subcategory_id"]}</span>
+                        </div>
+                      </div>
                     </div>
                     <div className="grpset">
                       <label className="mandtry">Sub-subcategory</label>
-                      <select className="uk-input" id="form-horizontal-text" name="subsubcategory_id" value={this.state.value} onChange={this.handleChange4}>
-                        <option >Select a sub-subcategory</option>
-                        {this.state.data1.map((item, key) =>
-                          <option value={item[0]}>{item[1]}</option>
-                        )}
-                      </select>
+                      <div className="Inputs">
+                        <select className="uk-input" id="form-horizontal-text" name="subsubcategory_id" value={this.state.value} onChange={this.handleChange4}>
+                          <option >Select a sub-subcategory</option>
+                          {this.state.data1.map((item, key) =>
+                            <option value={item[0]}>{item[1]}</option>
+                          )}
+                        </select>
+                        <span style={{ color: "red" }}>{this.state.errors["subsubcategory_id"]}</span>
+                      </div>
                     </div>
                   </div>
                 </div>

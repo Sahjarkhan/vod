@@ -13,20 +13,19 @@ import Loader from 'react-loader-spinner';
 const columns = [
     "Name",
     "Category",
-    {
-        name: "ACTION",
-        options: {
-            filter: true,
-            customBodyRender: (value, status, updateValue) => {
-                return (
-                    <div>
-                        <Link to={{ "pathname": "/subsubcategory/" }} class="roundico">Edit</Link>
-                    </div>
-                );
-
-            }
-        }
-    }
+    // {
+    //     name: "ACTION",
+    //     options: {
+    //         filter: true,
+    //         customBodyRender: (value, status, updateValue) => {
+    //             return (
+    //                 <div>
+    //                     <Link to={{ "pathname": "/subsubcategory/" }} class="roundico">Edit</Link>
+    //                 </div>
+    //             );
+    //         }
+    //     }
+    // }
 ];
 class Subsubcategory extends Component {
     constructor(props) {
@@ -89,7 +88,7 @@ class Subsubcategory extends Component {
                         <Loader
                             type="Puff"
                             color="#00BFFF"
-                            height="20"
+                            height="80"
                             width="100"
                         /> :
                         'Sorry, no products yet.',

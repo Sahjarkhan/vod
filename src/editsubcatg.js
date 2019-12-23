@@ -25,7 +25,9 @@ class Editsubcatg extends Component {
 
   constructor(props) {
     super(props);
-
+    if (localStorage.getItem('logindata') === null) {
+      window.location.assign("./");
+    }
     this.state = { showStore: false, image11: '', occasion_status: '', name1: '', category_id: '', name: '', data: [], pictures: [], pictures1: [], errors: {}, errors1: {} };
 
     this.handleChange = this.handleChange.bind(this);

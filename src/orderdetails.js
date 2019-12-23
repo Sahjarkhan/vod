@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faEye } from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
 import config from './config/config';
+import { Button } from "@material-ui/core";
 
 
 const options = [
@@ -28,6 +29,9 @@ const options = [
 class Ordersdetails extends Component {
 	constructor(props) {
 		super(props);
+		if (localStorage.getItem('logindata') === null) {
+            window.location.assign("./");
+        }
 		this.state = {
 			value: '?',
 		}
@@ -43,10 +47,6 @@ class Ordersdetails extends Component {
 					toast.success(res.message);
 					this.setState(res.response);
 					this.setState({ detailss: res.response.details });
-					console.log(res.response.details)
-					// 1.this.setState({ selectedOption: res.response[0].status })
-					//localStorage.setItem('logindata', res.sellerlogin);
-					//this.props.history.push('/');
 				}
 			})
 			.catch((error) => {
@@ -63,18 +63,12 @@ class Ordersdetails extends Component {
 		var str = "" + event.target.value + "";
 		const { match: { params } } = this.props;
 		var words = str.split(' ');
-		var status = (words[0]);
-		var orderId = (words[1]);
-		var productI = (words[2]);
-		fetch(`${config.Url}api/changethestatusoforder/` + orderId + "/" + productI + "/" + status).then((response) => response.json())
+		fetch(`${config.Url}api/changethestatusoforder/` + words[1] + "/" + words[2] + "/" + words[0]).then((response) => response.json())
 			.then((res) => {
-				console.log(res, "res*************************88")
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
 					toast.success(res.message);
-					//localStorage.setItem('logindata',res.sellerlogin);
-					//this.props.history.push('/');
 				}
 			})
 			.catch((error) => {
@@ -87,24 +81,19 @@ class Ordersdetails extends Component {
 				} else {
 					this.setState(res.response);
 					this.setState({ detailss: res.response.details });
-					console.log(res.response.details)
-					// 1.this.setState({ selectedOption: res.response[0].status })
-					//localStorage.setItem('logindata', res.sellerlogin);
-					//this.props.history.push('/');
 				}
 			})
 			.catch((error) => {
 				console.log(error);
 			});
-		console.log(`Option selected:`, selectedOption);
 	}
 	render() {
-		const details = (this.state.details);
 		return (<div className="dash-layout">
 			<Header />
+			<p><ToastContainer /></p>
 			<div className="bodylayouts-yod">
+				<Link to="/orders" class="Back">Back</Link>
 				<div >
-					<p><ToastContainer /></p>
 					<div className="productsgrid">
 						<div className="rowprods">
 							<div className="idr-shw">
@@ -117,12 +106,15 @@ class Ordersdetails extends Component {
 								</div>
 							</div>
 							<div className="idr-shw">
-								<p className="bld">Order No. <br /> {this.state.order_id}</p>
-								<p className="addrs">{this.state.location}
-								</p>
+								<p className="bld"> Order No:  <br /> {this.state.order_number}</p>
+								<p className="bld"> Address:<br />{this.state.location}</p>
+								<p className="bld"> coupen_code:<br />{this.state.coupen_code}</p>
 							</div>
-							
-							
+							<div className="idr-shw">
+								<p className="bld">Name: <br /> {this.state.user_name}</p>
+								<p className="bld">Email:<br />{this.state.user_email}</p>
+								<p className="bld"> Phone Number:<br />{this.state.phone}</p>
+							</div>
 						</div>
 						<div className="ordeinfos-yds OrderTable">
 							<div className="uk-overflow-auto">
@@ -198,10 +190,8 @@ class Ordersdetails extends Component {
 						</div>
 					</div>
 				</div>
-
 			</div>
-
-		</div>)
+		</div >)
 	}
 }
 

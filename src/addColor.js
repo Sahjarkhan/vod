@@ -46,6 +46,9 @@ class AddColor extends Component {
 
     constructor(props) {
         super(props);
+        if (localStorage.getItem('logindata') === null) {
+            window.location.assign("./");
+        }
         this.state = {
             showStore: false, multiValue: [], isDialogOpen: false,
             filterOptions: [

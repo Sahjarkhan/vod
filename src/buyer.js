@@ -18,16 +18,13 @@ const columns = [
     options: {
       filter: false,
       customBodyRender: (value, status, updateValue) => {
-
         return (
           <div class="prodts-tbs">
             <div class="drs">
               <img src={value} />
             </div>
-
           </div>
         );
-
       }
     }
   },
@@ -39,7 +36,6 @@ const columns = [
     options: {
       filter: false,
       customBodyRender: (value, status, updateValue) => {
-
         return (
           <FormControlLabel
           label={value[0] ? "Active" : "Inactive"}
@@ -151,7 +147,6 @@ class Buyer extends Component {
   handleDelete = deletedRows => {
     const { data, tableColumns } = this.props;
     const deletedIndexes = Object.keys(deletedRows.lookup);
-    //alert([0])
     const data123 = this.state.data;
     deletedIndexes.map(function (name, index) {
       fetch(`${config.Url}api/userdelete` + data123[name][5]).then((response) => response.json())

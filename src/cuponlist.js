@@ -28,7 +28,9 @@ class Cuponlist extends Component {
 
   constructor(props) {
     super(props);
-
+    if (localStorage.getItem('logindata') === null) {
+      window.location.assign("./");
+    }
     this.state = { min_price: '', discount: '', name: '', data: [], pictures: [], pictures1: [], errors: {}, date: new Date() };
 
     this.handleChange = this.handleChange.bind(this);
