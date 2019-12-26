@@ -115,12 +115,16 @@ class SizeCollor extends Component {
             <Header />
             <div className="bodylayouts-yod">
                 <div >
-                    <p><ToastContainer /></p>
+                <p><ToastContainer /></p>
+                    <div class="Addsize">
+                    <Link to="/AddCupen" className="dashbtns"> Add Offer</Link>
+                    </div>
+                    {/* <p><ToastContainer /></p>
                     <div className="productexp">
                         <div className="prdelements">
                             <Link to="/AddCupen" className="dashbtns"> Add Offer</Link>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="yodadm-tablesthm uk-overflow-auto">
                         <MUIDataTable
                             title={"Offer List"}

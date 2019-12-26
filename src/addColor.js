@@ -239,7 +239,7 @@ class AddColor extends Component {
             <Header />
             <div class="bodylayouts-yod">
 
-                <Main expanded={expanded}>
+                <Main className="AddSize" expanded={expanded}>
                     <div >
                         <form onSubmit={this.handleSubmit}>
 

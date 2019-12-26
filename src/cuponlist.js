@@ -261,7 +261,7 @@ class Cuponlist extends Component {
           <form onSubmit={this.handleSubmit}>
             <div class="productsgrid">
               <p><ToastContainer /></p>
-              <div class="head-main"><h6>Create Cupon</h6></div>
+              <div class="head-main"><h6>Create Coupon</h6></div>
               <div class="main-grid form-grd">
 
                 <div class="fullfrm">
@@ -307,7 +307,7 @@ class Cuponlist extends Component {
           </form>
           <div class="productsgrid">
             <MUIDataTable
-              title={"Cupon List"}
+              title={"coupon List"}
               data={this.state.data}
               columns={columns}
               options={options}

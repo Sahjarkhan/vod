@@ -39,8 +39,8 @@ class Dashboard extends Component {
 	constructor(props) {
 		super(props);
 		if (localStorage.getItem('logindata') === null) {
-            window.location.assign("./");
-        }
+			window.location.assign("./");
+		}
 		this.state = {
 			showStore: false, multiValue: [], isDialogOpen: false,
 			multiValue1: [],
@@ -209,17 +209,11 @@ class Dashboard extends Component {
 			});
 	}
 
-	handleMultiChange(option) {
-		this.setState(state => {
-			return {
-				multiValue: option
-			};
-		});
-	}
 
 	openDialog = () => this.setState({ isDialogOpen: true })
 	handleClose = () => this.setState({ isDialogOpen: false })
 	handleMultiChange(option) {
+		console.log(option)
 		this.setState(state => {
 			return {
 				multiValue: option
@@ -242,14 +236,10 @@ class Dashboard extends Component {
 			this.createImage(main[i]);
 
 		}
-		// if (!picture.length)
-		// return;
-		// this.createImage(picture[0]);
 	}
 
 	onChange1(e) {
 		let files = e.target.files || e.dataTransfer.files;
-		//alert(files);
 		console.log(files[0]);
 		if (!files.length)
 			return;
@@ -271,29 +261,19 @@ class Dashboard extends Component {
 				}),
 			}).then((response) => response.json())
 				.then((res) => {
-					//alert(res);
 					if (res.status === 'FAILURE') {
-						//toast.error(res.message);
 					} else {
-						//toast.success(res.message);
 						this.setState({
 							picturescolorchart: res.response
 						})
-						//this.props.picturemain = this.state.pictures
 						console.log(res.response);
-						//console.log(this.state.pictures);
-						//localStorage.setItem('logindata', res.sellerlogin);
-						//this.props.history.push('/product');
 					}
-					//console.log(res);
 				})
 				.catch((error) => {
 					console.log(error);
 				});
 
 		};
-		// reader.readAsDataURL(file);
-		//return this.state.pictures;
 	}
 
 	createImage(file) {
@@ -341,6 +321,7 @@ class Dashboard extends Component {
 		//return this.state.pictures;
 	}
 	handleMultiChange1(option) {
+
 		this.setState(state => {
 			return {
 				multiValue1: option
@@ -352,6 +333,10 @@ class Dashboard extends Component {
 		let errors = {};
 		let formIsValid = true;
 
+		if (!fields.multiValue.length > 0) {
+			formIsValid = false;
+			errors["multiValue"] = "Please enter size.";
+		}
 		//Name
 		if (!fields.name) {
 			formIsValid = false;
@@ -621,7 +606,7 @@ class Dashboard extends Component {
 			<Header />
 
 			<div className="bodylayouts-yod">
-				
+
 				<div >
 					<form onSubmit={this.handleSubmit}>
 						<div className="productsgrid">
@@ -890,16 +875,10 @@ class Dashboard extends Component {
 
 										</div>
 									</div>
-
 									<div className="twoways">
-
 									</div>
 
 								</div>
-
-
-
-
 							</div>
 						</div>
 						<div className="productsgrid">
@@ -922,20 +901,10 @@ class Dashboard extends Component {
 								<div className="halffrms">
 									<div className="twoways">
 										<div className="grpset">
-											<label>Size</label>
+											<label style={{ width: "340px" }}>Size</label>
 											<div className="measrtype">
-												{/* <Select
-													name="filters"
-													styles={customStyles}
-													placeholder="Select a size"
-													value={this.state.multiValue}
-													options={this.state.filterOptions}
-													onChange={this.handleMultiChange}
-													isMulti={true}
-												/> */}
-
 												<Select
-													name="filters"
+													name="multiValue"
 													styles={customStyles}
 													placeholder="Select a size"
 													value={this.state.multiValue}
@@ -943,6 +912,7 @@ class Dashboard extends Component {
 													onChange={this.handleMultiChange}
 													isMulti={true}
 												/>
+												<span style={{ color: "red" }}>{this.state.errors["multiValue"]}</span>
 											</div>
 										</div>
 									</div>
@@ -950,15 +920,7 @@ class Dashboard extends Component {
 									<div className="twoways">
 										<div className="grpset">
 											<label>Color</label>
-											{/* <Select
-												name="filters"
-												styles={customStyles}
-												placeholder="Select a color"
-												value={this.state.multiValue1}
-												options={this.state.filterOptions1}
-												onChange={this.handleMultiChange1}
-												isMulti={true}
-											/> */}
+
 											<Select
 												name="filters"
 												styles={customStyles}
@@ -995,7 +957,7 @@ class Dashboard extends Component {
 											<label className="mandtry">Default color</label>
 											<div className="Inputs">
 												<select className="uk-input" id="form-horizontal-text" name="dcolor" value={this.state.value} onChange={this.handleChange}>
-													<option >Default color</option>
+													<option value="">Default color</option>
 													{this.state.filterOptions1.map((item, key) =>
 														<option value={item.value}>{item.label}</option>
 													)}
