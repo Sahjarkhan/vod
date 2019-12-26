@@ -94,29 +94,18 @@ const columns = [
 
 
 class Product extends Component {
-
   constructor(props) {
     super(props);
-
     if (localStorage.getItem('logindata') === null) {
       window.location.assign("./");
     }
-
     this.state = { data: [] };
-
-
     fetch(`${config.Url}api/productlistforadmin/` + JSON.parse(localStorage.getItem('logindata')).id).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
-          // toast.success(res.message);
-          //alert(res);
           this.setState({ data: res.response });
-
-          //localStorage.setItem('logindata', res.sellerlogin);
-          //this.props.history.push('/');
         }
         console.log(res);
       })
@@ -140,14 +129,11 @@ class Product extends Component {
       }),
     }).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
           toast.success(res.message);
 
-          //console.log(res);
-          //localStorage.setItem('logindata', res.sellerlogin);
           this.props.history.push('/product');
         }
         console.log(res);

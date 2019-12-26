@@ -313,7 +313,7 @@ class AddSize extends Component {
         return <div class="dash-layout">
             <Header />
             <div class="bodylayouts-yod">
-                <Main expanded={expanded}>
+                <Main className="AddSize" expanded={expanded}>
                     <div >
                         <form onSubmit={this.handleSubmit}>
                             <div class="productsgrid">

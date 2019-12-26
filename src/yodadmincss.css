@@ -1749,7 +1749,7 @@ min-height: 323px;
     font-size: 25px;
     line-height: 20px;
     opacity: 1;
-    z-index: 1;
+    z-index: 0;
     color: #fff;
     cursor: pointer;
 }
@@ -1861,7 +1861,7 @@ min-height: 323px;
     font-size: 15px;
     line-height: 20px;
     opacity: 1;
-    z-index: 1;
+    z-index: 0;
     color: #fff;
     cursor: pointer;
   }
@@ -2213,3 +2213,172 @@ ul.block-list {
 
 
 
+.MUIDataTable-responsiveScroll-4, .MuiPaper-rounded 
+.MuiPaper-root {
+    z-index: 8;
+}
+
+
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-root{
+    z-index: 2 !important;
+    height: 49px !important;
+}
+
+.yodcontainer-dash div+div{
+    display: none !important;
+}
+
+.yodcontainer-dash div+div+div {
+    display: block!important;
+    position: relative;
+    z-index: 999999;
+}
+
+.bodylayouts-yod { 
+    padding: 10px 30px 30px;
+}
+
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-head:first-child {
+    width: 60px;
+    padding: 0 0 0 10px;
+}
+
+.yodadm-tablesthm table.MuiTable-root td.MuiTableCell-body {
+    text-align: left;
+}
+
+.yodadm-tablesthm table.MuiTable-root th.MuiTableCell-root,
+.yodadm-tablesthm table.MuiTable-root td .prodts-tbs .drs {
+    text-align: left;
+}
+
+.MUIDataTableSelectCell-headerCell-353,
+.MUIDataTableSelectCell-fixedHeader-349 {
+    z-index: 0 !important;
+}
+
+.MUIDataTable-tableRoot-461,
+.MUIDataTable-tableRoot-1428,
+table.MuiTable-root {
+    outline: none;
+    z-index: 0 !important;
+    position: relative !important;
+}
+
+.yodadm-tablesthm table.MuiTable-root td.MuiTableCell-paddingCheckbox span{
+    padding: 0px;
+}
+
+
+.Inputs [class*='uk-inline']{ width: 100%;}
+
+.AddSize{
+    margin: 0 !important;
+
+}
+
+.AddSize .head-main h6{
+    padding: 15px 20px;
+}
+
+.fileContainer .uploadPicturesWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    display: none !important;
+}
+
+.Add_images article figcaption ul li {
+    overflow: hidden;
+    height: 135px;
+}
+
+.Add_images article figcaption ul li img{
+    height: 100%;
+}
+
+
+/*new sidebar css custom 25/12/2019 */
+
+
+.sidebarleft {
+    position: fixed;
+    left: 0;
+    width: 20%;
+    top: 71px;
+    transition: all ease 0.7s;
+    transform: translateX(0px);
+}
+
+.sidebarleft ul{
+    height: 750px;
+    overflow: auto;
+}
+
+header.yodamin-hd img.logoheader {
+    width: 100px;
+    float: left;
+}
+
+.openmenu {
+    transition: all ease 0.7s;
+    transform: translateX(-500px);
+    position: fixed;
+    left: 0;
+    width: 20%;
+    top: 71px;
+    height: 100%;
+}
+
+.mentoggle {
+    float: left;
+    width: 34px;
+    text-align: center;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+/* width */
+.sidebarleft::-webkit-scrollbar {
+    width: 13px;
+  }
+
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #949494; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d5058b; 
+  }
+
+  .sidebarleft ul li svg, .sidebarleft ul li p {
+    float: left;
+}
+
+.sidebarleft ul li svg {
+    width: 20px;
+}
+
+.sidebarleft ul li p {
+    width: 80%;
+    margin: 0 0 20px 0;
+}
+
+.sidebarleft ul li img {
+    float: left;
+}

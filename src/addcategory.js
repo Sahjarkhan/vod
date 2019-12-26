@@ -49,8 +49,7 @@ class Addcategory extends Component {
     let reader = new FileReader();
     reader.onload = (e) => {
       console.log("SSSSSSSSSSSSSSSSSSSSSS", e.target.result)
-
-      fetch(`${config.Url}api/fileuploade`, {
+      fetch(`${config.Url}api/fileuploadecat`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -132,7 +131,7 @@ class Addcategory extends Component {
         body: JSON.stringify({
           name: this.state.name,
           category_id: this.state.category_id,
-          image: `${config.UrlImage}` + this.state.pictures,
+          image:this.state.pictures,
         }),
       }).then((response) => response.json())
         .then((res) => {
