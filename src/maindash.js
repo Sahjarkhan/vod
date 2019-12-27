@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import './uikit.css';
 import './yodadmincss.css';
 import './uikit-rtl.css';
+import { Link, withRouter } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faArrowDown, faAngleDown, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
@@ -11,9 +12,7 @@ class Maindash extends Component {
     constructor(props) {
         super(props);
 
-        if (localStorage.getItem('logindata') === null) {
-            this.props.history.push('/login');
-        }
+      
 
     }
     render() {

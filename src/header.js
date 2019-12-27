@@ -12,6 +12,8 @@ class Sidebar extends Component {
 
   constructor(props) {
     super(props);
+
+
     this.state = {
       sideMenuOpen: false,
       openLeft: false,
@@ -70,6 +72,7 @@ class Sidebar extends Component {
   }
 
   render() {
+
     const {
       drawerStyle: stringDrawerStyle,
       openLeft,

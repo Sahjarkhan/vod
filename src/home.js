@@ -19,22 +19,12 @@ class Home extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
     this.getInitialState = this.getInitialState.bind(this);
-    // alert(localStorage.getItem('logindata'));
 
     fetch(`${config.Url}api/themeorder`).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
-          // toast.error(res.message);
         } else {
-          // toast.success(res.message);
-          //alert(res);
-          //alert(res.response);
           localStorage.setItem('layoutdata', JSON.stringify(res.response));
-          //this.setState({data: res.response});
-
-
-
         }
         console.log(res);
       })
@@ -87,7 +77,6 @@ class Home extends Component {
     this.setState({ checked: !this.state.checked });
     console.log(this.state.checked);
     if (!this.state.checked) {
-      // alert("dfhsagdsf");
       if (!this.state.username || !this.state.password) {
         this.setState({ username: localStorage.getItem('loginemail1') });
         this.setState({ password: localStorage.getItem('loginpass1') });
@@ -96,7 +85,6 @@ class Home extends Component {
         localStorage.setItem('loginpass1', this.state.password);
       }
     }
-    // alert("hello");
   }
 
   handleChange(event) {
@@ -110,7 +98,6 @@ class Home extends Component {
   }
 
   handleSubmit(event) {
-    // alert('A name was submitted: ' + this.state.username+' password '+ this.state.password);
     event.preventDefault();
     if (this.handleValidation()) {
       fetch(`${config.Url}api/adminlogin`, {
@@ -125,16 +112,13 @@ class Home extends Component {
         }),
       }).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
             toast.error(res.message);
           } else {
             toast.success(res.message);
-
             localStorage.setItem('logindata', JSON.stringify(res.adminlogin));
             this.props.history.push('/dashboard');
           }
-          console.log(res);
         })
         .catch((error) => {
           console.log(error);
