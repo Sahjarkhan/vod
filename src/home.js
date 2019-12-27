@@ -12,6 +12,7 @@ class Home extends Component {
 
   constructor(props) {
     super(props);
+    
     this.state = { username: '', password: '', errors: {}, checked: false };
 
     this.handleChange = this.handleChange.bind(this);

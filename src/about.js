@@ -15,12 +15,14 @@ import CKEditor from "react-ckeditor-component";
 
 
 class About extends Component {
-  
+
   notify = () => toast("Wow so easy !");
-  
+
   constructor(props) {
     super(props);
-   
+    if (localStorage.getItem('logindata') === null) {
+      window.location.assign("./");
+    }
     this.updateContent = this.updateContent.bind(this);
     this.onChange = this.onChange.bind(this);
     this.afterPaste = this.afterPaste.bind(this);

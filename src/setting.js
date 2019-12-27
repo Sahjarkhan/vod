@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import config from './config/config';
 
 class Content11 extends Component {
+  
   render() {
     return <div>
       <div class="full-10"><div class="prdinf-grd">
@@ -139,10 +140,6 @@ class Content12 extends Component {
       }
     }
 
-
-
-
-
     this.setState({ errors: errors });
     return formIsValid;
   }
@@ -245,7 +242,9 @@ class Content1 extends Component {
 
   constructor(props) {
     super(props);
-
+    if (localStorage.getItem('logindata') === null) {
+      window.location.assign("./");
+    }
     this.state = { isEdit: false, nameofmodule: "Profile Details" };
     //console.log(JSON.parse(localStorage.getItem('logindata')).id);
     this.showAlert = this.showAlert.bind(this);
@@ -276,7 +275,11 @@ class Content1 extends Component {
 }
 class Content2 extends Component {
   constructor(props) {
+    
     super(props);
+    if (localStorage.getItem('logindata') === null) {
+      window.location.assign("./");
+    }
     this.state = { errors: {} };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

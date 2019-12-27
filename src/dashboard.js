@@ -15,21 +15,17 @@ class Dashboard extends Component {
         super(props);
 
         if (localStorage.getItem('logindata') === null) {
-            this.props.history.push('/login');
+            this.props.history.push('/');
+
         }
 
     }
     render() {
         return <div class="dash-layout">
             <Header />
-
             <div class="bodylayouts-yod">
-
-
                 <Maindash />
-
             </div>
-
         </div>
 
     }

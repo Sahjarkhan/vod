@@ -14,7 +14,6 @@ class Sidebar extends Component {
       window.location.assign("./")
     }
 
-    //console.log(JSON.parse(localStorage.getItem('logindata')).id);
   }
   showAlert() {
     localStorage.setItem('logindata', null);

@@ -16,6 +16,9 @@ class Layout extends Component {
 
   constructor(props) {
     super(props);
+      if (localStorage.getItem('logindata') === null) {
+      window.location.assign("./");
+    }
     this.state = {
       simpleList: JSON.parse(localStorage.getItem('layoutdata')),
       data: []
@@ -60,7 +63,6 @@ class Layout extends Component {
   }
 
   sayHello() {
-    // alert(this.state.simpleList);
     fetch(`${config.Url}api/setthemeorder`, {
       method: 'POST',
       headers: {
@@ -72,24 +74,14 @@ class Layout extends Component {
       }),
     }).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
-          //toast.error(res.message);
         } else {
-          //toast.success(res.message);
-          // alert(res.response);
           localStorage.setItem('layoutdata', JSON.stringify(res.response));
-          //this.props.picturemain = this.state.pictures
           console.log(res.response);
-          //console.log(this.state.pictures);
-          //localStorage.setItem('logindata', res.sellerlogin);
-          //this.props.history.push('/product');
         }
-        //console.log(res);
       })
       .catch((error) => {
         console.log(error);
-        alert('Oops, something went wrong. Please try again!');
       });
   }
 
@@ -131,9 +123,6 @@ class Layout extends Component {
                 </div>
               </div>
             </div>
-
-
-
           </div>
         </div>
       </div>
