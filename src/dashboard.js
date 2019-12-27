@@ -13,9 +13,10 @@ class Dashboard extends Component {
 
     constructor(props) {
         super(props);
-        if (localStorage.getItem('logindata') === null) {
-            this.props.history.push('/');
-        }
+    if (localStorage.getItem('logindata') === null) {
+        window.location.assign("./");
+      }
+
     }
     render() {
         return <div class="dash-layout">
