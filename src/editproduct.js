@@ -44,15 +44,8 @@ class Dashboard extends Component {
 		}
 
 		this.state = {
-			imagearray: [], showStore: false, multiValue: [], isDialogOpen: false,
-			filterOptions: [
-				{ value: 'XS', label: 'XS' },
-				{ value: 'S', label: 'S' },
-				{ value: 'M', label: 'M' },
-				{ value: 'L', label: 'L' },
-				{ value: 'XL', label: 'XL' },
-				{ value: 'XXL', label: 'XXL' },
-			], multiValue1: [],
+			imagearray: [], sizeDropDown: [], showStore: false, multiValue: [], isDialogOpen: false,
+			filterOptions: [], multiValue1: [],
 			filterOptions1: [], sperror: '', data: [], name: '', picturescolorchart: '', data4: [], data3: [], data: [], data1: [], pictures: [], pictures1: [], errors: {}
 		};
 
@@ -87,18 +80,43 @@ class Dashboard extends Component {
 								console.log(error);
 							});
 					})
+
 					fetch(`${config.Url}api/getcolor`).then((response) => response.json())
 						.then((res) => {
 							if (res.status === 'FAILURE') {
 								toast.error(res.message);
 							} else {
-								console.log(res.getcolor);
 								this.setState({ filterOptions1: res.getcolor });
 							}
 						})
 						.catch((error) => {
 							console.log(error);
-							// alert('Oops, something went wrong. Please try again!');
+						});
+
+					fetch(`${config.Url}api/getsize`, {
+						method: 'POST',
+						headers: {
+							Accept: 'application/json',
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							"catid": this.state.category_id,
+							"subcatid": this.state.subcategory_id,
+							"subsubcatid": this.state.subsubcategory_id
+						}),
+					}).then((response) => response.json())
+						.then((res) => {
+							if (res.status === 'FAILURE') {
+								toast.error(res.message);
+							}
+							else {
+								console.log("+++++++++++++++++++++++++++++++++++++++", res.getsize)
+								this.setState({ sizeDropDown: res.getsize });
+							}
+						})
+						.catch((error) => {
+							console.log(error);
+							//	alert('Oops, something went wrong. Please try again!');
 						});
 					this.setState({ multiValue: res.response.size1, multiValue1: res.response.color1 }, function () {
 						fetch(`${config.Url}api/sublistbycat/` + res.response.category_id).then((response) => response.json())
@@ -396,7 +414,6 @@ class Dashboard extends Component {
 	}
 
 	handleSubmit(event) {
-		console.log(this.state.filterOptions1)
 		event.preventDefault();
 		var sizeArray = [];
 		if (this.state.multiValue1.length > 0) {
@@ -405,7 +422,6 @@ class Dashboard extends Component {
 				sizeArray.push(SizeArraylist)
 			}
 		}
-		console.log(this.state.multiValue);
 		var colorArray = [];
 		if (this.state.multiValue.length > 0) {
 			for (let i = 0; i <= this.state.multiValue.length - 1; i++) {
@@ -413,34 +429,7 @@ class Dashboard extends Component {
 				colorArray.push(SizeArraylist)
 			}
 		}
-		console.log(colorArray);
 		event.preventDefault();
-		var testing = {
-			name: this.state.name,
-			images: this.state.imagearray,
-			category_id: this.state.category_id,
-			mrp: this.state.mrp,
-			sp: this.state.sp,
-			subcategory_id: this.state.subcategory_id,
-			subsubcategory_id: this.state.subsubcategory_id,
-			color: colorArray,
-			size: sizeArray,
-			sizechart: this.state.picturescolorchart,
-			description: this.state.description,
-			brand: this.state.brand,
-			quantity: this.state.quantity,
-			hsn_code: this.state.hsn_code,
-			weight: this.state.weight,
-			height: this.state.height,
-			width: this.state.width,
-			length: this.state.length,
-			ships_in: this.state.ships_in,
-			sku: this.state.sku,
-			theme_id: this.state.theme_id,
-			fit: this.state.fit,
-			imagearray: this.state.imagearray
-		}
-		console.log(testing)
 		const { match: { params } } = this.props;
 		if (this.handleValidation()) {
 			fetch(`${config.Url}api/editproductbyseller/` + params.userId, {
@@ -482,7 +471,6 @@ class Dashboard extends Component {
 						toast.success(res.message);
 						this.props.history.push('/product');
 					}
-					console.log(res);
 				})
 				.catch((error) => {
 					console.log(error);
@@ -779,7 +767,7 @@ class Dashboard extends Component {
 													styles={customStyles}
 													placeholder="Select a size"
 													value={this.state.multiValue1}
-													options={this.state.filterOptions}
+													options={this.state.sizeDropDown}
 													onChange={this.handleMultiChange1}
 													isMulti={true}
 												/>

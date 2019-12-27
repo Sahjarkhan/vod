@@ -60,7 +60,6 @@ class Dashboard extends Component {
 
 	}
 	componentDidMount() {
-
 		fetch(`${config.Url}api/getcolor`).then((response) => response.json())
 			.then((res) => {
 				if (res.status === 'FAILURE') {
@@ -71,22 +70,14 @@ class Dashboard extends Component {
 			})
 			.catch((error) => {
 				console.log(error);
-				// alert('Oops, something went wrong. Please try again!');
 			});
 		fetch(`${config.Url}api/brandlistforseller`).then((response) => response.json())
 			.then((res) => {
-				//alert(res);
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
-					//toast.success(res.message);
-					//alert(res);
 					this.setState({ data3: res.brandlistforseller });
-
-					//localStorage.setItem('logindata', res.sellerlogin);
-					//this.props.history.push('/');
 				}
-				console.log(res.brandlistforseller);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -94,62 +85,38 @@ class Dashboard extends Component {
 			});
 		fetch(`${config.Url}api/brandlistforseller`).then((response) => response.json())
 			.then((res) => {
-				//alert(res);
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
-					//toast.success(res.message);
-					//alert(res);
 					this.setState({ data3: res.brandlistforseller });
-
-					//localStorage.setItem('logindata', res.sellerlogin);
-					//this.props.history.push('/');
 				}
-				console.log(res.brandlistforseller);
 			})
 			.catch((error) => {
 				console.log(error);
-				//	alert('Oops, something went wrong. Please try again!');
 			});
 
 		fetch(`${config.Url}api/brandlistforseller`).then((response) => response.json())
 			.then((res) => {
-				//alert(res);
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
-					//toast.success(res.message);
-					//alert(res);
 					this.setState({ data3: res.brandlistforseller });
-
-					//localStorage.setItem('logindata', res.sellerlogin);
-					//this.props.history.push('/');
 				}
-				console.log(res.brandlistforseller);
 			})
 			.catch((error) => {
 				console.log(error);
-				//	alert('Oops, something went wrong. Please try again!');
 			});
 
 		fetch(`${config.Url}api/themelistforseller`).then((response) => response.json())
 			.then((res) => {
-				//alert(res);
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
-					//toast.success(res.message);
-					//alert(res);
 					this.setState({ data4: res.themelistforseller });
-
-					//localStorage.setItem('logindata', res.sellerlogin);
-					//this.props.history.push('/');
 				}
-				console.log(res.themelistforseller);
 			})
 			.catch((error) => {
 				console.log(error);
-				//alert('Oops, something went wrong. Please try again!');
 			});
 
 	}
@@ -166,9 +133,6 @@ class Dashboard extends Component {
 		this.setState({
 			subsubcategory_id: value
 		});
-		console.log("1", this.state.category_id);
-		console.log("2", this.state.subcategory_id);
-		console.log("3", event.target.value);
 		fetch(`${config.Url}api/getsize`, {
 			method: 'POST',
 			headers: {
@@ -186,26 +150,22 @@ class Dashboard extends Component {
 					toast.error(res.message);
 				}
 				else {
-					console.log("+++++++++++++++++++++++++++++++++++++++", res.getsize)
 					this.setState({ sizeDropDown: res.getsize });
 				}
 			})
 			.catch((error) => {
 				console.log(error);
-				//	alert('Oops, something went wrong. Please try again!');
 			});
 		fetch(`${config.Url}api/getcolor`).then((response) => response.json())
 			.then((res) => {
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
-					console.log("+++++++++++++++++++++++++++++++++++++++", res.getsize)
 					this.setState({ filterOptions1: res.getcolor });
 				}
 			})
 			.catch((error) => {
 				console.log(error);
-				//	alert('Oops, something went wrong. Please try again!');
 			});
 	}
 
@@ -213,7 +173,6 @@ class Dashboard extends Component {
 	openDialog = () => this.setState({ isDialogOpen: true })
 	handleClose = () => this.setState({ isDialogOpen: false })
 	handleMultiChange(option) {
-		console.log(option)
 		this.setState(state => {
 			return {
 				multiValue: option
@@ -222,25 +181,13 @@ class Dashboard extends Component {
 	}
 
 	onDrop(picture) {
-		console.log(picture)
 		this.createImage(picture[picture.length - 1]);
-		this.setState({
-			pictures1: picture,
-			showStore: true,
-		})
-		this.setState({
-			pictures: []
-		})
-		const main = this.state.pictures1;
-		for (var i = 0; i < main.length; i++) {
-			this.createImage(main[i]);
 
-		}
 	}
 
 	onChange1(e) {
 		let files = e.target.files || e.dataTransfer.files;
-		console.log(files[0]);
+
 		if (!files.length)
 			return;
 		this.createImage1(files[0]);
@@ -279,7 +226,6 @@ class Dashboard extends Component {
 	createImage(file) {
 		let reader = new FileReader();
 		reader.onload = (e) => {
-			console.log(e.target.result)
 			fetch(`${config.Url}api/fileuploade`, {
 				method: 'POST',
 				headers: {
@@ -291,37 +237,26 @@ class Dashboard extends Component {
 				}),
 			}).then((response) => response.json())
 				.then((res) => {
-					//alert(res);
 					if (res.status === 'FAILURE') {
-						//toast.error(res.message);
-					} else {
-						//toast.success(res.message);
+
+					}
+					else {
 						this.setState({
 							pictures: this.state.pictures.concat(res.response),
 							showStore: false,
 						})
-						//this.props.picturemain = this.state.pictures
-						console.log(res.response);
-						console.log(this.state.pictures);
-						//localStorage.setItem('logindata', res.sellerlogin);
-						//this.props.history.push('/product');
 					}
-					//console.log(res);
 				})
 				.catch((error) => {
 					console.log(error);
-					//	alert('Oops, something went wrong. Please try again!');
 				});
 
 		};
 		if (file && file.type.match('image.*')) {
 			reader.readAsDataURL(file);
 		}
-
-		//return this.state.pictures;
 	}
 	handleMultiChange1(option) {
-
 		this.setState(state => {
 			return {
 				multiValue1: option
@@ -337,13 +272,11 @@ class Dashboard extends Component {
 			formIsValid = false;
 			errors["multiValue"] = "Please enter size.";
 		}
-		//Name
+
 		if (!fields.name) {
 			formIsValid = false;
 			errors["name"] = "Please enter name.";
 		}
-
-		//category_id
 
 		if (!fields.dcolor) {
 			formIsValid = false;
@@ -388,7 +321,6 @@ class Dashboard extends Component {
 
 		if (!fields.sp) {
 			formIsValid = false;
-			//errors["sp"] = "";
 			this.setState({
 				sperror: 'Please enter selling price.',
 			});
@@ -419,6 +351,13 @@ class Dashboard extends Component {
 		return formIsValid;
 	}
 
+	removeImageArray = (value) => {
+		this.state.pictures.splice(value, 1);
+		this.setState({
+			pictures: this.state.pictures
+		})
+	}
+
 	handleChange(event) {
 		const target = event.target;
 		const value = target.value;
@@ -438,7 +377,6 @@ class Dashboard extends Component {
 		}
 
 		if (name == 'sp') {
-			//alert(value);
 			if (parseInt(value) > parseInt(this.state.mrp)) {
 
 				this.setState({
@@ -457,29 +395,20 @@ class Dashboard extends Component {
 		const target = event.target;
 		const value = target.value;
 		const name = target.name;
-		//alert(value);
 		this.setState({
 			category_id: value
 		});
 
 		fetch(`${config.Url}api/sublistbycat/` + value).then((response) => response.json())
 			.then((res) => {
-				//alert(res);
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
-					//toast.success(res.message);
-					//alert(res);
 					this.setState({ data: res.sublistbycat });
-
-					//localStorage.setItem('logindata', res.sellerlogin);
-					//this.props.history.push('/');
 				}
-				console.log(res.sublistbycat);
 			})
 			.catch((error) => {
 				console.log(error);
-				//	alert('Oops, something went wrong. Please try again!');
 			});
 	}
 
@@ -487,65 +416,27 @@ class Dashboard extends Component {
 		const target = event.target;
 		const value = target.value;
 		const name = target.name;
-		//alert(value);
 		this.setState({
 			subcategory_id: value
 		});
 
 		fetch(`${config.Url}api/sublistbycatremark/` + value).then((response) => response.json())
 			.then((res) => {
-				//alert(res);
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
-					// toast.success(res.message);
-					//alert(res);
 					this.setState({ data1: res.sublistbycatremark });
-
-					//localStorage.setItem('logindata', res.sellerlogin);
-					//this.props.history.push('/');
 				}
-				console.log(res.sublistbycatremark);
 			})
 			.catch((error) => {
 				console.log(error);
-				// alert('Oops, something went wrong. Please try again!');
 			});
 	}
 
 	handleSubmit(event) {
-		// alert('A name was submitted: ' + this.state.username+' password '+ this.state.password);
 		event.preventDefault();
-		//console.log(this.state.pictures1);
 		if (this.handleValidation()) {
-
 			if (!this.state.sperror) {
-				var test = {
-					name: this.state.name,
-					images: this.state.pictures,
-					category_id: this.state.category_id,
-					mrp: this.state.mrp,
-					sp: this.state.sp,
-					subcategory_id: this.state.subcategory_id,
-					subsubcategory_id: this.state.subsubcategory_id,
-					color: this.state.multiValue1,
-					size: this.state.multiValue,
-					sizechart: this.state.picturescolorchart,
-					description: this.state.description,
-					brand: this.state.brand,
-					quantity: this.state.quantity,
-					hsn_code: this.state.hsn_code,
-					weight: this.state.weight,
-					height: this.state.height,
-					width: this.state.width,
-					length: this.state.length,
-					ships_in: this.state.ships_in,
-					sku: this.state.sku,
-					theme_id: this.state.theme_id,
-					user_type: 'admin',
-					defaultcolor: this.state.dcolor,
-					fit: this.state.fit
-				}
 				fetch(`${config.Url}api/addproductbyseller/` + JSON.parse(localStorage.getItem('logindata')).id, {
 					method: 'POST',
 					headers: {
@@ -583,15 +474,10 @@ class Dashboard extends Component {
 						if (res.status === 'FAILURE') {
 							toast.error(res.message);
 						} else {
-							//toast.success();
-							//alert(res.message)
-							console.log(res);
-							//localStorage.setItem('logindata', res.sellerlogin);
 							if (toast.success(res.message)) {
 								this.props.history.push('/product');
 							}
 						}
-						console.log(res);
 					})
 					.catch((error) => {
 						console.log(error);
@@ -822,16 +708,12 @@ class Dashboard extends Component {
 									<div className="twoways">
 										<div className="grpset">
 											<label className="mandtry">height</label>
-
 											<div className="Inputs">
 												<div className="measrtype">
 													<input name="height" className="uk-input" id="form-horizontal-text" type="text" placeholder="height" value={this.state.value} onChange={this.handleChange} />
-
-
 													<div className="typshw">
 														<p>cm</p>
 													</div>
-
 												</div>
 												<span style={{ color: "red" }}>{this.state.errors["height"]}</span>
 											</div>
@@ -844,8 +726,6 @@ class Dashboard extends Component {
 											<div className="Inputs">
 												<div className="measrtype">
 													<input name="width" className="uk-input" id="form-horizontal-text" type="text" placeholder="Width" value={this.state.value} onChange={this.handleChange} />
-
-
 													<div className="typshw">
 														<p>cm</p>
 													</div>
@@ -932,25 +812,7 @@ class Dashboard extends Component {
 											/>
 										</div>
 									</div>
-
 								</div>
-								{/* <div className="halffrms">
-									<div className="twoways">
-										<div className="grpset">
-											<label className="mandtry">Default color</label>
-											<div className="Inputs">
-												<div className="measrtype">
-													<input name="dcolor" className="uk-input"
-														id="form-horizontal-text" type="text"
-														placeholder="Default color" value={this.state.value}
-														onChange={this.handleChange} />
-
-												</div>
-												<span style={{ color: "red" }}>{this.state.errors["dcolor"]}</span>
-											</div>
-										</div>
-									</div>
-								</div> */}
 								<div className="halffrms">
 									<div className="twoways">
 										<div className="grpset">
@@ -987,9 +849,19 @@ class Dashboard extends Component {
 											/>
 										</div>
 									</div>
-
-									<div className="twoways">
-
+									<div class="twoways">
+										<div class="Add_images">
+											<article >
+												<figcaption >
+													<ul>
+														{this.state.pictures.map((item, key) =>
+															<li><img src={config.UrlImage + item} /><span class="close" value={key} onClick={() => this.removeImageArray(key)}>x</span></li>
+														)}
+													</ul>
+												</figcaption>
+												<div class="clear"></div>
+											</article>
+										</div>
 									</div>
 								</div>
 

@@ -49,16 +49,11 @@ const columns = [
             onChange={event => {
               fetch(`${config.Url}api/productstatuschange11/` + value[1]).then((response) => response.json())
                 .then((res) => {
-                  //alert(res);
                   if (res.status === 'FAILURE') {
                     toast.error(res.message);
                   } else {
-                    // toast.success(res.message);
                     updateValue(res.response);
-                    //localStorage.setItem('logindata', res.sellerlogin);
-                    //this.props.history.push('/');
                   }
-                  // console.log(res);
                 })
                 .catch((error) => {
                   console.log(error);
@@ -120,12 +115,8 @@ class Sellerlist extends Component {
           toast.error(res.message);
         } else {
           toast.success(res.message);
-
-          //console.log(res);
-          //localStorage.setItem('logindata', res.sellerlogin);
           this.props.history.push('/product');
         }
-        console.log(res);
       })
       .catch((error) => {
         console.log(error);
@@ -136,27 +127,18 @@ class Sellerlist extends Component {
   handleDelete = deletedRows => {
     const { data, tableColumns } = this.props;
     const deletedIndexes = Object.keys(deletedRows.lookup);
-    //alert([0])
     const data123 = this.state.data;
     deletedIndexes.map(function (name, index) {
       fetch(`${config.Url}api/userdelete/` + data123[name][5]).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
             toast.error(res.message);
           } else {
             toast.success(res.message);
-            //alert(res);
-            //this.setState({data: res.response});
-
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/');
           }
-          console.log(res);
         })
         .catch((error) => {
           console.log(error);
-          alert('Oops, something went wrong. Please try again!');
         });
 
     })

@@ -2366,7 +2366,7 @@ header.yodamin-hd img.logoheader {
     background: #d5058b; 
   }
 
-  .sidebarleft ul li svg, .sidebarleft ul li p {
+  /* .sidebarleft ul li svg, .sidebarleft ul li p {
     float: left;
 }
 
@@ -2382,3 +2382,16 @@ header.yodamin-hd img.logoheader {
 .sidebarleft ul li img {
     float: left;
 }
+ */
+
+ .sidebarleft ul li svg,
+ .sidebarleft ul li img, 
+ .sidebarleft ul li p {
+    display: inline-block;
+}
+
+.sidebarleft ul li p {
+    margin: 0;
+}
+
+
