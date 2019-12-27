@@ -158,10 +158,7 @@ class Sidebar extends Component {
               <li><a href="/">Logout</a></li>
             </ul>
           </div>
-
         </div>
-
-
       </div>
     </header>
   }

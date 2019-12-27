@@ -13,12 +13,9 @@ class Dashboard extends Component {
 
     constructor(props) {
         super(props);
-
         if (localStorage.getItem('logindata') === null) {
             this.props.history.push('/');
-
         }
-
     }
     render() {
         return <div class="dash-layout">
