@@ -20,16 +20,13 @@ const columns = [
     options: {
       filter: false,
       customBodyRender: (value, status, updateValue) => {
-
         return (
           <div class="prodts-tbs">
             <div class="drs">
-              <img src={value} />
+              <img src={`${config.UrlImage}`+value} />
             </div>
-
           </div>
         );
-
       }
     }
   },
@@ -59,7 +56,6 @@ const columns = [
                     //localStorage.setItem('logindata', res.sellerlogin);
                     //this.props.history.push('/');
                   }
-                  // console.log(res);
                 })
                 .catch((error) => {
                   console.log(error);
@@ -90,26 +86,33 @@ const columns = [
 
               fetch(`${config.Url}api/brandfocusstatuschange/` + value[1]).then((response) => response.json())
                 .then((res) => {
-                  //alert(res);
                   if (res.status === 'FAILURE') {
                     toast.error(res.message);
                   } else {
-                    // toast.success(res.message);
                     updateValue(res.response);
-                    //localStorage.setItem('logindata', res.sellerlogin);
-                    //this.props.history.push('/');
                   }
-                  // console.log(res);
                 })
                 .catch((error) => {
                   console.log(error);
-                  alert('Oops, something went wrong. Please try again!');
                 });
               console.log(value);
             }}
           />
         );
 
+      }
+    }
+  },
+  {
+    name: "ACTION",
+    options: {
+      filter: true,
+      customBodyRender: (value, status, updateValue) => {
+        return (
+          <div>
+            <Link to={{ "pathname": "/editbrand/" + value, "id": value }} class="roundico">Edit</Link>
+          </div>
+        );
       }
     }
   }
@@ -128,19 +131,12 @@ class Brandlist extends Component {
 
     this.state = { data: [] };
 
-
     fetch(`${config.Url}api/brandlistforadmin`).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
-          // toast.success(res.message);
-          //alert(res);
           this.setState({ data: res.response });
-
-          //localStorage.setItem('logindata', res.sellerlogin);
-          //this.props.history.push('/');
         }
         console.log(res);
       })
@@ -163,14 +159,10 @@ class Brandlist extends Component {
       }),
     }).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
           toast.success(res.message);
-
-          //console.log(res);
-          //localStorage.setItem('logindata', res.sellerlogin);
           this.props.history.push('/product');
         }
         console.log(res);
@@ -189,16 +181,10 @@ class Brandlist extends Component {
     deletedIndexes.map(function (name, index) {
       fetch(`${config.Url}api/catdeletebrand/` + data123[name][5]).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
             toast.error(res.message);
           } else {
             toast.success("Brand deleted successfully");
-            //alert(res);
-            //this.setState({data: res.response});
-
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/');
           }
           console.log(res);
         })
@@ -208,11 +194,6 @@ class Brandlist extends Component {
         });
 
     })
-
-    // const rows = transformToArray(data, tableColumns);
-    // deletedIndexes.map(index =>
-    //     limitPromisecConcurrency(() => this.remoteDelete(rows[index]))
-    // );
   }
 
 

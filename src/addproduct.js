@@ -33,7 +33,7 @@ const customStyles = {
 		return { ...provided, opacity, transition };
 	}
 }
-class Dashboard extends Component {
+class AddProduct extends Component {
 	notify = () => toast("Wow so easy !");
 
 	constructor(props) {
@@ -42,9 +42,21 @@ class Dashboard extends Component {
 			window.location.assign("./");
 		}
 		this.state = {
-			showStore: false, multiValue: [], isDialogOpen: false,
+			showStore: false, multiValue: [],
+			isDialogOpen: false,
 			multiValue1: [],
-			filterOptions1: [], filterOptions: [], sperror: '', name: '', picturescolorchart: '', sp: '', data4: [], data3: [], data: [], data1: [], pictures: [], pictures1: [], errors: {}
+			filterOptions1: [],
+			filterOptions: [],
+			sperror: '',
+			name: '',
+			picturescolorchart: '',
+			sp: '', data4: [],
+			data3: [],
+			data: [],
+			data1: [],
+			pictures: [],
+			pictures1: [],
+			errors: {}
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -59,36 +71,18 @@ class Dashboard extends Component {
 
 
 	}
+
+
+
+
 	componentDidMount() {
+
 		fetch(`${config.Url}api/getcolor`).then((response) => response.json())
 			.then((res) => {
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
 					this.setState({ filterOptions1: res.getcolor });
-				}
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-		fetch(`${config.Url}api/brandlistforseller`).then((response) => response.json())
-			.then((res) => {
-				if (res.status === 'FAILURE') {
-					toast.error(res.message);
-				} else {
-					this.setState({ data3: res.brandlistforseller });
-				}
-			})
-			.catch((error) => {
-				console.log(error);
-				alert('Oops, something went wrong. Please try again!');
-			});
-		fetch(`${config.Url}api/brandlistforseller`).then((response) => response.json())
-			.then((res) => {
-				if (res.status === 'FAILURE') {
-					toast.error(res.message);
-				} else {
-					this.setState({ data3: res.brandlistforseller });
 				}
 			})
 			.catch((error) => {
@@ -105,7 +99,36 @@ class Dashboard extends Component {
 			})
 			.catch((error) => {
 				console.log(error);
+				alert('Oops, something went wrong. Please try again!');
 			});
+
+
+		fetch(`${config.Url}api/brandlistforseller`).then((response) => response.json())
+			.then((res) => {
+				if (res.status === 'FAILURE') {
+					toast.error(res.message);
+				} else {
+					this.setState({ data3: res.brandlistforseller });
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+
+
+		fetch(`${config.Url}api/brandlistforseller`).then((response) => response.json())
+			.then((res) => {
+				if (res.status === 'FAILURE') {
+					toast.error(res.message);
+				} else {
+					this.setState({ data3: res.brandlistforseller });
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+
+
 
 		fetch(`${config.Url}api/themelistforseller`).then((response) => response.json())
 			.then((res) => {
@@ -268,9 +291,9 @@ class Dashboard extends Component {
 		let errors = {};
 		let formIsValid = true;
 
-		if (!fields.multiValue.length > 0) {
+		if (this.state.pictures.length <= 0) {
 			formIsValid = false;
-			errors["multiValue"] = "Please enter size.";
+			errors["img"] = "please select at least one image.";
 		}
 
 		if (!fields.name) {
@@ -282,16 +305,27 @@ class Dashboard extends Component {
 			formIsValid = false;
 			errors["dcolor"] = "Please enter default color.";
 		}
+		if (!fields.theme_id) {
+			formIsValid = false;
+			errors["theme_id"] = "Please enter theme.";
+		}
+
 		if (!fields.category_id) {
 			formIsValid = false;
 			errors["category_id"] = "Please enter category.";
 		}
 
-
-		if (!fields.description) {
+		if (!fields.subcategory_id) {
 			formIsValid = false;
-			errors["description"] = "Please enter description.";
+			errors["subcategory_id"] = "Please enter Subcategory.";
 		}
+
+		if (!fields.subsubcategory_id) {
+			formIsValid = false;
+			errors["subsubcategory_id"] = "Please enter Subsubcategory_id.";
+		}
+
+
 		if (!fields.sku) {
 			formIsValid = false;
 			errors["sku"] = "Please enter SKU.";
@@ -305,6 +339,7 @@ class Dashboard extends Component {
 			formIsValid = false;
 			errors["brand"] = "Please enter brand.";
 		}
+
 		if (!fields.fit) {
 			formIsValid = false;
 			errors["fit"] = "Please enter fit.";
@@ -365,6 +400,70 @@ class Dashboard extends Component {
 		this.setState({
 			[name]: value
 		});
+
+		if (name == 'name') {
+			const re = /^[a-zA-Z0-9 ,.'-]{3,30}$/i;
+			if (value === '' || re.test(value)) {
+				this.setState({ name: value })
+			} else {
+				this.setState({
+					name: '',
+				});
+			}
+		}
+		if (name == 'mrp') {
+			const re = /^[0-9]{0,10}$/i;
+			if (value === '' || re.test(value)) {
+				this.setState({ mrp: value })
+			} else {
+				this.setState({
+					mrp: '',
+				});
+			}
+		}
+
+		if (name == 'width') {
+			const re = /^[0-9]{0,4}$/i;
+			if (value === '' || re.test(value)) {
+				this.setState({ width: value })
+			} else {
+				this.setState({
+					width: '',
+				});
+			}
+		}
+		if (name == 'weight') {
+			const re = /^[0-9]{0,4}$/i;
+			if (value === '' || re.test(value)) {
+				this.setState({ weight: value })
+			} else {
+				this.setState({
+					weight: '',
+				});
+			}
+		}
+		if (name == 'height') {
+			const re = /^[0-9]{0,4}$/i;
+			if (value === '' || re.test(value)) {
+				this.setState({ height: value })
+			} else {
+				this.setState({
+					height: '',
+				});
+			}
+		}
+
+		if (name == 'length') {
+			const re = /^[0-9]{0,4}$/i;
+			if (value === '' || re.test(value)) {
+				this.setState({ length: value })
+			} else {
+				this.setState({
+					length: '',
+				});
+			}
+		}
+
 		if (name == 'ships_in') {
 			const re = /^[0-9\b]+$/;
 			if (value === '' || re.test(value)) {
@@ -530,37 +629,42 @@ class Dashboard extends Component {
 
 									<div className="grpset">
 										<label className="mandtry">Subcategory</label>
-										<select className="uk-input" id="form-horizontal-text" name="subcategory_id" value={this.state.value} onChange={this.handleChange2}>
-											<option >Select a subcategory</option>
-											{this.state.data.map((item, key) =>
-												<option value={item[0]}>{item[1]}</option>
-											)}
-										</select>
+										<div className="Inputs">
+											<select className="uk-input" id="form-horizontal-text" name="subcategory_id" value={this.state.value} onChange={this.handleChange2}>
+												<option >Select a subcategory</option>
+												{this.state.data.map((item, key) =>
+													<option value={item[0]}>{item[1]}</option>
+												)}
+											</select>
+											<span style={{ color: "red" }}>{this.state.errors["subcategory_id"]}</span>
+										</div>
 									</div>
 									<div className="grpset">
 										<label className="mandtry">Sub-subcategory</label>
-										<select className="uk-input" id="form-horizontal-text" name="subsubcategory_id" value={this.state.value} onChange={this.handleChange3}>
-											<option >Select a sub-subcategory</option>
-											{this.state.data1.map((item, key) =>
-												<option value={item[0]}>{item[1]}</option>
-											)}
-										</select>
+										<div className="Inputs">
+											<select className="uk-input" id="form-horizontal-text" name="subsubcategory_id" value={this.state.value} onChange={this.handleChange3}>
+												<option >Select a sub-subcategory</option>
+												{this.state.data1.map((item, key) =>
+													<option value={item[0]}>{item[1]}</option>
+												)}
+											</select>
+											<span style={{ color: "red" }}>{this.state.errors["subsubcategory_id"]}</span>
+										</div>
 									</div>
 
 
 
 
 									<div className="grpset">
-										<label className="mandtry">Description</label>
+										<label>Description</label>
 										<div className="Inputs">
-											<textarea maxLength="200" name="description" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Description" value={this.state.value} onChange={this.handleChange} ></textarea>
-											<span style={{ color: "red" }}>{this.state.errors["description"]}</span>
+											<textarea maxLength="300" name="description" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Description" value={this.state.value} onChange={this.handleChange} ></textarea>
 										</div>
 									</div>
 									<div className="grpset">
 										<label className="mandtry">Fit</label>
 										<div className="Inputs">
-											<textarea maxLength="200" name="fit" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Fit" value={this.state.value} onChange={this.handleChange} ></textarea>
+											<textarea maxLength="300" name="fit" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Fit" value={this.state.value} onChange={this.handleChange} ></textarea>
 											<span style={{ color: "red" }}>{this.state.errors["fit"]}</span>
 										</div>
 									</div>
@@ -605,12 +709,15 @@ class Dashboard extends Component {
 									<div className="twoways">
 										<div className="grpset">
 											<label>Theme</label>
-											<select className="uk-input" id="form-horizontal-text" name="theme_id" value={this.state.value} onChange={this.handleChange}>
-												<option>Select Theme</option>
-												{this.state.data4.map((item, key) =>
-													<option value={item[0]}>{item[1]}</option>
-												)}
-											</select>
+											<div className="Inputs">
+												<select className="uk-input" id="form-horizontal-text" name="theme_id" value={this.state.value} onChange={this.handleChange}>
+													<option>Select Theme</option>
+													{this.state.data4.map((item, key) =>
+														<option value={item[0]}>{item[1]}</option>
+													)}
+												</select>
+												<span style={{ color: "red" }}>{this.state.errors["theme_id"]}</span>
+											</div>
 										</div>
 									</div>
 
@@ -637,7 +744,7 @@ class Dashboard extends Component {
 											<div className="Inputs">
 												<div className="uk-inline">
 													<span className="uk-form-icon"><img src="http://mobuloustech.com/yodapi/public/rssym.png" /></span>
-													<input name="mrp" className="uk-input" id="form-horizontal-text" type="text" placeholder="Max Retail Price" value={this.state.value} onChange={this.handleChange} />
+													<input name="mrp" maxLength="10" className="uk-input" id="form-horizontal-text" type="text" placeholder="Max Retail Price" value={this.state.value} onChange={this.handleChange} />
 
 												</div>
 												<span style={{ color: "red" }}>{this.state.errors["mrp"]}</span>
@@ -652,7 +759,7 @@ class Dashboard extends Component {
 												<div className="uk-inline">
 													<span className="uk-form-icon"><img src="http://mobuloustech.com/yodapi/public/rssym.png" /></span>
 													{/* <span ><img src="img/rssym.png"/></span> */}
-													<input name="sp" className="uk-input" id="form-horizontal-text" type="text" placeholder="Selling Price.." value={this.state.sp} onChange={this.handleChange} />
+													<input name="sp" maxLength="10" className="uk-input" id="form-horizontal-text" type="text" placeholder="Selling Price.." value={this.state.sp} onChange={this.handleChange} />
 
 												</div>
 
@@ -677,7 +784,7 @@ class Dashboard extends Component {
 											<label className="mandtry">Weight</label>
 											<div className="Inputs">
 												<div className="measrtype">
-													<input name="weight" className="uk-input" id="form-horizontal-text" type="text" placeholder="Weight" value={this.state.value} onChange={this.handleChange} />
+													<input name="weight" maxLength="4" className="uk-input" id="form-horizontal-text" type="text" placeholder="Weight" value={this.state.value} onChange={this.handleChange} />
 
 													<div className="typshw">
 														<p>Kg</p>
@@ -695,7 +802,7 @@ class Dashboard extends Component {
 											<label className="mandtry">Ships In</label>
 											<div className="Inputs">
 												<div className="measrtype">
-													<input name="ships_in" className="uk-input" id="form-horizontal-text" type="text" placeholder="Ships In" value={this.state.value} onChange={this.handleChange} />
+													<input name="ships_in" maxLength="4" className="uk-input" id="form-horizontal-text" type="text" placeholder="Ships In" value={this.state.value} onChange={this.handleChange} />
 												</div>
 												<span style={{ color: "red" }}>{this.state.errors["ships_in"]}</span>
 											</div>
@@ -710,7 +817,7 @@ class Dashboard extends Component {
 											<label className="mandtry">height</label>
 											<div className="Inputs">
 												<div className="measrtype">
-													<input name="height" className="uk-input" id="form-horizontal-text" type="text" placeholder="height" value={this.state.value} onChange={this.handleChange} />
+													<input name="height" maxLength="4" className="uk-input" id="form-horizontal-text" type="text" placeholder="height" value={this.state.value} onChange={this.handleChange} />
 													<div className="typshw">
 														<p>cm</p>
 													</div>
@@ -725,7 +832,7 @@ class Dashboard extends Component {
 											<label className="mandtry">Width</label>
 											<div className="Inputs">
 												<div className="measrtype">
-													<input name="width" className="uk-input" id="form-horizontal-text" type="text" placeholder="Width" value={this.state.value} onChange={this.handleChange} />
+													<input name="width" maxLength="4" className="uk-input" id="form-horizontal-text" type="text" placeholder="Width" value={this.state.value} onChange={this.handleChange} />
 													<div className="typshw">
 														<p>cm</p>
 													</div>
@@ -745,7 +852,7 @@ class Dashboard extends Component {
 											<label className="mandtry">Length</label>
 											<div className="Inputs">
 												<div className="measrtype">
-													<input name="length" className="uk-input" id="form-horizontal-text" type="text" placeholder="Length" value={this.state.value} onChange={this.handleChange} />
+													<input name="length" maxLength="4" className="uk-input" id="form-horizontal-text" type="text" placeholder="Length" value={this.state.value} onChange={this.handleChange} />
 													<div className="typshw">
 														<p>cm</p>
 													</div>
@@ -782,7 +889,8 @@ class Dashboard extends Component {
 									<div className="twoways">
 										<div className="grpset">
 											<label style={{ width: "340px" }}>Size</label>
-											<div className="measrtype">
+
+											<div className="Inputs">
 												<Select
 													name="multiValue"
 													styles={customStyles}
@@ -794,13 +902,13 @@ class Dashboard extends Component {
 												/>
 												<span style={{ color: "red" }}>{this.state.errors["multiValue"]}</span>
 											</div>
+
 										</div>
 									</div>
 
 									<div className="twoways">
 										<div className="grpset">
 											<label>Color</label>
-
 											<Select
 												name="filters"
 												styles={customStyles}
@@ -853,12 +961,14 @@ class Dashboard extends Component {
 										<div class="Add_images">
 											<article >
 												<figcaption >
-													<ul>
+													<ul name="img">
 														{this.state.pictures.map((item, key) =>
 															<li><img src={config.UrlImage + item} /><span class="close" value={key} onClick={() => this.removeImageArray(key)}>x</span></li>
 														)}
 													</ul>
 												</figcaption>
+												<span style={{ color: "red" }}>{this.state.errors["img"]}</span>
+
 												<div class="clear"></div>
 											</article>
 										</div>
@@ -873,12 +983,8 @@ class Dashboard extends Component {
 										<Link to="/product" className="uk-button uk-button-default">Back</Link>
 									</div>
 								</div>
-
 							</div>
-
 						</div>
-
-
 					</form>
 				</div>
 
@@ -890,7 +996,7 @@ class Dashboard extends Component {
 }
 
 
-export default Dashboard;
+export default AddProduct;
 
 
 

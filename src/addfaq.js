@@ -81,22 +81,15 @@ class Addfaq extends Component {
         }),
       }).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
-            //toast.error(res.message);
           } else {
-            //toast.success(res.message);
             this.setState({
               pictures: res.response,
               showStore: false,
             })
-            //this.props.picturemain = this.state.pictures
             console.log(res.response);
             console.log(this.state.pictures);
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/product');
           }
-          //console.log(res);
         })
         .catch((error) => {
           console.log(error);

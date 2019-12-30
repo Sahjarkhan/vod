@@ -26,14 +26,12 @@ class Addcategory extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onDrop = this.onDrop.bind(this);
-    // alert(localStorage.getItem('logindata'));
 
 
   }
 
   onDrop(e) {
     let files = e.target.files || e.dataTransfer.files;
-    //alert(files);
     console.log(files[0]);
     this.setState({
       showStore: true,
@@ -67,8 +65,6 @@ class Addcategory extends Component {
               pictures: res.response,
               showStore: false,
             })
-            console.log(res.response);
-            console.log(this.state.pictures);
           }
         })
         .catch((error) => {
@@ -142,7 +138,6 @@ class Addcategory extends Component {
             toast.success(res.message);
 
             console.log(res);
-            //localStorage.setItem('logindata', res.sellerlogin);
             this.props.history.push('/category');
           }
           console.log(res);

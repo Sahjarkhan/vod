@@ -64,9 +64,7 @@ class Dashboard extends Component {
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
-
 					this.setState(res.response);
-
 					this.setState(function () {
 						fetch(`${config.Url}api/sublistbycatremark/` + res.response.subcategory_id).then((response) => response.json())
 							.then((res) => {
@@ -158,7 +156,6 @@ class Dashboard extends Component {
 				}
 			})
 			.catch((error) => {
-				console.log(error);
 			});
 
 

@@ -72,7 +72,7 @@ class Addbrand extends Component {
     let reader = new FileReader();
     reader.onload = (e) => {
       console.log(e.target.result)
-      fetch(`${config.Url}api/fileuploade`, {
+      fetch(`${config.Url}api/fileuploadebrand`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -84,26 +84,16 @@ class Addbrand extends Component {
 
       }).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
-            //toast.error(res.message);
           } else {
-            //toast.success(res.message);
             this.setState({
               pictures: res.response,
               showStore: false,
             })
-            //this.props.picturemain = this.state.pictures
-            console.log(res.response);
-            console.log(this.state.pictures);
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/product');
           }
-          //console.log(res);
         })
         .catch((error) => {
           console.log(error);
-          alert('Oops, something went wrong. Please try again!');
         });
 
     };
@@ -131,10 +121,6 @@ class Addbrand extends Component {
       errors["desc"] = "Description Cannot be empty";
     }
 
-
-
-
-
     this.setState({ errors: errors });
     return formIsValid;
   }
@@ -150,6 +136,12 @@ class Addbrand extends Component {
   }
 
   handleSubmit(event) {
+    var testing = {
+      name: this.state.name,
+      image: this.state.pictures,
+      description: this.state.desc,
+    }
+    console.log(testing)
     // alert('A name was submitted: ' + this.state.username+' password '+ this.state.password);
     event.preventDefault();
     //console.log(this.state.pictures1);

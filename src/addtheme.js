@@ -97,22 +97,13 @@ class Addtheme extends Component {
         }),
       }).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
-            //toast.error(res.message);
           } else {
-            //toast.success(res.message);
             this.setState({
               pictures: res.response,
               showStore: false,
             })
-            //this.props.picturemain = this.state.pictures
-            console.log(res.response);
-            console.log(this.state.pictures);
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/product');
           }
-          //console.log(res);
         })
         .catch((error) => {
           console.log(error);
@@ -121,7 +112,6 @@ class Addtheme extends Component {
 
     };
     reader.readAsDataURL(file);
-    //return this.state.pictures;
   }
 
   createImage1(file) {
@@ -140,22 +130,13 @@ class Addtheme extends Component {
         }),
       }).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
-            //toast.error(res.message);
           } else {
-            //toast.success(res.message);
             this.setState({
               pictures1: res.response,
               showStore: false,
             })
-            //this.props.picturemain = this.state.pictures
-            console.log(res.response);
-            console.log(this.state.pictures);
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/product');
           }
-          //console.log(res);
         })
         .catch((error) => {
           console.log(error);
@@ -164,7 +145,6 @@ class Addtheme extends Component {
 
     };
     reader.readAsDataURL(file);
-    //return this.state.pictures;
   }
 
   createImage2(file) {
@@ -182,22 +162,13 @@ class Addtheme extends Component {
         }),
       }).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
-            //toast.error(res.message);
           } else {
-            //toast.success(res.message);
             this.setState({
               pictures2: res.response,
               showStore: false,
             })
-            //this.props.picturemain = this.state.pictures
-            console.log(res.response);
-            console.log(this.state.pictures);
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/product');
           }
-          //console.log(res);
         })
         .catch((error) => {
           console.log(error);
@@ -206,7 +177,6 @@ class Addtheme extends Component {
 
     };
     reader.readAsDataURL(file);
-    //return this.state.pictures;
   }
 
   handleValidation() {
@@ -246,12 +216,7 @@ class Addtheme extends Component {
   }
 
   handleSubmit(event) {
-    // alert('A name was submitted: ' + this.state.username+' password '+ this.state.password);
     event.preventDefault();
-    //console.log(this.state.pictures1);
-
-
-    console.log(this.state.errors);
     if (this.handleValidation()) {
       alert('Theme uploaded successdully')
       //console.warn()

@@ -173,7 +173,6 @@ class AddCupen extends Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        //alert(value);
         this.setState({
             Discounttype: value
         });
@@ -183,7 +182,6 @@ class AddCupen extends Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        //alert(value);
         this.setState({
             category_id: value
         });
@@ -211,18 +209,11 @@ class AddCupen extends Component {
         });
         fetch(`${config.Url}api/sublistbycatremark/` + value).then((response) => response.json())
             .then((res) => {
-                //alert(res);
                 if (res.status === 'FAILURE') {
                     toast.error(res.message);
                 } else {
-                    // toast.success(res.message);
-                    //alert(res);
                     this.setState({ data1: res.sublistbycatremark });
-
-                    //localStorage.setItem('logindata', res.sellerlogin);
-                    //this.props.history.push('/');
                 }
-                console.log(res.sublistbycatremark);
             })
             .catch((error) => {
                 console.log(error);
@@ -232,10 +223,19 @@ class AddCupen extends Component {
 
 
     handleSubmit(event) {
+        var tesitng = {
+            offer_type: this.state.Offertype,
+            description: this.state.description,
+            catid: this.state.subcategory_id,
+            get: this.state.get,
+            buy: this.state.buy,
+            discount_type: this.state.discount_type,
+            discount: this.state.discount
+        }
+        console.log(tesitng);
         event.preventDefault();
-        console.log(this.state.Offertype);
-        console.log(this.state.get)
         if (this.state.Offertype == 2) {
+            console.log("this.state.Offertype",this.state.Offertype)
             if (this.handleValidation1()) {
                 if (!this.state.sperror) {
                     fetch(`${config.Url}api/addoffer`, {
@@ -249,16 +249,15 @@ class AddCupen extends Component {
                             description: this.state.description,
                             catid: this.state.subcategory_id,
                             get: this.state.get,
-                            buy: this.state.buy
+                            buy: this.state.buy,
+                            discount_type: this.state.discount_type,
+                            discount: this.state.discount
                         }),
                     }).then((response) => response.json())
                         .then((res) => {
-                            //alert(res);
                             if (res.status === 'FAILURE') {
                                 toast.error(res.message);
                             } else {
-                                //toast.success();
-                                //alert(res.message)
                                 console.log("~~~~~~~~~~~~~~~~~~~~~~~~", res);
                                 //localStorage.setItem('logindata', res.sellerlogin);
                                 if (toast.success(res.message)) {
@@ -272,8 +271,45 @@ class AddCupen extends Component {
                         });
                 }
             }
+        } else if (this.state.Offertype == 3) {
+            console.log("this.state.Offertype3",this.state.Offertype)
+                if (!this.state.sperror) {
+                    fetch(`${config.Url}api/addoffer`, {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            offer_type: this.state.Offertype,
+                            description: this.state.description,
+                            catid: this.state.subcategory_id,
+                            get: this.state.get,
+                            buy: this.state.buy,
+                            discount_type: this.state.discount_type,
+                            discount: this.state.discount
+                        }),
+                    }).then((response) => response.json())
+                        .then((res) => {
+                            if (res.status === 'FAILURE') {
+                                toast.error(res.message);
+                            } else {
+                                console.log("~~~~~~~~~~~~~~~~~~~~~~~~", res);
+                                //localStorage.setItem('logindata', res.sellerlogin);
+                                if (toast.success(res.message)) {
+                                    this.props.history.push('/cupenList');
+                                }
+                            }
+                            console.log(res);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+            
         }
         else {
+            console.log("this.state.Offertype",this.state.Offertype)
             if (this.handleValidation()) {
                 console.log(this.state.get)
                 if (!this.state.sperror) {
@@ -296,7 +332,6 @@ class AddCupen extends Component {
                             if (res.status === 'FAILURE') {
                                 toast.error(res.message);
                             } else {
-                                console.log("~~~~~~~~~~~~~~~~~~~~~~~~", res);
                                 if (toast.success(res.message)) {
                                     this.props.history.push('/cupenList');
                                 }
@@ -334,6 +369,7 @@ class AddCupen extends Component {
                                                 <option value="">Offer type</option>
                                                 <option value="1">Back Discount</option>
                                                 <option value="2">By and Get</option>
+                                                <option value="3">Announcements</option>
                                             </select>
                                             <span style={{ color: "red" }}>{this.state.errors["Offertype"]}</span>
                                         </div>
@@ -392,6 +428,66 @@ class AddCupen extends Component {
                                                                 <input maxLength="200" name="get" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Get" value={this.state.value} onChange={this.handleChange} ></input>
                                                                 <span style={{ color: "red" }}>{this.state.errors["get"]}</span>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                </Fragment> : ''
+                                        }
+                                        {
+                                            this.state.StatusChange === '3' ?
+                                                <Fragment>
+                                                    <div className="grpset">
+                                                        <label className="mandtry">Category</label>
+                                                        <div className="Inputs">
+                                                            <select className="uk-input" id="form-horizontal-text" name="category_id" value={this.state.value} onChange={this.handleChange2}>
+                                                                <option >Select a category</option>
+                                                                <option value="MEN">MEN</option>
+                                                                <option value="WOMEN">WOMEN</option>
+                                                                <option value="KIDS">KIDS</option>
+                                                                <option value="ACCESSORIES">ACCESSORIES</option>
+                                                                <option value="SPORTS">SPORTS</option>
+                                                                <option value="OTHERS">OTHERS</option>
+                                                            </select>
+                                                            <span style={{ color: "red" }}>{this.state.errors["category_id"]}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="grpset">
+                                                        <label className="mandtry">Subcategory</label>
+                                                        <select className="uk-input" id="form-horizontal-text" name="subcategory_id" value={this.state.value} onChange={this.handleChange3}>
+                                                            <option >Select a subcategory</option>
+                                                            {this.state.data.map((item, key) =>
+                                                                <option value={item[0]}>{item[1]}</option>
+                                                            )}
+                                                        </select>
+                                                    </div>
+                                                    <div className="grpset">
+                                                        <label className="mandtry">Sub-subcategory</label>
+                                                        <select className="uk-input" id="form-horizontal-text" name="subsubcategory_id" value={this.state.value} onChange={this.handleChange3}>
+                                                            <option >Select a sub-subcategory</option>
+                                                            {this.state.data1.map((item, key) =>
+                                                                <option value={item[0]}>{item[1]}</option>
+                                                            )}
+                                                        </select>
+                                                    </div>
+                                                    <div>
+                                                        <div className="grpset">
+                                                            <label className="mandtry">Discount</label>
+                                                            <div className="Inputs">
+                                                                <input maxLength="200" name="discount" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter discount" value={this.state.value} onChange={this.handleChange} ></input>
+                                                                <span style={{ color: "red" }}>{this.state.errors["discount"]}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="grpset">
+                                                        <label className="mandtry">Discount Type</label>
+                                                        <div className="Inputs">
+                                                            <select className="uk-input" id="form-horizontal-text" name="discount_type" value={this.state.value} onChange={this.handleChange}>
+                                                                <option value="" >Discount Type</option>
+                                                                <option value="percent">Percent</option>
+                                                                <option value="price">Price</option>
+                                                            </select>
+                                                            <span style={{ color: "red" }}>{this.state.errors["discount_type"]}</span>
                                                         </div>
                                                     </div>
                                                 </Fragment> : ''
