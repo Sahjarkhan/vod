@@ -19,38 +19,35 @@ const columns = [
 ];
 
 class Editsubcatg extends Component {
-
   notify = () => toast("Wow so easy !");
-
   constructor(props) {
     super(props);
     if (localStorage.getItem('logindata') === null) {
       window.location.assign("./");
     }
-    this.state = { status: '', name: '', data: [], pictures: [], pictures1: [], errors: {}, date: new Date() };
+    this.state = {
+      status: '',
+      name: '', data: [],
+      pictures: [],
+      pictures1: [],
+      errors: {},
+      date: new Date(),
+      endDate: new Date()
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    // alert(localStorage.getItem('logindata'));
+    this.onChange1 = this.onChange1.bind(this);
     const { match: { params } } = this.props;
-
-
 
     fetch(`${config.Url}api/flashproductlist`).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
-          //  toast.success(res.message);
-          //alert(res);
           this.setState({ data: res.response.data, status: res.response.status, date: new Date(res.response.time) });
-
-          //localStorage.setItem('logindata', res.sellerlogin);
-          //this.props.history.push('/');
         }
-        console.log(res);
       })
       .catch((error) => {
         console.log(error);
@@ -60,6 +57,7 @@ class Editsubcatg extends Component {
   }
 
   onChange = date => this.setState({ date })
+  onChange1 = endDate => this.setState({ endDate })
 
   createImage(file) {
     let reader = new FileReader();
@@ -76,21 +74,12 @@ class Editsubcatg extends Component {
         }),
       }).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
-            //toast.error(res.message);
           } else {
-            //toast.success(res.message);
             this.setState({
               pictures: this.state.pictures.concat(res.response)
             })
-            //this.props.picturemain = this.state.pictures
-            console.log(res.response);
-            console.log(this.state.pictures);
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/product');
           }
-          //console.log(res);
         })
         .catch((error) => {
           console.log(error);
@@ -98,11 +87,9 @@ class Editsubcatg extends Component {
 
     };
     reader.readAsDataURL(file);
-    //return this.state.pictures;
   }
 
-
-
+  
   handleChange(event) {
     const target = event.target;
     const value = target.value;
@@ -114,16 +101,12 @@ class Editsubcatg extends Component {
   }
 
   handleSubmit(event) {
-    // alert('A name was submitted: ' + this.state.username+' password '+ this.state.password);
+    var Testing = {
+      time: this.state.date,
+      status: this.state.status,
+      endtime: this.state.endDate
+    }
     event.preventDefault();
-    //console.log(this.state.pictures1);
-    alert(this.state.date);
-
-    //console.log(this.state.pictures);
-
-    //const { match: { params } } = this.props; 
-    //alert(params.userId)
-    //console.warn()
 
     fetch(`${config.Url}api/updateflashtime`, {
       method: 'POST',
@@ -134,20 +117,17 @@ class Editsubcatg extends Component {
       body: JSON.stringify({
         time: this.state.date,
         status: this.state.status,
+        endtime: this.state.endDate
       }),
     }).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
           toast.success(res.message);
 
-          console.log(res);
-          //localStorage.setItem('logindata', res.sellerlogin);
           this.props.history.push('/flashsale');
         }
-        console.log(res);
       })
       .catch((error) => {
         console.log(error);
@@ -160,35 +140,21 @@ class Editsubcatg extends Component {
   handleDelete = deletedRows => {
     const { data, tableColumns } = this.props;
     const deletedIndexes = Object.keys(deletedRows.lookup);
-    //alert([0])
     const data123 = this.state.data;
     deletedIndexes.map(function (name, index) {
       fetch(`${config.Url}api/catdelete11pp/` + data123[name][1]).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
             toast.error(res.message);
           } else {
             toast.success(res.message);
-            //alert(res);
-            //this.setState({data: res.response});
-
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/');
           }
           console.log(res);
         })
         .catch((error) => {
           console.log(error);
-          alert('Oops, something went wrong. Please try again!');
         });
-
     })
-
-    // const rows = transformToArray(data, tableColumns);
-    // deletedIndexes.map(index =>
-    //     limitPromisecConcurrency(() => this.remoteDelete(rows[index]))
-    // );
   }
 
   render() {
@@ -215,7 +181,7 @@ class Editsubcatg extends Component {
 
                 <div class="fullfrm">
                   <div class="grpset">
-                    <label class="mandtry">Flash Sale End Time</label>
+                    <label class="mandtry">Flash Sale Start Time</label>
                     <DateTimePicker
                       format="y-MM-d h:m:sa"
                       onChange={this.onChange}
@@ -224,7 +190,17 @@ class Editsubcatg extends Component {
                   </div>
 
                 </div>
+                <div class="fullfrm">
+                  <div class="grpset">
+                    <label class="mandtry">Flash Sale End Time</label>
+                    <DateTimePicker
+                      format="y-MM-d h:m:sa"
+                      onChange={this.onChange1}
+                      value={this.state.endDate}
+                    />
+                  </div>
 
+                </div>
                 <div class="fullfrm">
                   <div class="grpset">
                     <label class="mandtry">Flash Sale Status</label>
@@ -234,11 +210,7 @@ class Editsubcatg extends Component {
                       <option value="0">FLASH SALE STOP</option>
                     </select>
                   </div>
-
                 </div>
-
-
-
                 <div class="halffrms updatebtns">
                   <div class="twoways">
                     <button type="submit" class="uk-button uk-button-default">Update</button>
@@ -247,19 +219,9 @@ class Editsubcatg extends Component {
                   <div class="twoways">
                     <Link to="/addflashproduct" class="uk-button uk-button-default">Add New Product</Link>
                   </div>
-
                 </div>
-
-
-
               </div>
-
             </div>
-
-
-
-
-
           </form>
           <div class="productsgrid">
             <MUIDataTable
@@ -270,8 +232,6 @@ class Editsubcatg extends Component {
             />
           </div>
         </div>
-
-
       </div>
 
     </div>

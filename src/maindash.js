@@ -6,42 +6,69 @@ import { Link, withRouter } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faArrowDown, faAngleDown, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import config from '../src/config/config';
 
 class Maindash extends Component {
-
     constructor(props) {
         super(props);
+        this.state = {
+            lastmonth: 6,state_records:[]
+        }
+        this.handleSort = this.handleSort.bind(this);
+        this.Testing = this.Testing.bind(this);
+    }
+    Testing() {
+        fetch(`${config.Url}api/dashoardforadmin?dateframe=${this.state.lastmonth}`).then((response) => response.json())
+            .then((res) => {
+                if (res.status === 'FAILURE') {
+                    toast.error(res.message);
+                } else {
+                    console.log(res.dashoardforadmin)
+                    this.setState(res.dashoardforadmin);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                alert('Oops, something went wrong. Please try again!');
+            });
+    }
+    componentDidMount() {
+        this.Testing();
+    }
 
-      
-
+    handleSort(value) {
+        this.setState({
+            lastmonth: value
+        })
+        this.Testing();
     }
     render() {
         return <div >
             <p><ToastContainer /></p>
-            <div class="Time_view">
+            <div className="Time_view">
                 <ul>
                     <li><FontAwesomeIcon icon={faCalendarAlt} /> Jan 01 - Jun 30</li>
                     <li>
                         last 6 month <span><FontAwesomeIcon icon={faAngleDown} /></span>
                         <ol>
-                            <li><a href="#">last 6 month</a></li>
-                            <li><a href="#">last 12 month</a></li>
-                            <li><a href="#">last 18 month</a></li>
-                            <li><a href="#">last 24 month</a></li>
-                            <li><a href="#">last 30 month</a></li>
+                            <li onClick={() => this.handleSort(6)}><a>last 6 month</a></li>
+                            <li onClick={() => this.handleSort(12)} ><a>last 12 month</a></li>
+                            <li onClick={() => this.handleSort(18)}><a>last 18 month</a></li>
+                            <li onClick={() => this.handleSort(24)}><a>last 24 month</a></li>
+                            <li onClick={() => this.handleSort(30)}><a>last 30 month</a></li>
                         </ol>
                     </li>
                 </ul>
             </div>
-            <div class="grapscols">
-                <div class="graph-grid">
-                    <div class="graph-voilet">
-                        <div class="ordersdtsa">
+            <div className="grapscols">
+                <div className="graph-grid">
+                    <div className="graph-voilet">
+                        <div className="ordersdtsa">
                             <h5>Orders</h5>
-                            <p class="resul-dta">105</p>
+                            <p className="resul-dta">{this.state.orders}</p>
                         </div>
 
-                        <div class="dataanalys">
+                        <div className="dataanalys">
                             <img alt="hhjj" src={require('./img/spinechar.png')} />
                         </div>
 
@@ -49,31 +76,28 @@ class Maindash extends Component {
 
                 </div>
 
-                <div class="graph-grid">
-                    <div class="graph-voilet">
-                        <div class="ordersdtsa">
+                <div className="graph-grid">
+                    <div className="graph-voilet">
+                        <div className="ordersdtsa">
                             <h5>Revenue</h5>
-                            <p class="resul-dta">Rs.1200.00</p>
+                            <p className="resul-dta">{this.state.revenue}</p>
                         </div>
-
-                        <div class="dataanalys">
+                        <div className="dataanalys">
                             <img alt="hhjj" src={require('./img/spinechar.png')} />
                         </div>
-
                     </div>
-
                 </div>
 
 
-                <div class="graph-grid">
-                    <div class="graph-voilet">
-                        <div class="ordersdtsa">
+                <div className="graph-grid">
+                    <div className="graph-voilet">
+                        <div className="ordersdtsa">
                             <h5>Products</h5>
-                            <p class="resul-dta">Live	400<br />
-                                Non live   128</p>
+                            <p className="resul-dta">Live {this.state.live_product}<br />
+                                Non live   {this.state.nonlive_product}</p>
                         </div>
 
-                        <div class="dataanalys">
+                        <div className="dataanalys">
                             <img alt="hhjj" src={require('./img/spinechar.png')} />
                         </div>
 
@@ -84,47 +108,29 @@ class Maindash extends Component {
 
 
 
-            <div class="background-wht map-wrap ">
-                <div class="halfdv-5">
+            <div className="background-wht map-wrap ">
+                <div className="halfdv-5">
 
-                    <div class="world-mpa">
+                    <div className="world-mpa">
                         <h4>Top Locations</h4>
                         <img alt="hhjj" src={require('./img/wordmap.png')} /></div>
-                    <div class="mapgraph-analysis">
-
-                        <div class="mapset-count">
-                            <p>USA</p>
-                            <p class="percentachive">51%</p>
-
-                        </div>
-                        <progress id="js-progressbar" class="uk-progress" value="10" max="50"></progress>
-
-                        <div class="mapset-count">
-                            <p>Australia</p>
-                            <p class="percentachive">29%</p>
-                        </div>
-
-                        <progress id="js-progressbar" class="uk-progress" value="29" max="100"></progress>
-
-                        <div class="mapset-count">
-                            <p>France</p>
-                            <p class="percentachive">11%</p>
-                        </div>
-
-                        <progress id="js-progressbar" class="uk-progress" value="11" max="100"></progress>
-
-                        <div class="mapset-count">
-                            <p>Turkey</p>
-                            <p class="percentachive">10%</p>
-                        </div>
-
-                        <progress id="js-progressbar" class="uk-progress" value="10" max="100"></progress>
+                    <div className="mapgraph-analysis">
+                        {this.state.state_records.map((item, i) => {
+                            return (<div>
+                                <div className="mapset-count">
+                                    <p>{item.name}</p>
+                                    <p className="percentachive">{item.percent} %</p>
+                                </div>
+                                <progress id="js-progressbar" className="uk-progress" value={item.percent} max="100"></progress>
+                            </div>
+                            )
+                        })}
 
                     </div>
                 </div>
 
-                <div class="halfdv-5">
-                    <div class="world-mpa">
+                <div className="halfdv-5">
+                    <div className="world-mpa">
                         <h4>Transactions</h4>
 
                         <div id="chartContainer" ></div>
@@ -133,28 +139,6 @@ class Maindash extends Component {
                 </div>
 
             </div>
-
-
-            <div class="promotionsparts">
-                <div class="background-wht map-wrap ">
-                    <div class="linpromos">
-                        <div class="prms">
-                            <a href="/">Yod Promotions</a>
-                        </div>
-                        <div class="prms">
-                            <a href="/">Extra 10 % Off On Men”s  Cloths</a>
-                        </div>
-                        <div class="prms">
-                            <a href="/">Extra 20% Off On Babay Suits</a>
-                        </div>
-                        <div class="prms">
-                            <a href="/">Extra 20% Off On Babay Suits</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
 
     }
@@ -162,3 +146,79 @@ class Maindash extends Component {
 
 
 export default Maindash;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// {this.state.detailss.map((item, i) => {
+//     return (<tr key={i}>
+//         <td>
+//             <div className="mnde">
+//                 <h6 className="prdname">{item.product_name}</h6>
+//                 <div className="mrp-dr">
+//                     <p><strong>Product SKU:</strong> {item.product_sku}</p>
+//                     <p><strong>Product ID:</strong> {item.product_id}</p>
+//                 </div>
+//                 <p className="bgr-info">Kurta : Size 38</p>
+//             </div>
+//         </td>
+//         <td>
+//             <img style={{ width: 100, height: 100 }} src={`${config.UrlImage}` + item.product_image} />
+//         </td>
+//         <td>
+//             <p>{item.quantity}</p>
+//         </td>
+//         <td>
+//             <p>{item.color}</p>
+//         </td>
+
+//         <td>
+//             <p>{item.sale_price}</p>
+//         </td>
+//         <td>
+//             <p>{item.payment_status}</p>
+//         </td>
+//         <td>
+//             <p>{item.total_price}</p>
+//         </td>
+//         <td>
+//             <p>{item.dispatch_by}</p>
+//         </td>
+//         <td>
+//             <div>
+//                 <div>
+//                     <select onChange={this.handleChange} value={item.payment_status}>
+//                         <option>{item.status}</option>
+//                         {options.map(items => (
+//                             <option key={items.label} value={items.label + " " + item.order_id + " " + + item.product_id} >
+//                                 {items.label}
+//                             </option>
+//                         ))}
+//                     </select>
+//                 </div>
+//             </div>
+//         </td>
+//     </tr>
+//     )
+// })}

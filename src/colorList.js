@@ -108,7 +108,7 @@ class SizeCollor extends Component {
                 <div >
                     <p><ToastContainer /></p>
                     <div class="Addsize">
-                    <Link to="/addcolor" class="dashbtns"> Add Color</Link>
+                        <Link to="/addcolor" class="dashbtns"> Add Color</Link>
                     </div>
                     <div class="yodadm-tablesthm uk-overflow-auto">
                         <MUIDataTable

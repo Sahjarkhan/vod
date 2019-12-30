@@ -31,8 +31,22 @@ class Cuponlist extends Component {
     if (localStorage.getItem('logindata') === null) {
       window.location.assign("./");
     }
-    this.state = { min_price: '', discount: '', name: '', data: [], pictures: [], pictures1: [], errors: {}, date: new Date() };
-
+    this.state = {
+      min_price: '',
+      type: '',
+      startdate: '',
+      discount: '',
+      name: '',
+      data: [],
+      pictures: [],
+      pictures1: [],
+      errors: {}, date: new Date(),
+      startDate: new Date(),
+      data2: [],
+      data1: [],
+      subsubcategory_id: ''
+    };
+    this.handleChange3 = this.handleChange3.bind(this)
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onDrop = this.onDrop.bind(this);
@@ -48,12 +62,7 @@ class Cuponlist extends Component {
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
-          // toast.success(res.message);
-          //alert(res);
           this.setState({ data: res.response });
-
-          //localStorage.setItem('logindata', res.sellerlogin);
-          //this.props.history.push('/');
         }
         console.log(res);
       })
@@ -89,6 +98,7 @@ class Cuponlist extends Component {
   }
 
   createImage(file) {
+
     let reader = new FileReader();
     reader.onload = (e) => {
       console.log(e.target.result)
@@ -103,21 +113,15 @@ class Cuponlist extends Component {
         }),
       }).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
-            //toast.error(res.message);
           } else {
-            //toast.success(res.message);
+            ;
             this.setState({
               pictures: this.state.pictures.concat(res.response)
             })
-            //this.props.picturemain = this.state.pictures
             console.log(res.response);
             console.log(this.state.pictures);
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/product');
           }
-          //console.log(res);
         })
         .catch((error) => {
           console.log(error);
@@ -129,6 +133,7 @@ class Cuponlist extends Component {
     //return this.state.pictures;
   }
 
+
   handleValidation() {
     let fields = this.state;
     let errors = {};
@@ -137,7 +142,13 @@ class Cuponlist extends Component {
     //Name
     if (!fields.name) {
       formIsValid = false;
-      errors["name"] = "Name cannot be blank.";
+      errors["name"] = "name cannot be blank.";
+    }
+
+
+    if (!fields.type) {
+      formIsValid = false;
+      errors["type"] = "Discount type cannot be blank.";
     }
 
     if (!fields.discount) {
@@ -151,11 +162,6 @@ class Cuponlist extends Component {
     }
 
     //category_id
-
-
-
-
-
 
     this.setState({ errors: errors });
     return formIsValid;
@@ -172,19 +178,29 @@ class Cuponlist extends Component {
       [name]: value
     });
   }
+  handleChange3(event) {
+    const target = event.target;
+    const value = target.value;
+    this.setState({
+      subsubcategory_id: value
+    });
+
+  }
 
   handleSubmit(event) {
-    // alert('A name was submitted: ' + this.state.username+' password '+ this.state.password);
     event.preventDefault();
-    //console.log(this.state.pictures1);
+    var testing = {
+      name: this.state.name,
+      discount: this.state.discount,
+      min_price: this.state.min_price,
+      expdate: this.state.date,
+      startdate: this.state.startDate,
+      type: this.state.type,
+    }
+    console.log(testing)
 
-
-    console.log(this.state.pictures);
     if (this.handleValidation()) {
       const { match: { params } } = this.props;
-      //alert(params.userId)
-      //console.warn()
-
       fetch(`${config.Url}api/createcode`, {
         method: 'POST',
         headers: {
@@ -196,20 +212,17 @@ class Cuponlist extends Component {
           discount: this.state.discount,
           min_price: this.state.min_price,
           expdate: this.state.date,
+          startdate: this.state.startDate,
+          type: this.state.type,
         }),
       }).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
             toast.error(res.message);
           } else {
-            //	 toast.success(res.message);
-            window.location.reload();
-            console.log(res);
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/category');
+            console.log('hello')
+            // window.location.reload();
           }
-          console.log(res);
         })
         .catch((error) => {
           console.log(error);
@@ -220,10 +233,8 @@ class Cuponlist extends Component {
   }
 
   handleDelete = deletedRows => {
-    console.log(deletedRows);
     const { data, tableColumns } = this.props;
     const deletedIndexes = Object.keys(deletedRows.lookup);
-    //alert([0])
     const data123 = this.state.data;
     deletedIndexes.map(function (name, index) {
       fetch(`${config.Url}api/catdelete113/` + data123[name][1]).then((response) => response.json())
@@ -268,13 +279,22 @@ class Cuponlist extends Component {
                   <div class="grpset">
                     <label class="mandtry">Code</label>
                     <input name="name" class="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Code" value={this.state.value} onChange={this.handleChange} />
-
+                    <span style={{ color: "red" }}>{this.state.errors["name"]}</span>
                   </div>
-                  <span style={{ color: "red" }}>{this.state.errors["name"]}</span>
+                  <div className="grpset">
+                    <label className="mandtry">Discount type</label>
+                    <div className="Inputs">
+                      <select className="uk-input" id="form-horizontal-text" name="type" value={this.state.value} onChange={this.handleChange}>
+                        <option value="">discount type</option>
+                        <option value="percent">percent</option>
+                        <option value="price">price</option>
+                      </select>
+                      <span style={{ color: "red" }}>{this.state.errors["type"]}</span>
+                    </div>
+                  </div>
                   <div class="grpset">
                     <label class="mandtry">Discount</label>
                     <input name="discount" class="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Discount" value={this.state.value} onChange={this.handleChange} />
-
                   </div>
                   <span style={{ color: "red" }}>{this.state.errors["discount"]}</span>
                   <div class="grpset">
@@ -283,15 +303,26 @@ class Cuponlist extends Component {
 
                   </div>
                   <span style={{ color: "red" }}>{this.state.errors["min_price"]}</span>
+
+                  <div class="grpset">
+                    <label class="mandtry">Start Date</label>
+
+                    <DateTimePicker
+                      format="y-MM-d h:m:sa"
+                      onChange={this.onChange}
+                      value={this.state.startDate}
+                    />
+                  </div>
+
                   <div class="grpset">
                     <label class="mandtry">Expiry Date</label>
-
                     <DateTimePicker
                       format="y-MM-d h:m:sa"
                       onChange={this.onChange}
                       value={this.state.date}
                     />
                   </div>
+
                 </div>
               </div>
 

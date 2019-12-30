@@ -30,23 +30,17 @@ class Addflashproduct extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onDrop = this.onDrop.bind(this);
 
-    // alert(localStorage.getItem('logindata'));
+
 
     this.state = { data: [] };
 
 
     fetch(`${config.Url}api/productids`).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
-          // toast.success(res.message);
-          //alert(res);
           this.setState({ data: res.response });
-
-          //localStorage.setItem('logindata', res.sellerlogin);
-          //this.props.history.push('/');
         }
         console.log(res);
       })
@@ -78,21 +72,12 @@ class Addflashproduct extends Component {
         }),
       }).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
-            //toast.error(res.message);
           } else {
-            //toast.success(res.message);
             this.setState({
               pictures: res.response
             })
-            //this.props.picturemain = this.state.pictures
-            console.log(res.response);
-            console.log(this.state.pictures);
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/product');
           }
-          //console.log(res);
         })
         .catch((error) => {
           console.log(error);
@@ -101,7 +86,6 @@ class Addflashproduct extends Component {
 
     };
     reader.readAsDataURL(file);
-    //return this.state.pictures;
   }
 
 
@@ -138,14 +122,11 @@ class Addflashproduct extends Component {
   }
 
   handleSubmit(event) {
-    // alert('A name was submitted: ' + this.state.username+' password '+ this.state.password);
     event.preventDefault();
-    //console.log(this.state.pictures1);
 
     console.log(this.state.errors);
     if (this.handleValidation()) {
       alert('jjd')
-      //console.warn()
       fetch(`${config.Url}api/addptoflash`, {
         method: 'POST',
         headers: {
@@ -157,17 +138,11 @@ class Addflashproduct extends Component {
         }),
       }).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
             toast.error(res.message);
           } else {
-            // toast.success(res.message);
-
-            console.log(res);
-            //localStorage.setItem('logindata', res.sellerlogin);
             this.props.history.push('/flashsale');
           }
-          console.log(res);
         })
         .catch((error) => {
           console.log(error);

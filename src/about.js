@@ -36,16 +36,10 @@ class About extends Component {
 
     fetch(`${config.Url}api/getcontent/about`).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
-          // toast.success(res.message);
-          //alert(res);
           this.setState({ content: res.response });
-
-          //localStorage.setItem('logindata', res.sellerlogin);
-          //this.props.history.push('/');
         }
         console.log(res);
       })
@@ -82,14 +76,10 @@ class About extends Component {
       }),
     }).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
-
-          console.log(res);
         }
-        console.log(res);
       })
       .catch((error) => {
         console.log(error);
@@ -101,7 +91,6 @@ class About extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    //alert(value);
     this.setState({
       type: value,
       showStore: true,
@@ -109,16 +98,11 @@ class About extends Component {
 
     fetch(`${config.Url}api/getcontent/` + value).then((response) => response.json())
       .then((res) => {
-        //alert(res);
         if (res.status === 'FAILURE') {
           toast.error(res.message);
         } else {
-          //toast.success(res.message);
-          //alert(res);
           this.setState({ content: res.response, showStore: false });
 
-          //localStorage.setItem('logindata', res.sellerlogin);
-          //this.props.history.push('/');
         }
         console.log(res.sublistbycat);
       })

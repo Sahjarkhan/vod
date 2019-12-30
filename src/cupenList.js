@@ -71,10 +71,9 @@ class SizeCollor extends Component {
     handleDelete = deletedRows => {
         const { data, tableColumns } = this.props;
         const deletedIndexes = Object.keys(deletedRows.lookup);
-
         const data123 = this.state.data;
         deletedIndexes.map(function (name, index) {
-            fetch(`${config.Url}api/colordelete/` + data123[name][2]).then((response) => response.json())
+            fetch(`${config.Url}api/offerdelete/` + data123[name][2]).then((response) => response.json())
                 .then((res) => {
                     if (res.status === 'FAILURE') {
                         toast.error(res.message);

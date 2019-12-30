@@ -40,6 +40,9 @@ import Subsubcategory from "./SubsubcategoryList";
 import addSubsubCate from "./addSubsubCate";
 import addCupen from "./addCupen";
 import cupenList from "./cupenList";
+import Editbrand from "./editbrand";
+import ViewBuyer from "./BuyerView";
+
 import * as serviceWorker from './serviceWorker';
 
 
@@ -49,6 +52,7 @@ const routing = (
     <Route path={"/dashboard"} component={Dashboard} />
     <Route path={"/cupenList"} component={cupenList} />
     <Route path={"/forgot"} component={Forgot} />
+    <Route path={"/editbrand/:userId"} component={Editbrand} />
     <Route path={"/product"} component={Product} />
     <Route path={"/addproduct"} component={Addproduct} />
     <Route path={"/editproduct/:userId"} component={editproduct} />
@@ -81,6 +85,7 @@ const routing = (
     <Route path={"/layout"} component={Layout} />
     <Route path={"/colorList"} component={colorList} />
     <Route path={"/sizeList"} component={sizeList} />
+    <Route path={"/viewbuyer/:userId"} component={ViewBuyer} />
     <Route path={"/addSubsubCate"} component={addSubsubCate} />
     <Route path={"/orderrequest"} component={orderrequest} />
   </Router>

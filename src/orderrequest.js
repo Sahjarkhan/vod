@@ -154,7 +154,6 @@ class Orders extends Component {
         options: {
           filter: false,
           customBodyRender: (value, status, updateValue) => {
-
             return (
 
               <div><a onClick={() => { this.showAlert1(value) }}>{value[0]}</a></div>

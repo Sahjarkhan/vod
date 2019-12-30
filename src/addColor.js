@@ -48,25 +48,10 @@ class AddColor extends Component {
         super(props);
         if (localStorage.getItem('logindata') === null) {
             window.location.assign("./");
-          }
+        }
         this.state = {
             showStore: false, multiValue: [], isDialogOpen: false,
-            filterOptions: [
-                { value: 'XS', label: 'XS' },
-                { value: 'S', label: 'S' },
-                { value: 'M', label: 'M' },
-                { value: 'L', label: 'L' },
-                { value: 'XL', label: 'XL' },
-                { value: 'XXL', label: 'XXL' },
-            ], multiValue1: [],
-            filterOptions1: [
-                { value: 'blue', label: 'Blue' },
-                { value: 'yellow', label: 'Yellow' },
-                { value: 'black', label: 'Black' },
-                { value: 'white', label: 'White' },
-                { value: 'brown', label: 'Brown' },
-                { value: 'purple', label: 'Purple' },
-            ], sperror: '', name: '', picturescolorchart: '', sp: '', data4: [], data3: [], data: [], data1: [], pictures: [], pictures1: [], errors: {}
+            sperror: '', name: '', picturescolorchart: '', sp: '', data4: [], data3: [], data: [], data1: [], pictures: [], pictures1: [], errors: {}
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -135,8 +120,7 @@ class AddColor extends Component {
 
     onChange1(e) {
         let files = e.target.files || e.dataTransfer.files;
-        //alert(files);
-        console.log(files[0]);
+
         if (!files.length)
             return;
         this.createImage1(files[0]);
@@ -180,7 +164,6 @@ class AddColor extends Component {
             }
         }
         if (name === 'sp') {
-            //alert(value);
             if (parseInt(value) > parseInt(this.state.mrp)) {
 
                 this.setState({
@@ -242,7 +225,6 @@ class AddColor extends Component {
                 <Main className="AddSize" expanded={expanded}>
                     <div >
                         <form onSubmit={this.handleSubmit}>
-
                             <div class="productsgrid">
                                 <p><ToastContainer /></p>
                                 <div class="loaderintlos" id="showloadintlo" style={{ display: this.state.showStore ? 'block' : 'none' }}>
@@ -256,7 +238,7 @@ class AddColor extends Component {
                                                 <div class="grpset">
                                                     <label class="mandtry">Color</label>
                                                     <div class="Inputs">
-                                                        <input maxLength="8" name="color" class="uk-input" id="form-horizontal-text" type="text" placeholder="Color" value={this.state.value} onChange={this.handleChange} />
+                                                        <input maxLength="15" name="color" class="uk-input" id="form-horizontal-text" type="text" placeholder="Color" value={this.state.value} onChange={this.handleChange} />
                                                         <span style={{ color: "red" }}>{this.state.errors["color"]}</span>
                                                     </div>
                                                 </div>
@@ -265,7 +247,7 @@ class AddColor extends Component {
                                                 <div class="grpset">
                                                     <label class="mandtry">Hexcode</label>
                                                     <div class="Inputs">
-                                                        <input maxLength="8" name="hexcode" class="uk-input" id="form-horizontal-text" type="text" placeholder="Hexcode" value={this.state.value} onChange={this.handleChange} />
+                                                        <input maxLength="6" name="hexcode" class="uk-input" id="form-horizontal-text" type="text" placeholder="Hexcode" value={this.state.value} onChange={this.handleChange} />
                                                         <span style={{ color: "red" }}>{this.state.errors["hexcode"]}</span>
                                                     </div>
                                                 </div>

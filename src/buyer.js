@@ -11,6 +11,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import CSVReader from "react-csv-reader";
 import config from './config/config';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 const columns = [
   {
@@ -63,6 +65,20 @@ const columns = [
           />
         );
 
+      }
+    }
+  },
+  {
+    name: "ACTION",
+    options: {
+      filter: true,
+      customBodyRender: (value, status, updateValue) => {
+
+        return (
+          <div>
+            <Link to={{ "pathname": "/viewbuyer/" + value, "id": value }} class="roundico"><FontAwesomeIcon icon={faEye} /></Link>
+          </div>
+        );
       }
     }
   }

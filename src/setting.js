@@ -251,7 +251,6 @@ class Content1 extends Component {
   }
 
   showAlert() {
-    //alert("dasgfsvfnvsdf");
     this.setState({ isEdit: true, nameofmodule: "Update Account Details" });
   }
 
@@ -283,10 +282,6 @@ class Content2 extends Component {
     this.state = { errors: {} };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
-    // alert(localStorage.getItem('logindata'));
-
-
   }
 
   handleValidation() {
@@ -332,15 +327,11 @@ class Content2 extends Component {
   }
 
   handleSubmit(event) {
-    // alert('A name was submitted: ' + this.state.username+' password '+ this.state.password);
     event.preventDefault();
-    //console.log(this.state.pictures1);
 
 
     console.log(this.state.pictures);
     if (this.handleValidation()) {
-      //alert('jjd')
-      //console.warn()
       fetch(`${config.Url}api/changepasswordforadmin/` + JSON.parse(localStorage.getItem('logindata')).id, {
         method: 'POST',
         headers: {
@@ -363,12 +354,7 @@ class Content2 extends Component {
               password: '',
               cpassword: '',
             });
-            //localStorage.setItem('logindata',JSON.stringify(res.response));
-            console.log(res);
-            //window.location.assign("/setting")
-            //this.setState({isEdit: false,nameofmodule:"Update Account Details"});
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/product');
+          
           }
           console.log(res);
         })
