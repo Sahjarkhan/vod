@@ -127,7 +127,7 @@ class Addcategory extends Component {
         body: JSON.stringify({
           name: this.state.name,
           category_id: this.state.category_id,
-          image:this.state.pictures,
+          image: this.state.pictures,
         }),
       }).then((response) => response.json())
         .then((res) => {

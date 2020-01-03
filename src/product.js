@@ -51,7 +51,6 @@ const columns = [
               <Switch color="primary" checked={value[0]} value={value[0] ? "1" : ""} />
             }
             onChange={event => {
-
               fetch(`${config.Url}api/productstatuschange/` + value[1]).then((response) => response.json())
                 .then((res) => {
                   if (res.status === 'FAILURE') {

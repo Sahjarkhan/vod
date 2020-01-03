@@ -305,10 +305,7 @@ class AddProduct extends Component {
 			formIsValid = false;
 			errors["dcolor"] = "Please enter default color.";
 		}
-		if (!fields.theme_id) {
-			formIsValid = false;
-			errors["theme_id"] = "Please enter theme.";
-		}
+
 
 		if (!fields.category_id) {
 			formIsValid = false;
@@ -497,7 +494,6 @@ class AddProduct extends Component {
 		this.setState({
 			category_id: value
 		});
-
 		fetch(`${config.Url}api/sublistbycat/` + value).then((response) => response.json())
 			.then((res) => {
 				if (res.status === 'FAILURE') {
@@ -509,6 +505,9 @@ class AddProduct extends Component {
 			.catch((error) => {
 				console.log(error);
 			});
+		this.setState({
+			subsubcategory_id: []
+		});
 	}
 
 	handleChange2(event) {

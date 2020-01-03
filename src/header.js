@@ -72,7 +72,6 @@ class Sidebar extends Component {
   }
 
   render() {
-
     const {
       drawerStyle: stringDrawerStyle,
       openLeft,
@@ -106,15 +105,15 @@ class Sidebar extends Component {
             <li ><NavLink to="/dashboard" activeClassName="active" ><img alt="hhjj" src={require('./img/dashico.png')} />Dashboard</NavLink></li>
             <li ><NavLink to="/buyer" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faUserPlus} /> <p>Buyer Management</p></NavLink></li>
             <li ><NavLink to="/sellerlist" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faUserPlus} /> <p>Seller Management</p></NavLink></li>
-            <li ><NavLink to="/product" activeClassName="active"><img alt="hhjj" src={require('./img/myprod.png')} /><p>My Products</p></NavLink></li>
+            <li ><NavLink to="/product" activeClassName="active"><img alt="hhjj" src={require('./img/myprod.png')} /><p>Products Management</p></NavLink></li>
             <li ><NavLink to="/orders" activeClassName="active"><img alt="hhjj" src={require('./img/myprod.png')} /><p>My Orders</p></NavLink></li>
             <li><NavLink to="/orderrequest" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faCodeBranch} /> <p>Orders Request</p></NavLink></li>
             <li><NavLink to="/bannerlist" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faImage} /><p>Banner Management</p></NavLink></li>
             <li><NavLink to="/themelist" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faFan} /> <p>Theme Management</p></NavLink></li>
             <li><NavLink to="/flashsale" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faFlask} /><p>Flash Sale Management</p></NavLink></li>
             <li><NavLink to="/brandlist" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faCodeBranch} /> <p>Brand Management</p></NavLink></li>
-            <li><NavLink to="/category" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faBars} /> <p>Subcategory Management</p></NavLink></li>
-            <li><NavLink to="/subsubcategory" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faBars} /><p>SubSubcategory Management</p></NavLink></li>
+            <li><NavLink to="/category" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faBars} /> <p>Subcategory </p></NavLink></li>
+            <li><NavLink to="/subsubcategory" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faBars} /><p>SubSubcategory </p></NavLink></li>
             <li><NavLink to="/cupon" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faBars} /> <p>Coupon code Management</p></NavLink></li>
             <li><NavLink to="/about" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faInfo} /><p>Content Management</p></NavLink></li>
             <li><NavLink to="/layout" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faInfo} /><p>Layout Management</p></NavLink></li>
