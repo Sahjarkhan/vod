@@ -128,24 +128,22 @@ class Sellerlist extends Component {
     const { data, tableColumns } = this.props;
     const deletedIndexes = Object.keys(deletedRows.lookup);
     const data123 = this.state.data;
-    deletedIndexes.map(function (name, index) {
-      fetch(`${config.Url}api/userdelete/` + data123[name][5]).then((response) => response.json())
-        .then((res) => {
-          if (res.status === 'FAILURE') {
-            toast.error(res.message);
-          } else {
-            toast.success(res.message);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
-    })
-
+    if (window.confirm("Delete the item?")) {
+      deletedIndexes.map(function (name, index) {
+        fetch(`${config.Url}api/sellerdelete/` + data123[name][5]).then((response) => response.json())
+          .then((res) => {
+            if (res.status === 'FAILURE') {
+              toast.error(res.message);
+            } else {
+              toast.success(res.message);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+    }
   }
-
-
 
   render() {
     const options = {

@@ -14,50 +14,21 @@ import config from './config/config';
 import 'react-toastify/dist/ReactToastify.css';
 const url = "https://mobuloustech.com/yodapi/api/addproductbyseller/1";
 
-
-
-
 class Addbrand extends Component {
-
   notify = () => toast("Wow so easy !");
-
   constructor(props) {
     super(props);
     if (localStorage.getItem('logindata') === null) {
       window.location.assign("./");
     }
+    var testing = (JSON.parse(localStorage.getItem('logindata')).id);
+
     this.state = { showStore: false, pictures: '', pictures1: '', pictures2: '', pictures1: [], errors: {} };
 
     this.handleChange = this.handleChange.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-
     this.onDrop = this.onDrop.bind(this);
-
-    // alert(localStorage.getItem('logindata'));
-
-    // this.state = {data:[]};
-
-
-    //  fetch("http://mobuloustech.com/yodapi/api/catlistforadmin1234").then((response) => response.json())
-    //     .then((res) => { 
-    //      //alert(res);
-    //      if(res.status === 'FAILURE'){
-    //         toast.error(res.message);
-    //      } else {
-    //      toast.success(res.message);
-    //      //alert(res);
-    //      this.setState({data: res.response});
-
-    //      //localStorage.setItem('logindata', res.sellerlogin);
-    //       //this.props.history.push('/');
-    //      }
-    //      console.log(res);
-    //     })
-    //     .catch((error) => {
-    //     console.log(error);
-    //     alert('Oops, something went wrong. Please try again!');
-    //     });
   }
 
   onDrop(picture) {
@@ -136,6 +107,8 @@ class Addbrand extends Component {
   }
 
   handleSubmit(event) {
+
+
     var testing = {
       name: this.state.name,
       image: this.state.pictures,
@@ -149,8 +122,6 @@ class Addbrand extends Component {
 
     console.log(this.state.errors);
     if (this.handleValidation()) {
-      alert('Brand added successfully.')
-      //console.warn()
       fetch(`${config.Url}api/createBrand`, {
         method: 'POST',
         headers: {
@@ -161,6 +132,7 @@ class Addbrand extends Component {
           name: this.state.name,
           image: this.state.pictures,
           description: this.state.desc,
+          seller_id: JSON.parse(localStorage.getItem('logindata')).id
         }),
       }).then((response) => response.json())
         .then((res) => {
@@ -241,7 +213,7 @@ class Addbrand extends Component {
                         singleImage={true}
                         buttonText='Choose images'
                         onChange={this.onDrop}
-                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                        imgExtension={['.jpg', '.gif', '.png', '.gif', 'jpeg']}
                         maxFileSize={5242880}
                       />
                     </div>

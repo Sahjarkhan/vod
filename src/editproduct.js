@@ -36,21 +36,17 @@ const customStyles = {
 class Dashboard extends Component {
 
 	notify = () => toast("Wow so easy !");
-
 	constructor(props) {
 		super(props);
 		if (localStorage.getItem('logindata') === null) {
 			window.location.assign("./");
 		}
-
 		this.state = {
 			imagearray: [], sizeDropDown: [], showStore: false, multiValue: [], isDialogOpen: false,
 			filterOptions: [], multiValue1: [],
 			filterOptions1: [], sperror: '', data: [], name: '', picturescolorchart: '', data4: [], data3: [], data: [], data1: [], pictures: [], pictures1: [], errors: {}
 		};
-
 		this.handleChange = this.handleChange.bind(this);
-
 		this.handleChange1 = this.handleChange1.bind(this);
 		this.handleChange2 = this.handleChange2.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -429,6 +425,32 @@ class Dashboard extends Component {
 		event.preventDefault();
 		const { match: { params } } = this.props;
 		if (this.handleValidation()) {
+			var testing = {
+				name: this.state.name,
+				images: this.state.imagearray,
+				category_id: this.state.category_id,
+				mrp: this.state.mrp,
+				sp: this.state.sp,
+				subcategory_id: this.state.subcategory_id,
+				subsubcategory_id: this.state.subsubcategory_id,
+				color: colorArray,
+				size: sizeArray,
+				sizechart: this.state.picturescolorchart,
+				description: this.state.description,
+				brand: this.state.brand,
+				quantity: this.state.quantity,
+				hsn_code: this.state.hsn_code,
+				weight: this.state.weight,
+				height: this.state.height,
+				width: this.state.width,
+				length: this.state.length,
+				ships_in: this.state.ships_in,
+				sku: this.state.sku,
+				theme_id: this.state.theme_id,
+				fit: this.state.fit,
+				imagearray: this.state.imagearray
+			}
+			console.log(testing)
 			fetch(`${config.Url}api/editproductbyseller/` + params.userId, {
 				method: 'POST',
 				headers: {

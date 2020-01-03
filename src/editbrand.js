@@ -34,13 +34,14 @@ class Editbrand extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onDrop = this.onDrop.bind(this);
         const { match: { params } } = this.props;
+
         fetch(`${config.Url}api/brandviewforadmin/` + params.userId).then((response) => response.json())
             .then((res) => {
                 if (res.status === 'FAILURE') {
                     toast.error(res.message);
                 } else {
                     this.setState({ id: res.response.id });
-                    this.setState({ name: res.response.name[0] });
+                    this.setState({ name: res.response.name });
                     this.setState({ image: res.response.image });
                     this.setState({ description: res.response.description });
                     this.setState(res.response);
@@ -102,7 +103,7 @@ class Editbrand extends Component {
             errors["name"] = "Brand Name Cannot be empty";
         }
 
-        //category_id
+
 
         if (!fields.Description) {
             formIsValid = false;
@@ -122,39 +123,43 @@ class Editbrand extends Component {
         })
     }
     handleSubmit(event) {
-
         event.preventDefault();
-        if (this.handleValidation()) {
-           
-            fetch(`${config.Url}api/brandeditforadmin`, {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-
-                body: JSON.stringify({
-                    id:this.state.id,
-                    name: this.state.name,
-                    image: this.state.image,
-                    description: this.state.description,
-                }),
-            }).then((response) => response.json())
-                .then((res) => {
-                    if (res.status === 'FAILURE') {
-                        toast.error(res.message);
-                    } else {
-                        toast.success(res.message);
-                        console.log(res);
-                        this.props.history.push('/brandlist');
-                    }
-                    console.log(res);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-
+        var testing = {
+            name: this.state.name,
+            image: this.state.image,
+            description: this.state.description,
         }
+        console.log(testing)
+        // if (this.handleValidation()) {
+        fetch(`${config.Url}api/brandeditforadmin/` + this.state.id, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: this.state.name,
+                image: this.state.image,
+                description: this.state.description,
+            }),
+        }).then((response) => response.json())
+            .then((res) => {
+                console.log(res)
+                if (res.status === 'FAILURE') {
+                    toast.error(res.message);
+                } else {
+                    console.log('hello')
+                    toast.success(res.message);
+                    console.log(res);
+                    // this.props.history.push('/brandlist');
+                }
+                console.log(res);
+            })
+            .catch((error) => {
+                console.log(error)
+                console.log(error);
+            });
+
     }
 
 

@@ -8,11 +8,63 @@ import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
-//1
+
 const columns = [
-    "Name",
     "Category",
+    "SubCategory",
+    "SubSubCategory",
+    {
+        name: "Occasion Status",
+        options: {
+            filter: true,
+            customBodyRender: (value, status, updateValue) => {
+                console.log(value)
+                return (
+                    <div>
+                        {value === 1 ? "Yes" : "No"}
+                    </div>
+                );
+            }
+        }
+    },
+    {
+        name: "STATUS",
+        options: {
+            filter: false,
+            customBodyRender: (value, status, updateValue) => {
+
+                return (
+                    <FormControlLabel
+                        label={value[0] ? "Active" : "Inactive"}
+                        value={value[0] ? "1" : ""}
+                        control={
+                            <Switch color="primary" checked={value[0]} value={value[0] ? "1" : ""} />
+                        }
+                        onChange={event => {
+
+                            fetch(`${config.Url}api/productstatuschange2/` + value[1]).then((response) => response.json())
+                                .then((res) => {
+                                    if (res.status === 'FAILURE') {
+                                        toast.error(res.message);
+                                    } else {
+                                        updateValue(res.response);
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                    alert('Oops, something went wrong. Please try again!');
+                                });
+                            console.log(value);
+                        }}
+                    />
+                );
+
+            }
+        }
+    },
     // {
     //     name: "ACTION",
     //     options: {
@@ -56,24 +108,22 @@ class Subsubcategory extends Component {
         const { data, tableColumns } = this.props;
         const deletedIndexes = Object.keys(deletedRows.lookup);
         const data123 = this.state.data;
-        deletedIndexes.map(function (name, index) {
-            //.log(data123);
-            fetch(`${config.Url}/api/productdelete/` + data123[name][6][1]).then((response) => response.json())
-                .then((res) => {
-                    if (res.status === 'FAILURE') {
-                        toast.error(res.message);
-                    } else {
-                        toast.success(res.message);
-                        //this.setState({data: res.response});
 
-                        //localStorage.setItem('logindata', res.sellerlogin);
-                        //this.props.history.push('/');
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        })
+        if (window.confirm("Delete the item?")) {
+            deletedIndexes.map(function (name, index) {
+                fetch(`${config.Url}/api/subsubcatdelete/` + data123[name][2]).then((response) => response.json())
+                    .then((res) => {
+                        if (res.status === 'FAILURE') {
+                            toast.error(res.message);
+                        } else {
+                            toast.success(res.message);
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            })
+        }
 
     }
     render() {

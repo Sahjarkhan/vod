@@ -19,7 +19,8 @@ const columns = [
   "Cuponcode",
   "Min Price",
   "Discount",
-  "Expiry Date"
+  "Expiry Date",
+  "Start Date"
 ];
 
 class Cuponlist extends Component {
@@ -34,13 +35,13 @@ class Cuponlist extends Component {
     this.state = {
       min_price: '',
       type: '',
-      startdate: '',
       discount: '',
       name: '',
       data: [],
       pictures: [],
       pictures1: [],
-      errors: {}, date: new Date(),
+      errors: {},
+      date: new Date(),
       startDate: new Date(),
       data2: [],
       data1: [],
@@ -168,7 +169,7 @@ class Cuponlist extends Component {
   }
 
   onChange = date => this.setState({ date })
-
+  onChangeStartdate = startDate => this.setState({ startDate })
   handleChange(event) {
     const target = event.target;
     const value = target.value;
@@ -197,7 +198,7 @@ class Cuponlist extends Component {
       startdate: this.state.startDate,
       type: this.state.type,
     }
-    console.log(testing)
+    console.log(testing);
 
     if (this.handleValidation()) {
       const { match: { params } } = this.props;
@@ -220,13 +221,11 @@ class Cuponlist extends Component {
           if (res.status === 'FAILURE') {
             toast.error(res.message);
           } else {
-            console.log('hello')
-            // window.location.reload();
+            window.location.reload();
           }
         })
         .catch((error) => {
           console.log(error);
-          alert('Oops, something went wrong. Please try again!');
         });
 
     }
@@ -304,16 +303,15 @@ class Cuponlist extends Component {
                   </div>
                   <span style={{ color: "red" }}>{this.state.errors["min_price"]}</span>
 
+
                   <div class="grpset">
                     <label class="mandtry">Start Date</label>
-
                     <DateTimePicker
                       format="y-MM-d h:m:sa"
-                      onChange={this.onChange}
+                      onChange={this.onChangeStartdate}
                       value={this.state.startDate}
                     />
                   </div>
-
                   <div class="grpset">
                     <label class="mandtry">Expiry Date</label>
                     <DateTimePicker

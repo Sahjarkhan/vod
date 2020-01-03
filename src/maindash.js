@@ -132,9 +132,7 @@ class Maindash extends Component {
                 <div className="halfdv-5">
                     <div className="world-mpa">
                         <h4>Transactions</h4>
-
                         <div id="chartContainer" ></div>
-
                     </div>
                 </div>
 
@@ -146,79 +144,3 @@ class Maindash extends Component {
 
 
 export default Maindash;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// {this.state.detailss.map((item, i) => {
-//     return (<tr key={i}>
-//         <td>
-//             <div className="mnde">
-//                 <h6 className="prdname">{item.product_name}</h6>
-//                 <div className="mrp-dr">
-//                     <p><strong>Product SKU:</strong> {item.product_sku}</p>
-//                     <p><strong>Product ID:</strong> {item.product_id}</p>
-//                 </div>
-//                 <p className="bgr-info">Kurta : Size 38</p>
-//             </div>
-//         </td>
-//         <td>
-//             <img style={{ width: 100, height: 100 }} src={`${config.UrlImage}` + item.product_image} />
-//         </td>
-//         <td>
-//             <p>{item.quantity}</p>
-//         </td>
-//         <td>
-//             <p>{item.color}</p>
-//         </td>
-
-//         <td>
-//             <p>{item.sale_price}</p>
-//         </td>
-//         <td>
-//             <p>{item.payment_status}</p>
-//         </td>
-//         <td>
-//             <p>{item.total_price}</p>
-//         </td>
-//         <td>
-//             <p>{item.dispatch_by}</p>
-//         </td>
-//         <td>
-//             <div>
-//                 <div>
-//                     <select onChange={this.handleChange} value={item.payment_status}>
-//                         <option>{item.status}</option>
-//                         {options.map(items => (
-//                             <option key={items.label} value={items.label + " " + item.order_id + " " + + item.product_id} >
-//                                 {items.label}
-//                             </option>
-//                         ))}
-//                     </select>
-//                 </div>
-//             </div>
-//         </td>
-//     </tr>
-//     )
-// })}

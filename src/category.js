@@ -14,46 +14,7 @@ import config from './config/config';
 const columns = [
   "Name",
   "Category",
-  {
-    name: "STATUS",
-    options: {
-      filter: false,
-      customBodyRender: (value, status, updateValue) => {
-
-        return (
-          <FormControlLabel
-            label={value[0] ? "Active" : "Inactive"}
-            value={value[0] ? "1" : ""}
-            control={
-              <Switch color="primary" checked={value[0]} value={value[0] ? "1" : ""} />
-            }
-            onChange={event => {
-
-              fetch(`${config.Url}api/productstatuschange2/` + value[1]).then((response) => response.json())
-                .then((res) => {
-                  //alert(res);
-                  if (res.status === 'FAILURE') {
-                    toast.error(res.message);
-                  } else {
-                    //toast.success(res.message);
-                    updateValue(res.response);
-                    //localStorage.setItem('logindata', res.sellerlogin);
-                    //this.props.history.push('/');
-                  }
-                  // console.log(res);
-                })
-                .catch((error) => {
-                  console.log(error);
-                  alert('Oops, something went wrong. Please try again!');
-                });
-              console.log(value);
-            }}
-          />
-        );
-
-      }
-    }
-  }, {
+ {
     name: "ACTION",
     options: {
       filter: true,
