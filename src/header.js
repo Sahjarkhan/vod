@@ -32,6 +32,7 @@ class Sidebar extends Component {
     this.setWidth = this.setWidth.bind(this);
     this.setTouch = this.setTouch.bind(this);
     this.setDrawerStyle = this.setDrawerStyle.bind(this);
+    this.showAlert = this.showAlert.bind(this)
   }
 
   setWidth = e => {
@@ -53,7 +54,8 @@ class Sidebar extends Component {
     })
   }
 
-  showAlert() {
+  showAlert = () => {
+    console.log('Testing')
     localStorage.setItem('logindata', null);
     window.location.assign("./")
   }
@@ -94,12 +96,9 @@ class Sidebar extends Component {
     return <header class="yodamin-hd">
       <div onClick={() => this.addHeaderClass()} className="mentoggle">
         {this.state.sideMenuOpen === false ? <FontAwesomeIcon onClick={() => this.addHeaderClass()} style={{ width: 23, marginRight: 10 }} icon={faBars} /> : <FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faTimes} />}
-
       </div>
       <img class="logoheader" alt="ok" src={require('./img/yodfull.png')} />
       <div class="yodcontainer-dash">
-
-
         {this.state.sideMenuOpen === true ? <div class="sidebarleft">
           <ul>
             <li ><NavLink to="/dashboard" activeClassName="active" ><img alt="hhjj" src={require('./img/dashico.png')} />Dashboard</NavLink></li>
@@ -122,7 +121,7 @@ class Sidebar extends Component {
             <li><NavLink to="/colorList" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faBars} /><p>Manage Color</p></NavLink></li>
             <li><NavLink to="/faqlist" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faQuestion} /><p>FAQ Management</p></NavLink></li>
             <li><NavLink to="/setting" activeClassName="active"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faUserCog} /> <p>Account</p></NavLink></li>
-            <li><NavLink onClick={this.showAlert}><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faPowerOff} /><p>Logout</p></NavLink></li>
+            <li><NavLink onClick={this.showAlert} to="/"><FontAwesomeIcon style={{ width: 23, marginRight: 10 }} icon={faPowerOff} /><p>Logout</p></NavLink></li>
           </ul>
         </div> : <div className="openmenu"> </div>}
 

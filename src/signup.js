@@ -341,3 +341,5 @@ class Signup extends Component {
 
 
 export default Signup;
+
+//<input type="text" placeholder="Type" onfocus="this.placeholder=''" onblur="this.placeholder='Type'">

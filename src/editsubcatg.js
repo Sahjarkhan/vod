@@ -226,7 +226,12 @@ class Editsubcatg extends Component {
       const { match: { params } } = this.props;
       //alert(params.userId)
       //console.warn()
-
+      var testing = {
+        name: this.state.name1,
+        category_id: this.state.category_id,
+        image: this.state.image11,
+        occasion_status: this.state.occasion_status,
+      }
       fetch(`${config.Url}api/subcategorydetailsupdate/` + params.userId, {
         method: 'POST',
         headers: {

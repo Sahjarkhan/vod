@@ -5,7 +5,6 @@ import './uikit-rtl.css';
 import './all.css';
 import './fontawesome.css';
 import './bootstrap.css';
-
 import Header from "./header";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,6 +12,8 @@ import ImageUploader from 'react-images-upload';
 import 'react-toastify/dist/ReactToastify.css';
 import Select from 'react-select';
 import config from './config/config';
+import Modal from '../src/Modal/Modal';
+import ModalColor from '../src/Modal Color/Modal';
 
 
 const customStyles = {
@@ -73,10 +74,7 @@ class AddProduct extends Component {
 	}
 
 
-
-
 	componentDidMount() {
-
 		fetch(`${config.Url}api/getcolor`).then((response) => response.json())
 			.then((res) => {
 				if (res.status === 'FAILURE') {
@@ -99,7 +97,6 @@ class AddProduct extends Component {
 			})
 			.catch((error) => {
 				console.log(error);
-				alert('Oops, something went wrong. Please try again!');
 			});
 
 
@@ -150,6 +147,67 @@ class AddProduct extends Component {
 			};
 		});
 	}
+	openModalHandler = () => {
+		this.setState({
+			isShowing: true
+		});
+	}
+	openModalHandlerSize = () => {
+		this.setState({
+			isshowingSize: true
+		});
+	}
+
+	closeModalHandler = () => {
+		this.setState({
+			isShowing: false
+		});
+		if (this.state.category_id === undefined &&
+			this.state.subcategory_id === undefined &&
+			this.state.subsubcategory_id === undefined) {
+			console.log('testing')
+		} else {
+			fetch(`${config.Url}api/getsize`, {
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					"catid": this.state.category_id,
+					"subcatid": this.state.subcategory_id,
+					"subsubcatid": this.state.subsubcategory_id
+				}),
+			}).then((response) => response.json())
+				.then((res) => {
+					if (res.status === 'FAILURE') {
+						toast.error(res.message);
+					}
+					else {
+						this.setState({ sizeDropDown: res.getsize });
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+	}
+	closeModalHandlerSize = () => {
+		this.setState({
+			isshowingSize: false
+		});
+		fetch(`${config.Url}api/getcolor`).then((response) => response.json())
+			.then((res) => {
+				if (res.status === 'FAILURE') {
+					toast.error(res.message);
+				} else {
+					this.setState({ filterOptions1: res.getcolor });
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
 	handleChange3(event) {
 		const target = event.target;
 		const value = target.value;
@@ -195,22 +253,15 @@ class AddProduct extends Component {
 
 	openDialog = () => this.setState({ isDialogOpen: true })
 	handleClose = () => this.setState({ isDialogOpen: false })
-	handleMultiChange(option) {
-		this.setState(state => {
-			return {
-				multiValue: option
-			};
-		});
-	}
+
 
 	onDrop(picture) {
 		this.createImage(picture[picture.length - 1]);
 
 	}
-
+	
 	onChange1(e) {
 		let files = e.target.files || e.dataTransfer.files;
-
 		if (!files.length)
 			return;
 		this.createImage1(files[0]);
@@ -280,20 +331,27 @@ class AddProduct extends Component {
 		}
 	}
 	handleMultiChange1(option) {
-		this.setState(state => {
-			return {
-				multiValue1: option
-			};
-		});
+		if (option !== null) {
+			this.setState(state => {
+				return {
+					multiValue1: option
+				};
+			});
+		}
+		if (option == null) {
+			console.log('testing3');
+			this.setState({
+				multiValue1: []
+			});
+		}
 	}
 	handleValidation() {
 		let fields = this.state;
 		let errors = {};
 		let formIsValid = true;
-
-		if (this.state.pictures.length <= 0) {
+		if (this.state.pictures.length <= 1) {
 			formIsValid = false;
-			errors["img"] = "please select at least one image.";
+			errors["img"] = "please select at least two image.";
 		}
 
 		if (!fields.name) {
@@ -369,7 +427,10 @@ class AddProduct extends Component {
 			formIsValid = false;
 			errors["width"] = "Please enter width.";
 		}
-
+		if (!fields.multiValue.length > 0) {
+			formIsValid = false;
+			errors["multiValue"] = "Please enter size.";
+		}
 		if (!fields.length) {
 			formIsValid = false;
 			errors["length"] = "Please enter length.";
@@ -398,7 +459,7 @@ class AddProduct extends Component {
 			[name]: value
 		});
 
-		if (name == 'name') {
+		if (name === 'name') {
 			const re = /^[a-zA-Z0-9 ,.'-]{3,30}$/i;
 			if (value === '' || re.test(value)) {
 				this.setState({ name: value })
@@ -408,7 +469,7 @@ class AddProduct extends Component {
 				});
 			}
 		}
-		if (name == 'mrp') {
+		if (name === 'mrp') {
 			const re = /^[0-9]{0,10}$/i;
 			if (value === '' || re.test(value)) {
 				this.setState({ mrp: value })
@@ -419,7 +480,7 @@ class AddProduct extends Component {
 			}
 		}
 
-		if (name == 'width') {
+		if (name === 'width') {
 			const re = /^[0-9]{0,4}$/i;
 			if (value === '' || re.test(value)) {
 				this.setState({ width: value })
@@ -429,7 +490,7 @@ class AddProduct extends Component {
 				});
 			}
 		}
-		if (name == 'weight') {
+		if (name === 'weight') {
 			const re = /^[0-9]{0,4}$/i;
 			if (value === '' || re.test(value)) {
 				this.setState({ weight: value })
@@ -439,7 +500,7 @@ class AddProduct extends Component {
 				});
 			}
 		}
-		if (name == 'height') {
+		if (name === 'height') {
 			const re = /^[0-9]{0,4}$/i;
 			if (value === '' || re.test(value)) {
 				this.setState({ height: value })
@@ -450,7 +511,7 @@ class AddProduct extends Component {
 			}
 		}
 
-		if (name == 'length') {
+		if (name === 'length') {
 			const re = /^[0-9]{0,4}$/i;
 			if (value === '' || re.test(value)) {
 				this.setState({ length: value })
@@ -461,7 +522,7 @@ class AddProduct extends Component {
 			}
 		}
 
-		if (name == 'ships_in') {
+		if (name === 'ships_in') {
 			const re = /^[0-9\b]+$/;
 			if (value === '' || re.test(value)) {
 				this.setState({ ships_in: value })
@@ -472,7 +533,7 @@ class AddProduct extends Component {
 			}
 		}
 
-		if (name == 'sp') {
+		if (name === 'sp') {
 			if (parseInt(value) > parseInt(this.state.mrp)) {
 
 				this.setState({
@@ -506,7 +567,10 @@ class AddProduct extends Component {
 				console.log(error);
 			});
 		this.setState({
-			subsubcategory_id: []
+			data1: []
+		});
+		this.setState({
+			data: []
 		});
 	}
 
@@ -517,7 +581,20 @@ class AddProduct extends Component {
 		this.setState({
 			subcategory_id: value
 		});
-
+		fetch(`${config.Url}api/sublistbycat/` + this.state.category_id).then((response) => response.json())
+			.then((res) => {
+				if (res.status === 'FAILURE') {
+					toast.error(res.message);
+				} else {
+					this.setState({ data: res.sublistbycat });
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+		this.setState({
+			data1: []
+		});
 		fetch(`${config.Url}api/sublistbycatremark/` + value).then((response) => response.json())
 			.then((res) => {
 				if (res.status === 'FAILURE') {
@@ -532,6 +609,7 @@ class AddProduct extends Component {
 	}
 
 	handleSubmit(event) {
+	
 		event.preventDefault();
 		if (this.handleValidation()) {
 			if (!this.state.sperror) {
@@ -567,6 +645,7 @@ class AddProduct extends Component {
 						defaultcolor: this.state.dcolor,
 						fit: this.state.fit
 					}),
+					
 				}).then((response) => response.json())
 					.then((res) => {
 						if (res.status === 'FAILURE') {
@@ -585,6 +664,7 @@ class AddProduct extends Component {
 	}
 
 	render() {
+
 		const { selectedOption } = this.state;
 		return <div className="dash-layout">
 			<Header />
@@ -657,13 +737,13 @@ class AddProduct extends Component {
 									<div className="grpset">
 										<label>Description</label>
 										<div className="Inputs">
-											<textarea maxLength="300" name="description" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Description" value={this.state.value} onChange={this.handleChange} ></textarea>
+											<textarea maxLength="1000" name="description" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Description" value={this.state.value} onChange={this.handleChange} ></textarea>
 										</div>
 									</div>
 									<div className="grpset">
 										<label className="mandtry">Fit</label>
 										<div className="Inputs">
-											<textarea maxLength="300" name="fit" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Fit" value={this.state.value} onChange={this.handleChange} ></textarea>
+											<textarea maxLength="1000" name="fit" className="uk-input" id="form-horizontal-text" type="text" placeholder="Enter Fit" value={this.state.value} onChange={this.handleChange} ></textarea>
 											<span style={{ color: "red" }}>{this.state.errors["fit"]}</span>
 										</div>
 									</div>
@@ -673,7 +753,7 @@ class AddProduct extends Component {
 										<div className="grpset">
 											<label className="mandtry">SKU</label>
 											<div className="Inputs">
-												<input maxLength="12" name="sku" className="uk-input" id="form-horizontal-text" type="text" placeholder="SKU" value={this.state.value} onChange={this.handleChange} />
+												<input maxLength="1000" name="sku" className="uk-input" id="form-horizontal-text" type="text" placeholder="SKU" value={this.state.value} onChange={this.handleChange} />
 												<span style={{ color: "red" }}>{this.state.errors["sku"]}</span>
 											</div>
 										</div>
@@ -888,7 +968,6 @@ class AddProduct extends Component {
 									<div className="twoways">
 										<div className="grpset">
 											<label style={{ width: "340px" }}>Size</label>
-
 											<div className="Inputs">
 												<Select
 													name="multiValue"
@@ -899,6 +978,10 @@ class AddProduct extends Component {
 													onChange={this.handleMultiChange}
 													isMulti={true}
 												/>
+												<div>
+													{this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null}
+													<Link className="open-modal-btn" onClick={this.openModalHandler}>AddSize</Link>
+												</div>
 												<span style={{ color: "red" }}>{this.state.errors["multiValue"]}</span>
 											</div>
 
@@ -917,6 +1000,10 @@ class AddProduct extends Component {
 												onChange={this.handleMultiChange1}
 												isMulti={true}
 											/>
+											<div style={{ float: "right" }}>
+												{this.state.isShowing ? <div onClick={this.closeModalHandlerSize} className="back-drop"></div> : null}
+												<Link className="open-modal-btn" onClick={this.openModalHandlerSize}>AddColor</Link>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -927,7 +1014,10 @@ class AddProduct extends Component {
 											<div className="Inputs">
 												<select className="uk-input" id="form-horizontal-text" name="dcolor" value={this.state.value} onChange={this.handleChange}>
 													<option value="">Default color</option>
-													{this.state.filterOptions1.map((item, key) =>
+													{/* {this.state.filterOptions1.map((item, key) =>
+														<option value={item.value}>{item.label}</option>
+													)} */}
+													{this.state.multiValue1.map((item, key) =>
 														<option value={item.value}>{item.label}</option>
 													)}
 												</select>
@@ -938,8 +1028,6 @@ class AddProduct extends Component {
 								</div>
 							</div>
 						</div>
-
-
 						<div className="productsgrid">
 							<div className="head-main"><h6>Images</h6></div>
 							<div className="main-grid form-grd">
@@ -988,6 +1076,21 @@ class AddProduct extends Component {
 				</div>
 
 			</div>
+			{
+				this.state.isShowing === true ? <Modal
+					className="modal"
+					show={this.state.isShowing}
+					close={this.closeModalHandler}>
+				</Modal> : ''
+
+			}
+			{
+
+				this.state.isshowingSize === true ? <ModalColor className="modal"
+					show={this.state.isshowingSize}
+					close={this.closeModalHandlerSize}>
+				</ModalColor> : ''
+			}
 
 		</div>
 
@@ -996,7 +1099,6 @@ class AddProduct extends Component {
 
 
 export default AddProduct;
-
 
 
 

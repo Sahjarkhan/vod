@@ -111,7 +111,6 @@ class AddColor extends Component {
         this.setState({
             pictures: []
         })
-
         const main = this.state.pictures1;
         for (var i = 0; i < main.length; i++) {
             this.createImage(main[i]);
@@ -120,7 +119,6 @@ class AddColor extends Component {
 
     onChange1(e) {
         let files = e.target.files || e.dataTransfer.files;
-
         if (!files.length)
             return;
         this.createImage1(files[0]);

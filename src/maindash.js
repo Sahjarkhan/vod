@@ -2,20 +2,25 @@ import React, { Component } from "react";
 import './uikit.css';
 import './yodadmincss.css';
 import './uikit-rtl.css';
+import LineExample from './line';
 import { Link, withRouter } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar, faArrowDown, faAngleDown, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faArrowDown, faAngleDown, faSearch, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import config from '../src/config/config';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 class Maindash extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lastmonth: 6,state_records:[]
+            date: new Date(),
+            startDate: new Date(),
+            endDate: new Date(),
+            lastmonth: 6, state_records: []
         }
-        this.handleSort = this.handleSort.bind(this);
         this.Testing = this.Testing.bind(this);
+
     }
     Testing() {
         fetch(`${config.Url}api/dashoardforadmin?dateframe=${this.state.lastmonth}`).then((response) => response.json())
@@ -23,7 +28,6 @@ class Maindash extends Component {
                 if (res.status === 'FAILURE') {
                     toast.error(res.message);
                 } else {
-                    console.log(res.dashoardforadmin)
                     this.setState(res.dashoardforadmin);
                 }
             })
@@ -32,31 +36,109 @@ class Maindash extends Component {
                 alert('Oops, something went wrong. Please try again!');
             });
     }
+
     componentDidMount() {
         this.Testing();
-    }
 
+    }
     handleSort(value) {
         this.setState({
             lastmonth: value
         })
         this.Testing();
     }
+    handleChange = date => {
+        this.setState({
+            startDate: date
+        });
+    };
+    handleChange2 = date => {
+        this.setState({
+            endDate: date
+        });
+    };
+    handleSubmit = (event) => {
+        console.log(this.state.startDate);
+        console.log(this.state.endDate);
+        event.preventDefault();
+        fetch(`${config.Url}api/dashoardforadmin`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                startdate: this.state.startDate,
+                enddate: this.state.endDate,
+            }),
+        }).then((response) => response.json())
+            .then((res) => {
+                if (res.status === 'FAILURE') {
+                    toast.error(res.message);
+                } else {
+                    if (toast.success(res.message)) {
+                        this.setState(res.dashoardforadmin);
+                    }
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+    handleChange1 = event => {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            lastmonth: value
+        });
+
+        this.Testing();
+
+    };
+
+    onChange = date => this.setState({ date });
+    
     render() {
         return <div >
             <p><ToastContainer /></p>
             <div className="Time_view">
                 <ul>
-                    <li><FontAwesomeIcon icon={faCalendarAlt} /> Jan 01 - Jun 30</li>
                     <li>
-                        last 6 month <span><FontAwesomeIcon icon={faAngleDown} /></span>
-                        <ol>
-                            <li onClick={() => this.handleSort(6)}><a>last 6 month</a></li>
-                            <li onClick={() => this.handleSort(12)} ><a>last 12 month</a></li>
-                            <li onClick={() => this.handleSort(18)}><a>last 18 month</a></li>
-                            <li onClick={() => this.handleSort(24)}><a>last 24 month</a></li>
-                            <li onClick={() => this.handleSort(30)}><a>last 30 month</a></li>
-                        </ol>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="Calender">
+                                <span>To :</span>
+                                <div>
+                                    <FontAwesomeIcon icon={faCalendarAlt} />
+                                    <DatePicker
+                                        selected={this.state.startDate}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="Calender">
+                                <span>From : </span>
+                                <div>
+                                    <FontAwesomeIcon icon={faCalendarAlt} />
+                                    <DatePicker
+                                        selected={this.state.endDate}
+                                        onChange={this.handleChange2}
+                                    />
+                                </div>
+                            </div>
+                            <button className="submit"><FontAwesomeIcon icon={faSearch} /></button>
+                        </form>
+                    </li>
+                    <li>
+                        <select className="uk-input" id="form-horizontal-text" name="category_id" onChange={this.handleChange1}>
+                            <option value="6">last 6 month</option>
+                            <option value="12">last 12 month</option>
+                            <option value="18">last 18 month</option>
+                            <option value="24">last 24 month</option>
+                            <option value="30">last 30 month</option>
+                        </select>
                     </li>
                 </ul>
             </div>
@@ -64,22 +146,18 @@ class Maindash extends Component {
                 <div className="graph-grid">
                     <div className="graph-voilet">
                         <div className="ordersdtsa">
-                            <h5>Orders</h5>
+                            <h5><Link to="/orders">Orders</Link></h5>
                             <p className="resul-dta">{this.state.orders}</p>
                         </div>
-
                         <div className="dataanalys">
                             <img alt="hhjj" src={require('./img/spinechar.png')} />
                         </div>
-
-                    </div>
-
+                        </div>
                 </div>
-
                 <div className="graph-grid">
-                    <div className="graph-voilet">
+                    <div  className="graph-voilet">
                         <div className="ordersdtsa">
-                            <h5>Revenue</h5>
+                        <h5><Link to="/product">Revenue</Link></h5>
                             <p className="resul-dta">{this.state.revenue}</p>
                         </div>
                         <div className="dataanalys">
@@ -92,25 +170,19 @@ class Maindash extends Component {
                 <div className="graph-grid">
                     <div className="graph-voilet">
                         <div className="ordersdtsa">
-                            <h5>Products</h5>
+                        <h5><Link to="/product">Products</Link></h5>
                             <p className="resul-dta">Live {this.state.live_product}<br />
                                 Non live   {this.state.nonlive_product}</p>
                         </div>
-
                         <div className="dataanalys">
                             <img alt="hhjj" src={require('./img/spinechar.png')} />
                         </div>
-
                     </div>
-
                 </div>
             </div>
 
-
-
             <div className="background-wht map-wrap ">
                 <div className="halfdv-5">
-
                     <div className="world-mpa">
                         <h4>Top Locations</h4>
                         <img alt="hhjj" src={require('./img/wordmap.png')} /></div>
@@ -129,13 +201,12 @@ class Maindash extends Component {
                     </div>
                 </div>
 
-                <div className="halfdv-5">
+                {<div className="halfdv-5">
                     <div className="world-mpa">
                         <h4>Transactions</h4>
-                        <div id="chartContainer" ></div>
+                        <LineExample Graph={this.state} />
                     </div>
-                </div>
-
+                </div>}
             </div>
         </div>
 

@@ -9,7 +9,7 @@ import './uikit-rtl.css';
 import './all.css';
 import './fontawesome.css';
 import './bootstrap.css';
-
+import DateTimePicker from 'react-datetime-picker';
 import Header from "./header";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
@@ -63,7 +63,9 @@ class AddCupen extends Component {
             StatusChange: '',
             subcategory_id: '',
             get: '',
-            buy: ''
+            buy: '',
+            date: new Date(),
+            endDate: new Date()
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -72,6 +74,8 @@ class AddCupen extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange4 = this.handleChange4.bind(this)
         this.handleChange3 = this.handleChange3.bind(this)
+        this.onChange = this.onChange.bind(this);
+        this.onChange1 = this.onChange1.bind(this);
 
     }
 
@@ -99,7 +103,8 @@ class AddCupen extends Component {
         this.setState({ errors: errors });
         return formIsValid;
     }
-
+    onChange = date => this.setState({ date })
+    onChange1 = endDate => this.setState({ endDate })
     handleValidation1() {
         let fields = this.state;
         let errors = {};
@@ -230,12 +235,14 @@ class AddCupen extends Component {
             get: this.state.get,
             buy: this.state.buy,
             discount_type: this.state.discount_type,
-            discount: this.state.discount
+            discount: this.state.discount,
+            startdate: this.state.date,
+            enddate: this.state.endDate
         }
         console.log(tesitng);
         event.preventDefault();
         if (this.state.Offertype == 2) {
-            console.log("this.state.Offertype",this.state.Offertype)
+            console.log("this.state.Offertype", this.state.Offertype)
             if (this.handleValidation1()) {
                 if (!this.state.sperror) {
                     fetch(`${config.Url}api/addoffer`, {
@@ -251,7 +258,9 @@ class AddCupen extends Component {
                             get: this.state.get,
                             buy: this.state.buy,
                             discount_type: this.state.discount_type,
-                            discount: this.state.discount
+                            discount: this.state.discount,
+                            startdate: this.state.date,
+                            enddate: this.state.endDate
                         }),
                     }).then((response) => response.json())
                         .then((res) => {
@@ -272,44 +281,46 @@ class AddCupen extends Component {
                 }
             }
         } else if (this.state.Offertype == 3) {
-            console.log("this.state.Offertype3",this.state.Offertype)
-                if (!this.state.sperror) {
-                    fetch(`${config.Url}api/addoffer`, {
-                        method: 'POST',
-                        headers: {
-                            Accept: 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            offer_type: this.state.Offertype,
-                            description: this.state.description,
-                            catid: this.state.subcategory_id,
-                            get: this.state.get,
-                            buy: this.state.buy,
-                            discount_type: this.state.discount_type,
-                            discount: this.state.discount
-                        }),
-                    }).then((response) => response.json())
-                        .then((res) => {
-                            if (res.status === 'FAILURE') {
-                                toast.error(res.message);
-                            } else {
-                                console.log("~~~~~~~~~~~~~~~~~~~~~~~~", res);
-                                //localStorage.setItem('logindata', res.sellerlogin);
-                                if (toast.success(res.message)) {
-                                    this.props.history.push('/cupenList');
-                                }
+            console.log("this.state.Offertype3", this.state.Offertype)
+            if (!this.state.sperror) {
+                fetch(`${config.Url}api/addoffer`, {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        offer_type: this.state.Offertype,
+                        description: this.state.description,
+                        catid: this.state.subcategory_id,
+                        get: this.state.get,
+                        buy: this.state.buy,
+                        discount_type: this.state.discount_type,
+                        discount: this.state.discount,
+                        startdate: this.state.date,
+                        enddate: this.state.endDate
+                    }),
+                }).then((response) => response.json())
+                    .then((res) => {
+                        if (res.status === 'FAILURE') {
+                            toast.error(res.message);
+                        } else {
+                            console.log("~~~~~~~~~~~~~~~~~~~~~~~~", res);
+                            //localStorage.setItem('logindata', res.sellerlogin);
+                            if (toast.success(res.message)) {
+                                this.props.history.push('/cupenList');
                             }
-                            console.log(res);
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                }
-            
+                        }
+                        console.log(res);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
+
         }
         else {
-            console.log("this.state.Offertype",this.state.Offertype)
+            console.log("this.state.Offertype", this.state.Offertype)
             if (this.handleValidation()) {
                 console.log(this.state.get)
                 if (!this.state.sperror) {
@@ -325,7 +336,9 @@ class AddCupen extends Component {
                             description: this.state.description,
                             catid: this.state.subcategory_id,
                             get: this.state.get,
-                            buy: this.state.buy
+                            buy: this.state.buy,
+                            startdate: this.state.date,
+                            enddate: this.state.endDate
                         }),
                     }).then((response) => response.json())
                         .then((res) => {
@@ -500,6 +513,27 @@ class AddCupen extends Component {
                                             <span style={{ color: "red" }}>{this.state.errors["description"]}</span>
                                         </div>
                                     </div>
+                                    <div class="fullfrm">
+                                        <div class="grpset">
+                                            <label class="mandtry">Cupen Start Time</label>
+                                            <DateTimePicker
+                                                format="y-MM-d h:m:sa"
+                                                onChange={this.onChange}
+                                                value={this.state.date}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="fullfrm">
+                                        <div class="grpset">
+                                            <label class="mandtry">Cupen End Time</label>
+                                            <DateTimePicker
+                                                format="y-MM-d h:m:sa"
+                                                onChange={this.onChange1}
+                                                value={this.state.endDate}
+                                            />
+                                        </div>
+                                    </div>
+
 
                                 </div>
                                 <div className="halffrms">
@@ -517,6 +551,7 @@ class AddCupen extends Component {
                                 </div>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -532,12 +567,26 @@ export default AddCupen;
 
 
 
+{/*
+<div class="fullfrm">
+<div class="grpset">
+  <label class="mandtry">Flash Sale Start Time</label>
+  <DateTimePicker
+    format="y-MM-d h:m:sa"
+    onChange={this.onChange}
+    value={this.state.date}
+  />
+</div>
+</div>
+<div class="fullfrm">
+<div class="grpset">
+  <label class="mandtry">Flash Sale End Time</label>
+  <DateTimePicker
+    format="y-MM-d h:m:sa"
+    onChange={this.onChange1}
+    value={this.state.endDate}
+  />
+</div>
 
-{/* <div>
-                                        {this.state.occasion_status == true ? <div class="grpset">
-                                            <label class="mandtry">Image</label>
-                                            <div class="Inputs">
-                                                <p> <input type="file" onChange={this.onDrop} /></p>
-                                            </div>
-                                        </div> : ''}
-                                    </div> */}
+
+*/}
