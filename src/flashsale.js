@@ -178,7 +178,6 @@ class Editsubcatg extends Component {
               <p><ToastContainer /></p>
               <div class="head-main"><h6>Flash Sale</h6></div>
               <div class="main-grid form-grd">
-
                 <div class="fullfrm">
                   <div class="grpset">
                     <label class="mandtry">Flash Sale Start Time</label>
@@ -188,7 +187,6 @@ class Editsubcatg extends Component {
                       value={this.state.date}
                     />
                   </div>
-
                 </div>
                 <div class="fullfrm">
                   <div class="grpset">

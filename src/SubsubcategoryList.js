@@ -111,7 +111,7 @@ class Subsubcategory extends Component {
 
         if (window.confirm("Delete the item?")) {
             deletedIndexes.map(function (name, index) {
-                fetch(`${config.Url}/api/subsubcatdelete/` + data123[name][2]).then((response) => response.json())
+                fetch(`${config.Url}/api/subsubcatdelete/` + data123[name][5]).then((response) => response.json())
                     .then((res) => {
                         if (res.status === 'FAILURE') {
                             toast.error(res.message);

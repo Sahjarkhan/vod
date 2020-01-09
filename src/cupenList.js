@@ -18,7 +18,7 @@ const columns = [
     "BUY",
     "GET",
     "CATEGORY",
-    
+
 ];
 
 class SizeCollor extends Component {
@@ -29,16 +29,13 @@ class SizeCollor extends Component {
             window.location.assign("./");
         }
 
-
         this.state = { data: [] };
         fetch(`${config.Url}api/offerlist`).then((response) => response.json())
             .then((res) => {
                 if (res.status === 'FAILURE') {
                     toast.error(res.message);
                 } else {
-
                     this.setState({ data: res.offerlist });
-
                 }
             })
             .catch((error) => {
@@ -72,6 +69,7 @@ class SizeCollor extends Component {
         const { data, tableColumns } = this.props;
         const deletedIndexes = Object.keys(deletedRows.lookup);
         const data123 = this.state.data;
+
         deletedIndexes.map(function (name, index) {
             fetch(`${config.Url}api/offerdelete/` + data123[name][2]).then((response) => response.json())
                 .then((res) => {
@@ -114,9 +112,9 @@ class SizeCollor extends Component {
             <Header />
             <div className="bodylayouts-yod">
                 <div >
-                <p><ToastContainer /></p>
+                    <p><ToastContainer /></p>
                     <div class="Addsize">
-                    <Link to="/AddCupen" className="dashbtns"> Add Offer</Link>
+                        <Link to="/AddCupen" className="dashbtns"> Add Offer</Link>
                     </div>
                     {/* <p><ToastContainer /></p>
                     <div className="productexp">

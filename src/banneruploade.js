@@ -51,7 +51,7 @@ class Banneruploade extends Component {
       })
       .catch((error) => {
         console.log(error);
-        alert('Oops, something went wrong. Please try again!');
+        // alert('Oops, something went wrong. Please try again!');
       });
   }
 
@@ -79,9 +79,7 @@ class Banneruploade extends Component {
         .then((res) => {
           //alert(res);
           if (res.status === 'FAILURE') {
-            //toast.error(res.message);
           } else {
-            //toast.success(res.message);
             this.setState({
               pictures: res.response,
               showStore: false,
@@ -96,7 +94,7 @@ class Banneruploade extends Component {
         })
         .catch((error) => {
           console.log(error);
-          alert('Oops, something went wrong. Please try again!');
+          // alert('Oops, something went wrong. Please try again!');
         });
 
     };
@@ -161,7 +159,6 @@ class Banneruploade extends Component {
 
     console.log(this.state.pictures);
     if (this.handleValidation()) {
-      alert('Banner uploaded successdully')
       //console.warn()
       fetch(`${config.Url}api/createbanner`, {
         method: 'POST',
@@ -192,7 +189,7 @@ class Banneruploade extends Component {
         })
         .catch((error) => {
           console.log(error);
-          alert('Oops, something went wrong. Please try again!');
+          // alert('Oops, something went wrong. Please try again!');
         });
 
     }
@@ -249,6 +246,12 @@ class Banneruploade extends Component {
       })
       .catch((error) => {
         console.log(error);
+      });
+      this.setState({
+        data2: []
+      });
+      this.setState({
+        data1: []
       });
   }
 

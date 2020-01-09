@@ -12,93 +12,27 @@ import Switch from '@material-ui/core/Switch';
 import CSVReader from "react-csv-reader";
 import Loader from 'react-loader-spinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCog, faShoppingBasket, faPowerOff, faRupeeSign } from '@fortawesome/free-solid-svg-icons'
+import { faUserCog, faShoppingBasket, faPowerOff, faRupeeSign, faPen, faPenAlt } from '@fortawesome/free-solid-svg-icons'
 import config from './config/config';
-
-
-const columns = [
-  "SKU",
-  "PRODUCT",
-  "Category",
-  "Brand",
-  {
-    name: "PRICE",
-    options: {
-      filter: false,
-      customBodyRender: (value, status, updateValue) => {
-        return (
-          <div class="prodts-tbs">
-            <div >
-              <FontAwesomeIcon icon={faRupeeSign} /> {value}
-            </div>
-          </div>
-        );
-      }
-    }
-  },
-  "STOCK",
-  {
-    name: "STATUS",
-    options: {
-      filter: false,
-      customBodyRender: (value, status, updateValue) => {
-
-        return (
-          <FormControlLabel
-            label={value[0] ? "Active" : "Inactive"}
-            value={value[0] ? "1" : ""}
-            control={
-              <Switch color="primary" checked={value[0]} value={value[0] ? "1" : ""} />
-            }
-            onChange={event => {
-              fetch(`${config.Url}api/productstatuschange/` + value[1]).then((response) => response.json())
-                .then((res) => {
-                  if (res.status === 'FAILURE') {
-                    toast.error(res.message);
-                  } else {
-                    toast.success(res.message);
-                    updateValue(res.response);
-                  }
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-              console.log(value);
-            }}
-          />
-        );
-
-      }
-    }
-  }
-  ,
-  {
-    name: "ACTION",
-    options: {
-      filter: true,
-      customBodyRender: (value, status, updateValue) => {
-
-        return (
-          <div>
-
-            <Link to={{ "pathname": "/editproduct/" + value, "id": value }} class="roundico">Edit</Link>
-
-          </div>
-        );
-
-      }
-    }
-  }];
-
+import Modal from "react-responsive-modal";
+import Selling from './sellingListModel';
 
 
 class Product extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      open: false,
+      modelValue: []
+    }
+
     if (localStorage.getItem('logindata') === null) {
       window.location.assign("./");
     }
     this.state = { data: [] };
+    this.handleChange2 = this.handleChange2.bind(this)
+    this.onOpenModal = this.onOpenModal.bind(this);
+
     fetch(`${config.Url}api/productlistforadmin/` + JSON.parse(localStorage.getItem('logindata')).id).then((response) => response.json())
       .then((res) => {
         if (res.status === 'FAILURE') {
@@ -114,6 +48,28 @@ class Product extends Component {
       });
 
   }
+  handleChange2(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
+
+
+  onOpenModal = (value) => {
+    console.log(value[3])
+    this.setState({
+      modelValue: value, stock: value[3]
+    }, () => console.log(this.state.modelValue));
+    this.setState({ open: true });
+  };
+
+
 
   handleForce = data => {
     console.log(data.length);
@@ -146,23 +102,14 @@ class Product extends Component {
   handleDelete = deletedRows => {
     const { data, tableColumns } = this.props;
     const deletedIndexes = Object.keys(deletedRows.lookup);
-
     const data123 = this.state.data;
-
     deletedIndexes.map(function (name, index) {
-      //.log(data123);
       fetch(`${config.Url}api/productdelete/` + data123[name][6][1]).then((response) => response.json())
         .then((res) => {
-          //alert(res);
           if (res.status === 'FAILURE') {
             toast.error(res.message);
           } else {
             toast.success(res.message);
-            //alert(res);
-            //this.setState({data: res.response});
-
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/');
           }
           console.log(res);
         })
@@ -173,15 +120,157 @@ class Product extends Component {
 
     })
 
-    // const rows = transformToArray(data, tableColumns);
-    // deletedIndexes.map(index =>
-    //     limitPromisecConcurrency(() => this.remoteDelete(rows[index]))
-    // );
+  }
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state.stock)
+    var id = this.state.modelValue[0];
+    console.log(id);
+    fetch(`${config.Url}api/updatestock`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: this.state.modelValue[0],
+        stock: this.state.stock,
+      }),
+    }).then((response) => response.json())
+      .then((res) => {
+        if (res.status === 'FAILURE') {
+          toast.error(res.message);
+        } else {
+          if (toast.success(res.message)) {
+            window.location.reload();
+            this.props.history.push('/product');
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
 
 
   render() {
+    const columns = [
+      "SKU",
+      "PRODUCT",
+      "Category",
+      "Brand",
+      {
+        name: "PRICE",
+        options: {
+          filter: false,
+          customBodyRender: (value, status, updateValue) => {
+            return (
+              <div class="prodts-tbs">
+                <div >
+                  <FontAwesomeIcon icon={faRupeeSign} /> {value}
+                </div>
+              </div>
+            );
+          }
+        }
+      },
+
+      "STOCK",
+      {
+        name: "STATUS",
+        options: {
+          filter: false,
+          customBodyRender: (value, status, updateValue) => {
+            return (
+              <FormControlLabel
+                label={value[0] ? "Active" : "Inactive"}
+                value={value[0] ? "1" : ""}
+                control={
+                  <Switch color="primary" checked={value[0]} value={value[0] ? "1" : ""} />
+                }
+                onChange={event => {
+                  fetch(`${config.Url}api/productstatuschange/` + value[1]).then((response) => response.json())
+                    .then((res) => {
+                      if (res.status === 'FAILURE') {
+                        toast.error(res.message);
+                      } else {
+                        toast.success(res.message);
+                        updateValue(res.response);
+                      }
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                    });
+                }}
+              />
+            );
+          }
+        }
+      },
+      {
+        name: "Add STOCK",
+        options: {
+          filter: false, customBodyRender: (value, status, updateValue) => {
+            return (
+              <div className="prodts-tbs">
+                <div >
+                  <FontAwesomeIcon icon={faPen} onClick={() => this.onOpenModal(value)} />
+                </div>
+                {
+                  this.state.open === true ?
+                    <Modal open={this.state.open} onClose={this.onCloseModal}>
+                      <div className="modal-body">
+                        <form onSubmit={this.handleSubmit}>
+                          <div class="productsgrid">
+                            <div class="loaderintlos" id="showloadintlo" style={{ display: this.state.showStore ? 'block' : 'none' }}>
+                              <img alt="" src="https://www.justori.com/justori/assets/images/11.gif" />
+                            </div>
+                            <div class="head-main"><h6>Add STOCK</h6></div>
+                            <div class="main-grid form-grd">
+                              <div class="fullfrm">
+                                <div>
+                                  <div class="twoways">
+                                    <div class="grpset">
+                                      <label class="mandtry">STOCK</label>
+                                      <div class="Inputs">
+                                        <input maxLength="10" name="stock" class="uk-input" id="form-horizontal-text" type="text" placeholder="STOCK" value={this.state.stock} onChange={this.handleChange2} />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="main-grid form-grd">
+                            <div class="halffrms updatebtns">
+                              <div class="twoways">
+                                <button type="submit" class="uk-button uk-button-default">Submit</button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </Modal> : ""
+                }
+              </div>
+            );
+          }
+        }
+      },
+      {
+        name: "ACTION",
+        options: {
+          filter: true,
+          customBodyRender: (value, status, updateValue) => {
+            return (
+              <div>
+                <Link to={{ "pathname": "/editproduct/" + value, "id": value }} class="roundico">Edit</Link>
+              </div>
+            );
+          }
+        }
+      }];
     const options = {
       filterType: "dropdown",
       responsive: "scroll",
@@ -203,29 +292,22 @@ class Product extends Component {
 
     return <div class="dash-layout">
       <Header />
-
       <div class="bodylayouts-yod">
-
         <div >
           <p><ToastContainer /></p>
           <div class="productexp">
-
-
             <div class="prdelements">
               <CSVReader
                 cssClass="dashbtns"
                 label="Upload Excel : "
                 onFileLoaded={this.handleForce}
               />
-              {/* <ReactFileReader fileTypes={'.csv'} handleFiles={this.handleFiles}><button class="dashbtns"><img src="img/uploadexcl.png"/> Upload Excel</button></ReactFileReader> */}
             </div>
-
             <div class="prdelements">
               <Link to="/addproduct" class="dashbtns"> Add Product</Link>
             </div>
 
           </div>
-
           <div class="yodadm-tablesthm uk-overflow-auto">
             <MUIDataTable
               title={"Product List"}
@@ -235,11 +317,8 @@ class Product extends Component {
             />
           </div>
         </div>
-
       </div>
-
     </div>
-
   }
 }
 

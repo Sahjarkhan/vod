@@ -2395,4 +2395,110 @@ header.yodamin-hd img.logoheader {
     margin: 0;
 }
 
+#chartContainer{
+    height: 400px;
+    margin: 30px 0 0 0; 
+}
+
+
+.Line canvas{
+    width: 100% !important;
+    height: 550px !important;
+}
+.fa-pen:before {
+    content: "\f304";
+}
+.uk-table td > :last-child {
+    margin-bottom: 0;
+}
+.fa, .fas, .far, .fal, .fab {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.styles_overlay__CLSq- {
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1000;
+    padding: 1.2rem;
+}
+
+.uk-table td > :last-child {
+    margin-bottom: 0;
+}
+
+.Time_view {
+    margin: 30px 0 50px 0;
+    background-color: #fff;
+    padding: 30px 0;
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px #ddd;
+}
+
+.Time_view ul li{
+    position: relative;
+}
+
+.Time_view ul li form{
+    display: flex;
+}
+
+.Time_view ul li form .Calender{
+    display: inline-block;
+    margin: 0 10px;
+    display: flex;
+}
+
+.Time_view ul li form .Calender span{
+    margin: 0 13px 0 0;
+}
+
+.Time_view ul li form .Calender div{
+    position: relative;
+}
+
+.Time_view ul li form .Calender div svg,
+.Time_view ul li form .Calender div svg {
+ position: absolute;
+ z-index: 9;
+ left: 10px;
+ top: 13px;
+}
+
+.Time_view ul li form .Calender div input,
+.Time_view ul li form .Calender div input {
+ border: 1px solid #ddd;
+ height: 45px;
+ padding: 0 0 0 40px;
+ width: 175px;
+}
+
+.Time_view ul li form button.submit{
+    background: linear-gradient(to right, rgb(233, 8, 141), rgb(114, 42, 140));
+    border: none;
+    color: #fff;
+    width: 50px;
+    border-radius: 5px;
+}
+
+.Time_view ul li:last-child{
+    border-left: 1px solid #cacaca;
+    padding: 0 0 0 30px;
+}
+
+
+
+
 

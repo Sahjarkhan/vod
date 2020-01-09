@@ -220,7 +220,6 @@ class Dashboard extends Component {
 				.catch((error) => {
 					console.log(error);
 				});
-
 		};
 		if (file) {
 			reader.readAsDataURL(file);
@@ -335,8 +334,7 @@ class Dashboard extends Component {
 		if (!fields.ships_in) {
 			formIsValid = false;
 			errors["ships_in"] = "Please enter ships in.";
-		}
-
+		}		
 		this.setState({ errors: errors });
 		return formIsValid;
 	}
@@ -349,7 +347,11 @@ class Dashboard extends Component {
 		this.setState({
 			[name]: value
 		});
-
+		if (name == 'category_id') {
+			this.setState({
+				subsubcategory_id: []
+			});
+		}
 		if (name == 'sp') {
 			if (parseInt(value) > parseInt(this.state.mrp)) {
 
@@ -378,12 +380,15 @@ class Dashboard extends Component {
 					toast.error(res.message);
 				} else {
 					this.setState({ data: res.sublistbycat });
-					debugger
 				}
 			})
 			.catch((error) => {
 				console.log(error);
 			});
+		this.setState({
+			data1: []
+		});
+
 	}
 
 	handleChange2(event) {
@@ -398,8 +403,10 @@ class Dashboard extends Component {
 				if (res.status === 'FAILURE') {
 					toast.error(res.message);
 				} else {
+
 					this.setState({ data1: res.sublistbycatremark });
 				}
+				console.log(this.state.data1)
 			})
 			.catch((error) => {
 				console.log(error);
@@ -425,32 +432,6 @@ class Dashboard extends Component {
 		event.preventDefault();
 		const { match: { params } } = this.props;
 		if (this.handleValidation()) {
-			var testing = {
-				name: this.state.name,
-				images: this.state.imagearray,
-				category_id: this.state.category_id,
-				mrp: this.state.mrp,
-				sp: this.state.sp,
-				subcategory_id: this.state.subcategory_id,
-				subsubcategory_id: this.state.subsubcategory_id,
-				color: colorArray,
-				size: sizeArray,
-				sizechart: this.state.picturescolorchart,
-				description: this.state.description,
-				brand: this.state.brand,
-				quantity: this.state.quantity,
-				hsn_code: this.state.hsn_code,
-				weight: this.state.weight,
-				height: this.state.height,
-				width: this.state.width,
-				length: this.state.length,
-				ships_in: this.state.ships_in,
-				sku: this.state.sku,
-				theme_id: this.state.theme_id,
-				fit: this.state.fit,
-				imagearray: this.state.imagearray
-			}
-			console.log(testing)
 			fetch(`${config.Url}api/editproductbyseller/` + params.userId, {
 				method: 'POST',
 				headers: {
@@ -502,9 +483,7 @@ class Dashboard extends Component {
 		const { selectedOption } = this.state;
 		return <div class="dash-layout">
 			<Header />
-
 			<div class="bodylayouts-yod">
-
 				<div >
 					<form onSubmit={this.handleSubmit}>
 						<div class="productsgrid">
@@ -514,7 +493,6 @@ class Dashboard extends Component {
 							</div>
 							<div class="head-main"><h6>Product Info</h6></div>
 							<div class="main-grid form-grd">
-
 								<div class="fullfrm">
 									<div class="grpset">
 										<label class="mandtry">Name</label>
