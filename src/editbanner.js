@@ -618,7 +618,6 @@ class Banneruploade extends Component {
     }
     console.log(testing)
     if (this.handleValidation()) {
-      alert('Banner updated successfully');
       fetch(`${config.Url}api/createbanner`, {
         method: 'POST',
         headers: {
@@ -640,6 +639,7 @@ class Banneruploade extends Component {
           if (res.status === 'FAILURE') {
             toast.error(res.message);
           } else {
+            console.log(res.message)
             toast.success(res.message);
             console.log(res);
             this.props.history.push('/bannerlist');
@@ -687,10 +687,11 @@ class Banneruploade extends Component {
         <div >
           <form onSubmit={this.handleSubmit}>
             <div className="productsgrid">
-              <p><ToastContainer /></p>
               <div className="loaderintlos" id="showloadintlo" style={{ display: this.state.showStore ? 'block' : 'none' }}>
                 <img alt="Ok" src="https://www.justori.com/justori/assets/images/11.gif" />
               </div>
+              <p><ToastContainer /></p>
+
               <div className="head-main"><h6>Banner Info</h6></div>
               <div className="main-grid form-grd">
 

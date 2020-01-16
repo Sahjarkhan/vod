@@ -11,7 +11,7 @@ export default class Lines extends Component {
       lastmonth: 6,
       state_records: [],
       data: {
-        labels: ['January ', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [
           {
             label: 'Transaction',
@@ -46,7 +46,7 @@ export default class Lines extends Component {
         } else {
           console.log(res.dashoardforadmin.graph);
           var testing = {
-            labels: ['January ', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"],
             datasets: [
               {
                 label: 'Transaction',
@@ -68,19 +68,19 @@ export default class Lines extends Component {
                 pointRadius: 1,
                 pointHitRadius: 10,
                 data: [
-                res.dashoardforadmin.graph[0].g1,
-                res.dashoardforadmin.graph[1].g2,
-                res.dashoardforadmin.graph[2].g3,
-                res.dashoardforadmin.graph[3].g4,
-                res.dashoardforadmin.graph[4].g5,
-                res.dashoardforadmin.graph[5].g6,
-                res.dashoardforadmin.graph[6].g7,
-                res.dashoardforadmin.graph[7].g8,
-                res.dashoardforadmin.graph[8].g9,
-                res.dashoardforadmin.graph[9].g10,
-                res.dashoardforadmin.graph[10].g11,
-                res.dashoardforadmin.graph[11].g12
-              ]
+                  res.dashoardforadmin.graph[0].g1,
+                  res.dashoardforadmin.graph[1].g2,
+                  res.dashoardforadmin.graph[2].g3,
+                  res.dashoardforadmin.graph[3].g4,
+                  res.dashoardforadmin.graph[4].g5,
+                  res.dashoardforadmin.graph[5].g6,
+                  res.dashoardforadmin.graph[6].g7,
+                  res.dashoardforadmin.graph[7].g8,
+                  res.dashoardforadmin.graph[8].g9,
+                  res.dashoardforadmin.graph[9].g10,
+                  res.dashoardforadmin.graph[10].g11,
+                  res.dashoardforadmin.graph[11].g12
+                ]
               }
             ]
           }

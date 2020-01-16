@@ -668,9 +668,7 @@ class AddProduct extends Component {
 		const { selectedOption } = this.state;
 		return <div className="dash-layout">
 			<Header />
-
 			<div className="bodylayouts-yod">
-
 				<div >
 					<form onSubmit={this.handleSubmit}>
 						<div className="productsgrid">

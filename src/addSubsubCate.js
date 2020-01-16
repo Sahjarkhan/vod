@@ -151,7 +151,6 @@ class addSubsubCategory extends Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-
         if (this.handleValidation()) {
             if (this.state.pictures.length !== 0) {
                 this.state.pictures = `${config.UrlImage}` + this.state.pictures;
@@ -179,6 +178,7 @@ class addSubsubCategory extends Component {
                 }),
             }).then((response) => response.json())
                 .then((res) => {
+                    console.log(res)
                     if (res.status === 'FAILURE') {
                         toast.error(res.message);
                     } else {

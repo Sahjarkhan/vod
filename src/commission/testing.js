@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-responsive-modal";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBoxOpen, faTachometerAlt, faPen, faUserCog, faShoppingBasket, faPowerOff, faRupeeSign } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBoxOpen, faTachometerAlt, faUserCog, faShoppingBasket, faPowerOff, faRupeeSign } from '@fortawesome/free-solid-svg-icons'
 import config from '../config/config';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -9,38 +9,22 @@ const styles = {
     fontFamily: "sans-serif",
     textAlign: "center"
 };
-
 class Testing extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            errors: {},
-            sperror: '',
+            pay_type: "",
+            pay_date: "",
+            pay_status: "",
+            errors: {}
+
         }
-        this.handleChange2 = this.handleChange2.bind(this)
+        this.handleChange2 = this.handleChange2.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     state = {
         open: false
-    };
-
-    onOpenModal = (event) => {
-        console.log(event)
-        this.setState(
-            { modelValue: event },
-            () => console.log("1")
-        );
-        this.setState(
-            { stock: event[3]},
-            () => console.log(this.state)
-        );
-        this.setState({ open: true });
-    };
-
-    onCloseModal = () => {
-        this.setState({ open: false });
-        this.setState({ errors: {} });
-
     };
     handleChange2(event) {
         const target = event.target;
@@ -49,7 +33,7 @@ class Testing extends React.Component {
         this.setState({
             [name]: value
         });
-        if (name === 'stock') {
+        if (name === 'commission') {
             const re = /^[0-9]{0,8}$/i;
             if (value === '' || re.test(value)) {
                 this.setState({ stock: value })
@@ -59,27 +43,14 @@ class Testing extends React.Component {
                 });
             }
         }
+
     }
-    handleValidation() {
-        let fields = this.state;
-        let errors = {};
-        let formIsValid = true;
-
-        if (!fields.stock) {
-            formIsValid = false;
-            errors["stock"] = "Please enter stock.";
-        }
-        this.setState({ errors: errors });
-        return formIsValid;
-    }
-
-
     handleSubmit = (event) => {
+        console.log(this.state.modelValue[0]);
         event.preventDefault();
-        console.log(this.state.stock)
-        var id = this.state.modelValue[0];
         if (this.handleValidation()) {
-            fetch(`${config.Url}api/updatestock`, {
+            var amount = this.state.commission;
+            fetch(`${config.Url}api/updatecommission`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -87,7 +58,7 @@ class Testing extends React.Component {
                 },
                 body: JSON.stringify({
                     id: this.state.modelValue[0],
-                    stock: this.state.stock,
+                    commission: amount,
                 }),
             }).then((response) => response.json())
                 .then((res) => {
@@ -96,7 +67,8 @@ class Testing extends React.Component {
                     } else {
                         if (toast.success(res.message)) {
                             window.location.reload();
-                            this.props.history.push('/product');
+
+                            this.props.history.push('/sellerlist');
                         }
                     }
                 })
@@ -105,35 +77,61 @@ class Testing extends React.Component {
                 });
         }
     }
+    onOpenModal = (event) => {
+        const value = event.target;
+        this.setState(
+            { modelValue: event },
+            () => console.log("1")
+        );
+        this.setState(
+            { commission: event[1] },
+            () => console.log(this.state)
+        );
+        this.setState({ open: true });
+    };
 
+    handleValidation() {
+        let fields = this.state;
+        let errors = {};
+        let formIsValid = true;
+
+        if (!fields.commission) {
+            formIsValid = false;
+            errors["commission"] = "Please commission stock.";
+        }
+        this.setState({ errors: errors });
+        return formIsValid;
+    }
+
+    onCloseModal = () => {
+        this.setState({ open: false });
+    };
     render() {
         const { open } = this.state;
         return (
             <div style={styles}>
                 <div >
-                    <FontAwesomeIcon icon={faPen} onClick={() => this.onOpenModal(this.props.greeting)} style={{ width: 20, marginLeft: 10 }} className="logoheader" alt="ok" />
+                    <img onClick={() => this.onOpenModal(this.props.greeting)} style={{ width: 20, marginLeft: 10 }} className="logoheader" alt="ok" src={require('../img/calculate.png')} />
                 </div>
-                <Modal open={open} onClose={this.onCloseModal}>
+                <Modal open={this.state.open} onClose={this.onCloseModal}>
                     <div className="modal-body">
                         <form onSubmit={this.handleSubmit}>
                             <div class="productsgrid">
                                 <div class="loaderintlos" id="showloadintlo" style={{ display: this.state.showStore ? 'block' : 'none' }}>
                                     <img alt="" src="https://www.justori.com/justori/assets/images/11.gif" />
                                 </div>
-                                <div class="head-main"><h6>Add STOCK</h6></div>
+                                <div class="head-main"><h6>Add Commission</h6></div>
                                 <div class="main-grid form-grd">
                                     <div class="fullfrm">
                                         <div>
                                             <div class="twoways">
                                                 <div class="grpset">
-                                                    <label class="mandtry">STOCK</label>
+                                                    <label class="mandtry"> Add Commission</label>
                                                     <div class="Inputs">
-                                                        <input maxLength="10" name="stock" class="uk-input" id="form-horizontal-text" type="text" placeholder="STOCK" value={this.state.stock} onChange={this.handleChange2} />
+                                                        <input pattern="[0-9]{0,10}" maxLength="10" name="commission" class="uk-input" id="form-horizontal-text" type="text" placeholder="Commission" value={this.state.commission} onChange={this.handleChange2} />
                                                     </div>
-
                                                 </div>
-                                                <span style={{ color: "red" }}>{this.state.errors["stock"]}</span>
-
+                                                <span style={{ color: "red" }}>{this.state.errors["commission"]}</span>
                                             </div>
                                         </div>
                                     </div>

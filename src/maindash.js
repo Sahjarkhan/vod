@@ -23,6 +23,7 @@ class Maindash extends Component {
 
     }
     Testing() {
+
         fetch(`${config.Url}api/dashoardforadmin?dateframe=${this.state.lastmonth}`).then((response) => response.json())
             .then((res) => {
                 if (res.status === 'FAILURE') {
@@ -53,13 +54,84 @@ class Maindash extends Component {
         });
     };
     handleChange2 = date => {
-        this.setState({
-            endDate: date
-        });
+        console.log(date)
+        if(date ===null){
+            this.setState(
+                { endDate: new Date() },
+                () => console.log('hello111')
+            );
+        }
+        
+
+        function convert(str) {
+            var date = new Date(str),
+                mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+                day = ("0" + date.getDate()).slice(-2);
+            return [mnth, day, date.getFullYear()].join("/");
+        }
+        var secondEndDate = convert(date);
+
+
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        var today = mm + '/' + dd + '/' + yyyy;
+
+
+
+        var date1 = new Date(today);
+        var date2 = new Date(secondEndDate);
+        var Difference_In_Time = date2.getTime() - date1.getTime();
+        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+        if (Difference_In_Days > 0) {
+            this.setState(
+                { endDate: new Date() },
+                () => console.log('hello1')
+            );
+            
+        } else {
+            this.setState({
+                endDate: date
+            });
+           
+        }
+
     };
     handleSubmit = (event) => {
-        console.log(this.state.startDate);
-        console.log(this.state.endDate);
+        function convert(str) {
+            var date = new Date(str),
+                mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+                day = ("0" + date.getDate()).slice(-2);
+            return [mnth, day, date.getFullYear()].join("/");
+        }
+        var secondEndDate = convert(this.state.endDate);
+
+
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        var today = mm + '/' + dd + '/' + yyyy;
+
+
+        var date1 = new Date(today);
+        var date2 = new Date(secondEndDate);
+        var Difference_In_Time = date2.getTime() - date1.getTime();
+        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+        if (Difference_In_Days > 0) {
+            this.setState(
+                { endDate: new Date() },
+                () => console.log('Testing')
+            );
+        } else {
+            this.setState({
+                endDate: this.state.endDate
+            });
+        }
+
         event.preventDefault();
         fetch(`${config.Url}api/dashoardforadmin`, {
             method: 'POST',
@@ -76,6 +148,7 @@ class Maindash extends Component {
                 if (res.status === 'FAILURE') {
                     toast.error(res.message);
                 } else {
+                    console.log('helo')
                     if (toast.success(res.message)) {
                         this.setState(res.dashoardforadmin);
                     }
@@ -84,22 +157,26 @@ class Maindash extends Component {
             .catch((error) => {
                 console.log(error);
             });
+
     }
     handleChange1 = event => {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-
         this.setState({
             lastmonth: value
         });
+        this.setState(
+            { lastmonth: value },
+            () => console.log(this.state.lastmonth)
+        );
 
         this.Testing();
 
     };
 
     onChange = date => this.setState({ date });
-    
+
     render() {
         return <div >
             <p><ToastContainer /></p>
@@ -114,6 +191,7 @@ class Maindash extends Component {
                                     <DatePicker
                                         selected={this.state.startDate}
                                         onChange={this.handleChange}
+
                                     />
                                 </div>
                             </div>
@@ -144,40 +222,40 @@ class Maindash extends Component {
             </div>
             <div className="grapscols">
                 <div className="graph-grid">
-                    <div className="graph-voilet">
+                    <Link to="/orders" className="graph-voilet">
                         <div className="ordersdtsa">
-                            <h5><Link to="/orders">Orders</Link></h5>
+                            <h5>Orders</h5>
                             <p className="resul-dta">{this.state.orders}</p>
                         </div>
                         <div className="dataanalys">
                             <img alt="hhjj" src={require('./img/spinechar.png')} />
                         </div>
-                        </div>
+                    </Link>
                 </div>
                 <div className="graph-grid">
-                    <div  className="graph-voilet">
+                    <Link to="/product" className="graph-voilet">
                         <div className="ordersdtsa">
-                        <h5><Link to="/product">Revenue</Link></h5>
+                            <h5>Revenue</h5>
                             <p className="resul-dta">{this.state.revenue}</p>
                         </div>
                         <div className="dataanalys">
                             <img alt="hhjj" src={require('./img/spinechar.png')} />
                         </div>
-                    </div>
+                    </Link>
                 </div>
 
 
                 <div className="graph-grid">
-                    <div className="graph-voilet">
+                    <Link to="/product" className="graph-voilet">
                         <div className="ordersdtsa">
-                        <h5><Link to="/product">Products</Link></h5>
+                            <h5>Products</h5>
                             <p className="resul-dta">Live {this.state.live_product}<br />
                                 Non live   {this.state.nonlive_product}</p>
                         </div>
                         <div className="dataanalys">
                             <img alt="hhjj" src={require('./img/spinechar.png')} />
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
-import React from 'react';
+import React ,{Suspense}from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { HashRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route ,Switch} from "react-router-dom";
 import Home from "./home";
 import Dashboard from "./dashboard";
 import Product from "./product";
@@ -42,55 +42,55 @@ import addCupen from "./addCupen";
 import cupenList from "./cupenList";
 import Editbrand from "./editbrand";
 import ViewBuyer from "./BuyerView";
-
 import * as serviceWorker from './serviceWorker';
 
 
-const routing = (
-  <Router baseame="/build">
-    <Route exact path={"/"} component={Home} />
-    <Route path={"/dashboard"} component={Dashboard} />
-    <Route path={"/cupenList"} component={cupenList} />
-    <Route path={"/forgot"} component={Forgot} />
-    <Route path={"/editbrand/:userId"} component={Editbrand} />
-    <Route path={"/product"} component={Product} />
-    <Route path={"/addproduct"} component={Addproduct} />
-    <Route path={"/editproduct/:userId"} component={editproduct} />
-    <Route path={"/setting"} component={setting} />
-    <Route path={"/addCupen"} component={addCupen} />
-    <Route path={"/header"} component={header} />
-    <Route path={"/orders"} component={orders} />
-    <Route path={"/addsize"} component={AddSize} />
-    <Route path={"/addcolor"} component={AddColor} />
-    <Route path={"/ordersdetails/:userId"} component={Ordersdetails} />
-    <Route path={"/buyer"} component={Buyer} />
-    <Route path={"/category"} component={Category} />
-    <Route path={"/addcategory"} component={Addcategory} />
-    <Route path={"/editsubcatg/:userId"} component={Editsubcatg} />
-    <Route path={"/banneruploade"} component={Banneruploade} />
-    <Route path={"/bannerlist"} component={Bannerlist} />
-    <Route path={"/addtheme"} component={Addtheme} />
-    <Route path={"/subsubcategory"} component={Subsubcategory} />
-    <Route path={"/themelist"} component={Themelist} />
-    <Route path={"/addbrand"} component={Addbrand} />
-    <Route path={"/brandlist"} component={Brandlist} />
-    <Route path={"/addflashproduct"} component={Addflashproduct} />
-    <Route path={"/flashsale"} component={Flashsale} />
-    <Route path={"/sellerlist"} component={Sellerlist} />
-    <Route path={"/cupon"} component={Cuponlist} />
-    <Route path={"/editbanner/:userId"} component={Editbanner} />
-    <Route path={"/about"} component={About} />
-    <Route path={"/faqlist"} component={Faqlist} />
-    <Route path={"/addfaq"} component={Addfaq} />
-    <Route path={"/layout"} component={Layout} />
-    <Route path={"/colorList"} component={colorList} />
-    <Route path={"/sizeList"} component={sizeList} />
-    <Route path={"/viewbuyer/:userId"} component={ViewBuyer} />
-    <Route path={"/addSubsubCate"} component={addSubsubCate} />
-    <Route path={"/orderrequest"} component={orderrequest} />
+const App = () => (
+   <Router  baseame="/build">
+    <Switch>
+    <Route exact path="/" component={Home} />
+    <Route path="/dashboard"  component={Dashboard} />
+    <Route path="/cupenList" component={cupenList} />
+    <Route path="/forgot" component={Forgot} />
+    <Route path="/editbrand/:userId" component={Editbrand} />
+    <Route path="/product" component={Product} />
+    <Route path="/addproduct" component={Addproduct} />
+    <Route path="/editproduct/:userId" component={editproduct} />
+    <Route path="/setting" component={setting} />
+    <Route path="/addCupen" component={addCupen} />
+    <Route path="/header" component={header} />
+    <Route path="/orders" component={orders} />
+    <Route path="/addsize" component={AddSize} />
+    <Route path="/addcolor" component={AddColor} />
+    <Route path="/ordersdetails/:userId" component={Ordersdetails} />
+    <Route path="/buyer" component={Buyer} />
+    <Route path="/category" component={Category} />
+    <Route path="/addcategory" component={Addcategory} />
+    <Route path="/editsubcatg/:userId" component={Editsubcatg} />
+    <Route path="/banneruploade" component={Banneruploade} />
+    <Route path="/bannerlist" component={Bannerlist} />
+    <Route path="/addtheme" component={Addtheme} />
+    <Route path="/subsubcategory" component={Subsubcategory} />
+    <Route path="/themelist" component={Themelist} />
+    <Route path="/addbrand" component={Addbrand} />
+    <Route path="/brandlist" component={Brandlist} />
+    <Route path="/addflashproduct" component={Addflashproduct} />
+    <Route path="/flashsale" component={Flashsale} />
+    <Route path="/sellerlist" component={Sellerlist} />
+    <Route path="/cupon" component={Cuponlist} />
+    <Route path="/editbanner/:userId" component={Editbanner} />
+    <Route path="/about" component={About} />
+    <Route path="/faqlist" component={Faqlist} />
+    <Route path="/addfaq" component={Addfaq} />
+    <Route path="/layout" component={Layout} />
+    <Route path="/colorList" component={colorList} />
+    <Route path="/sizeList" component={sizeList} />
+    <Route path="/viewbuyer/:userId" component={ViewBuyer} />
+    <Route path="/addSubsubCate" component={addSubsubCate} />
+    <Route path="/orderrequest" component={orderrequest} />
+    </Switch>
   </Router>
-)
-
-ReactDOM.render(routing, document.getElementById('root'));
+);
+ReactDOM.render(<App/>, document.getElementById('root'));
 
 serviceWorker.unregister();

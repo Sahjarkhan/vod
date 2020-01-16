@@ -127,18 +127,14 @@ class Bannerlist extends Component {
     //alert([0])
     const data123 = this.state.data;
     deletedIndexes.map(function (name, index) {
-      fetch(`${config.Url}api/catdeleteb/` + data123[name][3]).then((response) => response.json())
+      console.log(data123[name][5]);
+      fetch(`${config.Url}api/catdeleteb/` + data123[name][5]).then((response) => response.json())
         .then((res) => {
           //alert(res);
           if (res.status === 'FAILURE') {
             toast.error(res.message);
           } else {
             toast.success("Banner deleted successfully.");
-            //alert(res);
-            //this.setState({data: res.response});
-
-            //localStorage.setItem('logindata', res.sellerlogin);
-            //this.props.history.push('/');
           }
           console.log(res);
         })
@@ -167,18 +163,14 @@ class Bannerlist extends Component {
 
     return <div class="dash-layout">
       <Header />
-
       <div class="bodylayouts-yod">
-
         <div >
           <p><ToastContainer /></p>
           <div class="productexp">
-
             <div class="prdelements">
               <Link to="/banneruploade" class="dashbtns"> Add New Banner</Link>
             </div>
           </div>
-
           <div class="yodadm-tablesthm uk-overflow-auto">
             <MUIDataTable
               title={"Banner List"}
@@ -188,9 +180,7 @@ class Bannerlist extends Component {
             />
           </div>
         </div>
-
       </div>
-
     </div>
 
   }

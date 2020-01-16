@@ -12,11 +12,12 @@ import Switch from '@material-ui/core/Switch';
 import CSVReader from "react-csv-reader";
 import Loader from 'react-loader-spinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCog, faShoppingBasket, faPowerOff, faRupeeSign, faPen, faPenAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUserCog, faShoppingBasket, faPowerOff, faPenSquare, faPhoneSquareAlt, faRupeeSign, faPen, faPenAlt } from '@fortawesome/free-solid-svg-icons'
 import config from './config/config';
 import Modal from "react-responsive-modal";
 import Selling from './sellingListModel';
-
+import StockAdd from '../src/stockAdd/testing';
+import Testing from '../src/productCommission/testing'
 
 class Product extends Component {
   constructor(props) {
@@ -175,6 +176,21 @@ class Product extends Component {
           }
         }
       },
+      {
+        name: "Mrp PRICE",
+        options: {
+          filter: false,
+          customBodyRender: (value, status, updateValue) => {
+            return (
+              <div class="prodts-tbs">
+                <div >
+                  <FontAwesomeIcon icon={faRupeeSign} /> {value}
+                </div>
+              </div>
+            );
+          }
+        }
+      },
 
       "STOCK",
       {
@@ -214,45 +230,19 @@ class Product extends Component {
           filter: false, customBodyRender: (value, status, updateValue) => {
             return (
               <div className="prodts-tbs">
-                <div >
-                  <FontAwesomeIcon icon={faPen} onClick={() => this.onOpenModal(value)} />
-                </div>
-                {
-                  this.state.open === true ?
-                    <Modal open={this.state.open} onClose={this.onCloseModal}>
-                      <div className="modal-body">
-                        <form onSubmit={this.handleSubmit}>
-                          <div class="productsgrid">
-                            <div class="loaderintlos" id="showloadintlo" style={{ display: this.state.showStore ? 'block' : 'none' }}>
-                              <img alt="" src="https://www.justori.com/justori/assets/images/11.gif" />
-                            </div>
-                            <div class="head-main"><h6>Add STOCK</h6></div>
-                            <div class="main-grid form-grd">
-                              <div class="fullfrm">
-                                <div>
-                                  <div class="twoways">
-                                    <div class="grpset">
-                                      <label class="mandtry">STOCK</label>
-                                      <div class="Inputs">
-                                        <input maxLength="10" name="stock" class="uk-input" id="form-horizontal-text" type="text" placeholder="STOCK" value={this.state.stock} onChange={this.handleChange2} />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="main-grid form-grd">
-                            <div class="halffrms updatebtns">
-                              <div class="twoways">
-                                <button type="submit" class="uk-button uk-button-default">Submit</button>
-                              </div>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </Modal> : ""
-                }
+                <StockAdd greeting={value} />
+              </div>
+            );
+          }
+        }
+      },
+      {
+        name: "Add Commission",
+        options: {
+          filter: false, customBodyRender: (value, status, updateValue) => {
+            return (
+              <div className="prodts-tbs">
+                <Testing greeting={value} />
               </div>
             );
           }
