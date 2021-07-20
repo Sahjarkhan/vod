@@ -37,7 +37,7 @@
     "react-images-upload": "^1.2.7",
     "react-loader-spinner": "^3.1.2",
     "react-motion-drawer": "^3.1.0",
-    "react-native": "^0.60.5",
+    "react-native": "^0.62.3",
     "react-redirect": "^1.0.0",
     "react-redux-datatable": "^2.4.6",
     "react-responsive-modal": "^4.0.1",
